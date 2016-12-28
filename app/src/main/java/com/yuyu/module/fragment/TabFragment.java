@@ -34,9 +34,10 @@ public class TabFragment extends Fragment {
     }
 
     public void tabInitialize(Fragment[] arr) {
-        Log.e(TAG, "호출");
+        Log.e(TAG, "호출 1");
         arr[0] = new TabFragment1();
         arr[1] = new TabFragment2();
+        Log.e(TAG, "호출 2");
         view_pager.setAdapter(new TabAdapter(getFragmentManager(), arr));
         tab_layout.setupWithViewPager(view_pager);
     }
