@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity
 
     public void initialize() {
         nav_view.getMenu().getItem(0).setChecked(true);
-        setTitle(getString(R.string.nav_main));
         getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
     }
 

@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/border_full">
 
-    <android.support.design.widget.TabLayout
+    <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="50dp"
+        android:layout_margin="1dp"
+        android:background="@android:color/darker_gray"
+        android:textColor="#000"
+        app:pstsDividerColor="@android:color/black"
+        app:pstsDividerPadding="0dp"
+        app:pstsIndicatorColor="@android:color/white"
+        app:pstsIndicatorHeight="2000dp"
+        app:pstsShouldExpand="true"
+        app:pstsTabBackground="@drawable/tab_bg_selector"
+        app:pstsUnderlineColor="@android:color/black"
+        app:pstsUnderlineHeight="1dp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/tab_layout" />
 
 </RelativeLayout>

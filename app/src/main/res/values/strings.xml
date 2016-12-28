@@ -15,10 +15,14 @@
     <string name="group_2">GROUP 2</string>
     <string name="group_3">GROUP 3</string>
 
-    <string name="nav_main">메인화면</string>
-    <string name="nav_tab">탭 모듈</string>
+    <string name="nav_main">메인</string>
+    <string name="nav_tab">탭</string>
     <string name="nav_3">NAV 3</string>
     <string name="nav_4">NAV 4</string>
     <string name="nav_5">NAV 5</string>
     <string name="nav_6">NAV 6</string>
+
+
+    <string name="tab_1">TAB 1</string>
+    <string name="tab_2">TAB 2</string>
 </resources>

@@ -363,6 +363,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.astuetz-pagerslidingtabstrip-1.0.1_675d7333d20aff7f8a293c2ed543ee56a08b8679.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
         jumboMode="true"
         optimize="true"
