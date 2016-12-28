@@ -1,5 +1,6 @@
-package com.yuyu.module.Activity;
+package com.yuyu.module.activity;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,8 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.yuyu.module.Custom.Constant;
 import com.yuyu.module.R;
+import com.yuyu.module.custom.Constant;
+import com.yuyu.module.fragment.MainFragment;
+import com.yuyu.module.fragment.TabFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,15 +24,17 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private final String TAG = MainActivity.class.getSimpleName();
+
+    private Toast toast;
+    private Context context;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer_layout;
     @BindView(R.id.nav_view)
     NavigationView nav_view;
-
-    private Toast toast;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +49,15 @@ public class MainActivity extends AppCompatActivity
         drawer_layout.setDrawerListener(toggle);
         toggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
+        initialize();
     }
 
     @Override
     public void onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START);
-        } else {
 
+        } else {
             if (Constant.CURRENT_TIME + Constant.BACK_TIME < System.currentTimeMillis()) {
                 Constant.CURRENT_TIME = System.currentTimeMillis();
                 toast.setText(getString(R.string.onBackPressed));
@@ -77,18 +83,30 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        Fragment fragment = null;
         int iid = item.getItemId();
-        if (iid == R.id.nav_camera) {
-        } else if (iid == R.id.nav_gallery) {
-        } else if (iid == R.id.nav_slideshow) {
-        } else if (iid == R.id.nav_manage) {
-        } else if (iid == R.id.nav_share) {
-        } else if (iid == R.id.nav_send) {
+        if (iid == R.id.nav_main) {
+            fragment = new MainFragment();
+        } else if (iid == R.id.nav_tab) {
+            fragment = new TabFragment();
+        } else if (iid == R.id.nav_3) {
+        } else if (iid == R.id.nav_4) {
+        } else if (iid == R.id.nav_5) {
+        } else if (iid == R.id.nav_6) {
+        }
+        if (fragment != null) {
+            getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
         }
         drawer_layout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void initialize() {
+        nav_view.getMenu().getItem(0).setChecked(true);
+        setTitle(getString(R.string.nav_main));
+        getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
+    }
+
 }

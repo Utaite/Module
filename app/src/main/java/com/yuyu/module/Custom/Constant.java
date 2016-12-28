@@ -1,4 +1,4 @@
-package com.yuyu.module.Custom;
+package com.yuyu.module.custom;
 
 // 공통 변수를 지정해 두기 위해 구현한 클래스
 public class Constant {

@@ -1,10 +1,24 @@
 <resources>
     <string name="app_name">Module</string>
 
+
     <string name="onBackPressed">\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.</string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+
     <string name="menu_develop">개발 중</string>
+
+
+    <string name="group_2">GROUP 2</string>
+    <string name="group_3">GROUP 3</string>
+
+    <string name="nav_main">메인화면</string>
+    <string name="nav_tab">탭 모듈</string>
+    <string name="nav_3">NAV 3</string>
+    <string name="nav_4">NAV 4</string>
+    <string name="nav_5">NAV 5</string>
+    <string name="nav_6">NAV 6</string>
 </resources>
