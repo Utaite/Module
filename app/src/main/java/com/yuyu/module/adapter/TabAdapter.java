@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabAdapter extends FragmentPagerAdapter {
+
+    private final String TAG = TabAdapter.class.getSimpleName();
+
     private final List<Fragment> fragments = new ArrayList<>();
     private final List<String> fragmentsTitle = new ArrayList<>();
 
