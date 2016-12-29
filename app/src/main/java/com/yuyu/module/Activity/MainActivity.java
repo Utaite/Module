@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.yuyu.module.R;
-import com.yuyu.module.custom.Constant;
+import com.yuyu.module.utils.Constant;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.TabFragment;

@@ -18,26 +18,26 @@ public class TabFragment extends Fragment {
 
     private final String TAG = TabFragment.class.getSimpleName();
 
-    @BindView(R.id.tab_layout)
-    PagerSlidingTabStrip tab_layout;
-    @BindView(R.id.view_pager)
-    ViewPager view_pager;
+    @BindView(R.id.tab_tab_layout)
+    PagerSlidingTabStrip tab_tab_layout;
+    @BindView(R.id.tab_view_pager)
+    ViewPager tab_view_pager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         ButterKnife.bind(this, view);
         getActivity().setTitle(getString(R.string.nav_tab));
-        tabInitialize();
+        initialize();
         return view;
     }
 
-    public void tabInitialize() {
+    public void initialize() {
         TabAdapter adapter = new TabAdapter(getChildFragmentManager());
         adapter.addFragment(new TabFragment1(), getString(R.string.tab_1));
         adapter.addFragment(new TabFragment2(), getString(R.string.tab_2));
-        view_pager.setAdapter(adapter);
-        tab_layout.setViewPager(view_pager);
+        tab_view_pager.setAdapter(adapter);
+        tab_tab_layout.setViewPager(tab_view_pager);
     }
 
 }
