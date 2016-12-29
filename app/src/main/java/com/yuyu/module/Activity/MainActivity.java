@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.yuyu.module.R;
 import com.yuyu.module.custom.Constant;
+import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.TabFragment;
 
@@ -91,7 +92,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new MainFragment();
         } else if (iid == R.id.nav_tab) {
             fragment = new TabFragment();
-        } else if (iid == R.id.nav_3) {
+        } else if (iid == R.id.nav_horizon) {
+            fragment = new HorizonFragment();
         } else if (iid == R.id.nav_4) {
         } else if (iid == R.id.nav_5) {
         } else if (iid == R.id.nav_6) {
