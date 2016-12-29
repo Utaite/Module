@@ -7,27 +7,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yuyu.module.R;
 import com.yuyu.module.utils.HorizonVO;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HorizonAdapter extends PagerAdapter {
 
     private final String TAG = HorizonAdapter.class.getSimpleName();
 
-    private List<HorizonVO> vo = new ArrayList<>(
-            Arrays.asList(new HorizonVO(R.drawable.ic_menu_camera, "TEST 1"),
-                    new HorizonVO(R.drawable.ic_menu_gallery, "TEST 2"),
-                    new HorizonVO(R.drawable.ic_menu_manage, "TEST 3"),
-                    new HorizonVO(R.drawable.ic_menu_send, "TEST 4")));
-    private LayoutInflater layoutInflater;
+    private List<HorizonVO> vo;
+    private Context context;
 
-    public HorizonAdapter(Context context) {
-        layoutInflater = LayoutInflater.from(context);
+    public HorizonAdapter(Context context, ArrayList<HorizonVO> vo) {
+        this.vo = vo;
+        this.context = context;
     }
 
     @Override
@@ -42,11 +39,13 @@ public class HorizonAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
-        View view = layoutInflater.inflate(R.layout.item, container, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item, container, false);
         TextView txt = (TextView) view.findViewById(R.id.txt_item);
         txt.setText(vo.get(position).getTitle());
+        txt.setOnClickListener(v -> Toast.makeText(context, (position + 1) + "번 텍스트를 클릭하셨습니다.", Toast.LENGTH_SHORT).show());
         ImageView img = (ImageView) view.findViewById(R.id.img_item);
-        img.setImageResource(vo.get(position).getRes());
+        img.setImageResource(vo.get(position).getImg());
+        img.setOnClickListener(v -> Toast.makeText(context, (position + 1) + "번 이미지를 클릭하셨습니다.", Toast.LENGTH_SHORT).show());
         container.addView(view);
         return view;
     }
