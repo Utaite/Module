@@ -48,6 +48,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c14f0c89f28cf782e42581ab0aba5f63af39b3d2">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-10.0.1_c4bcb52acb593f816f4e903bee455023004d6314.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -75,6 +84,24 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ffc15e965a9e8c28f24455eedd4cac215c45d1fc">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-config-10.0.1_b229b47f33ea41a8be9b538f4fb78fb3e20cbf57.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-10.0.1_ea5f3a16fa96f9354b19edec21c0f26fc470520e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -90,6 +117,15 @@
         revision="25.0.1"
         sha1="16795a75616fe3ba9df9ae4af09202145e3a26dc">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.afollestad.material-dialogs-core-0.9.1.0_73b7d1986ec53428c54efb9d76215d05fdf3a9e9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ba6aa5e69ef31dee57208125323cee958fc67565">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-vision-10.0.1_bb533711cface09c45033b3d92f567727e853474.jar" />
     </item>
     <item
         is-multidex="false"
@@ -111,6 +147,33 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b955cb3a1ad6f1b6ff728ce1e0cd592c1717b440">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-lite-10.0.1_36a49f6ed3ed6cbc906813381b64be17f17320bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-10.0.1_158c824211035d037ebeea07f9ed228c04ff307c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-storage-10.0.1_a22c39616403592b8bfa85ae7cba09b1d7e974ee.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Kurokumo\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
         jumboMode="true"
         optimize="true"
@@ -129,12 +192,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.android.support-mediarouter-v7-24.0.0_b3b30bc5fc87cb0ec672a25f32e03498f54c86f1.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\io.reactivex-rxandroid-1.2.1_83d22c0eb61704a10b1eebb1718e3f7b13f1d287.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-10.0.1_c12b8bd276629b9ab045cab8ab0588a87fc84465.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.0.0\jars\libs\internal_impl-24.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\internal_impl-24.0.0_46b1beffee586587fff0661990677663297b684b.jar" />
     </item>
     <item
         is-multidex="false"
@@ -147,12 +237,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a48dc0b148059764d32500be558702d5ff932058">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-10.0.1_13abedc3de9ca34440d4ea5fc1b6c9ee0e566cd0.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.1"
         sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\gson-2.7_e975fb2c3968199ec4780e442a8a97ce06104ae6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-impl-10.0.1_8758d5de7700d7b445eed893699e5f17ebbbedfa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-v4-impl\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f23ad0f8e58713ff4b55f61c0bbde3830378347c">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tagmanager-v4-impl-10.0.1_122e7770b8e948b429f84df347b65628019202fa.jar" />
     </item>
     <item
         is-multidex="false"
@@ -192,12 +309,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-storage-common-10.0.1_19c6ec14fb215549892619897c99fb8f7f38fc7a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="39907d5c8f5902fffef30160ca7447c93b82405c">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appinvite-10.0.1_87349d50fab80729db8627ba8e5c1ec748a38baf.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.1"
         sha1="f83b00041ecfba705603fec40363416c7de69719">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.1_caf98ae782538210406cda1ed322c35885301c60.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-crash\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-crash-10.0.1_532f9e776cf28bd33125e211fcda00629963ca0b.jar" />
     </item>
     <item
         is-multidex="false"
@@ -246,6 +390,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-database-connection-10.0.1_381d2581212023e52f0818d82c8e7f52eaa1a1db.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\support-v13\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="true"
         optimize="true"
@@ -291,6 +444,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2d5d113b0352ab60946fc44c518cf68fd26cbb79">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-10.0.1_7dee601e9a28e440422aaca9e26a7459ac4f90a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
         jumboMode="false"
         optimize="true"
@@ -306,6 +468,15 @@
         revision="25.0.1"
         sha1="a846ddbf5bf88dee5f89d4dffe22c864f576d9b0">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\me.zhanghai.android.materialprogressbar-library-1.3.0_382d9d4bf4c7c191c784ef102f5b9cddb7ef6c56.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-10.0.1_287b5f298ac23781545a77059ff058362bf9545d.jar" />
     </item>
     <item
         is-multidex="false"
@@ -327,6 +498,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-auth-10.0.1_8999a2780df9e8862b55e369c8c8752467098e8d.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
         jumboMode="false"
         optimize="true"
@@ -342,6 +522,15 @@
         revision="25.0.1"
         sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.0.1_50b7bbdf83cd5e4c8b37b0a8d33eab290538d882.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\palette-v7\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.android.support-palette-v7-24.0.0_110b0c0a3a9ba65add4c77bfa55a940f56bfc455.jar" />
     </item>
     <item
         is-multidex="false"
@@ -363,12 +552,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-appindexing\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ae80d328a8548b4610ead6c624bab8c6a6984f5b">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-appindexing-10.0.1_9ca20fcdea523dc0f38f6004ced213adb7aed694.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.1_9557ce9bf121bc1da1eb07281b8769e49eda494c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1e11c68fec92a17c84dd8d1dd80e74c4e67b12e2">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-10.0.1_fb5f4a4381904eff0a2c7ad2fff029a8cfb93182.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-iid-10.0.1_7a44e18f2735e1e7d599890682b4520d4de58d38.jar" />
     </item>
     <item
         is-multidex="false"
@@ -426,6 +642,51 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast-framework\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="df1cb17511aabbb63264a0024949d1e42502a512">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-framework-10.0.1_1d68993022a4b2754a02401a1951bfe80a8854e0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="92c871a22463a247e8a77a9f3fd231c278788c4a">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-10.0.1_3ca845fb3492fd9c8c86988e590b4958956a6682.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-instantapps\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="45305e6af414dab5aba6c3225081c2f15c3bdd1e">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-instantapps-10.0.1_33e43e315e6f3981eeac5d39ea13b0ba11c26ce1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c6e1f361e9d61aece9dac39b77fcc98a337a144d">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-10.0.1_9649bbec7994ff0ef880d070b46f9bf6229d42bc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-awareness\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4385ccc0a88b33d182a836eadb47be55c8eb1107">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-awareness-10.0.1_0071ba4550ee57582f9a188894e1b091773412a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\support-v13\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
@@ -441,6 +702,15 @@
         revision="25.0.1"
         sha1="693eddc23e87ab13f9cf5001707ce8e7e1d1ff01">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\adapter-rxjava-2.1.0_76ba9eb488e6ae0a95eab95fc30476c32d8f98fe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7a64bf6dc775198eed9db9468a133adf7dfe6562">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-10.0.1_56b7d002cd8336185e3d6c9e02c085e5323b5699.jar" />
     </item>
     <item
         is-multidex="false"
@@ -498,6 +768,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d0460bf07cc3657e0be518ca01c174493951c6b8">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-10.0.1_b5923db8cfbe089f33a75861ad936175257ab5ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.4.0\ea392375cf9ff59234a82e7928a204215ccc98cd\butterknife-annotations-8.4.0.jar"
         jumboMode="true"
         optimize="true"
@@ -534,12 +813,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="971509bbe30bb7b971fc1c49d7b23d0d818830ac">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tagmanager-10.0.1_31ad87af05caf5fe37f9480de772e5c7a367a104.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.github.devlight\infinitecycleviewpager\1.0.2\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="cc61adad791b96c2e793e87d6d3f3d073e02ada1">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.github.devlight-infinitecycleviewpager-1.0.2_afb7280c45c2af8d3e37b3677a09943379a1fbf8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="771267c5b0c7a5b348d3205dcfa1f871af7e0177">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-10.0.1_360638a4712c24df359d4bf0a93bfa3812253ffe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4c829ff0ccfecb28a999ee46d9e75948dfc777a4">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-10.0.1_ba578ac403d58837bdf4a0d0c1af096b6f2f7cb0.jar" />
     </item>
     <item
         is-multidex="false"
@@ -552,6 +858,42 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-10.0.1_c792d21988992a876fbb5249e6b13e1c009c2e96.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-database-10.0.1_af0b015590a1a78c0407a64bec9b912b7b807d61.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ce11ccb99dac8a5f084ef113bfd693d905fe5ab9">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_f7c2b8a09e4e093008f8198a4fa283398a4c7ff9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e871881b36b32e6bfd271a830c6eeb54ff0fc185">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-impl-10.0.1_121f7fa71f0add59dd17dc5381205eeddb84f747.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -561,12 +903,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="E:\Programming\Android\Module\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-api\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="faf19ea4bd78f3a48d81ea8fdb65b67e7d14d6b7">
-        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_f7c2b8a09e4e093008f8198a4fa283398a4c7ff9.jar" />
+        sha1="b1df8fa3d372a27e4e969ce00b00689ee1eed031">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tagmanager-api-10.0.1_8cc565492c8f099350f25767ec5e08416470dadf.jar" />
     </item>
     <item
         is-multidex="false"
@@ -594,6 +936,15 @@
         revision="25.0.1"
         sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\converter-gson-2.1.0_95d4f7494a17524973b04ea1eab31b07c3cea262.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-10.0.1_dd24f99025fe06f95429a8cf6999e5e111ba7815.jar" />
     </item>
     <item
         is-multidex="false"
@@ -639,6 +990,15 @@
         revision="25.0.1"
         sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.0.1_d4bab624256719fa80de97ec4e08d8d1b019a343.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-messaging-10.0.1_f0e1b1049c744833e51d76ae12e0d307f683faed.jar" />
     </item>
     <item
         is-multidex="false"
@@ -714,12 +1074,48 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="408a599ac77cd17fe8e8919326bec617b3d005bd">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-10.0.1_a64a494e0d0ac3a668916ceaccac492c2cb05213.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-10.0.1_c9f5cc42c63f8b56f9197914b555a8aeefd2dec9.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.4.0\ea392375cf9ff59234a82e7928a204215ccc98cd\butterknife-annotations-8.4.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.1"
         sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\butterknife-annotations-8.4.0_726ccbffd6cab03095a000ecf4f856b960955f4c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-places-10.0.1_495b457f545c49fd70eeb5f118b4444a539a9ae6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="028f8255cb977b29cdffbfcf05caa0459686120c">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-10.0.1_5348c674136717d55ca4559b2eeec5bc1b3a861f.jar" />
     </item>
     <item
         is-multidex="false"
@@ -786,12 +1182,75 @@
     </item>
     <item
         is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.0.1_0884518f707ec5651cc6afaad807a9fb269f5e0d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-iid-10.0.1_ad377575309348d63d6f1e1fed499a8f18c4f161.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1d193729baf37df3d902a423291423a0df7e3779">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-clearcut-10.0.1_eb5b3ff8e3a02f43d92dc5bafb4a04e5b930d5d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.0.1_cdbbde516494e93ea3d88dcae2a45c1e7efafd62.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
         <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.0.1_42b47658123935cab99c38dd02f91e9389dde760.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gass\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="57c2eceb8548de84509d1ebc293fedec53231f6c">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gass-10.0.1_f722f5b02284ea0a7c38ee38058ff160bdc41d48.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f6cf557be4dbd0282ea2388633e5378634423226">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-10.0.1_ced24707836204d06264e4071db47267b63855d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Programming\Android\Module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
+        <dex dex="E:\Programming\Android\Module\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-base-10.0.1_552eb5722327220d3c6d86cf17ee33b10b462196.jar" />
     </item>
     <item
         is-multidex="false"

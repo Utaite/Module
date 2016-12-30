@@ -29,6 +29,11 @@ public class HorizonFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_horizon, container, false);
         ButterKnife.bind(this, view);
         getActivity().setTitle(getString(R.string.nav_horizon));
+        initialize();
+        return view;
+    }
+
+    public void initialize() {
         ArrayList<HorizonVO> vo = new ArrayList<>(Arrays.asList(
                 new HorizonVO(R.drawable.ic_menu_camera, "TEST 1"),
                 new HorizonVO(R.drawable.ic_menu_gallery, "TEST 2"),
@@ -36,7 +41,6 @@ public class HorizonFragment extends Fragment {
                 new HorizonVO(R.drawable.ic_menu_send, "TEST 4")));
         HorizonAdapter adapter = new HorizonAdapter(getActivity().getApplicationContext(), vo);
         horizon_view.setAdapter(adapter);
-        return view;
     }
 
 }
