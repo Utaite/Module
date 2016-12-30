@@ -39,5 +39,4 @@ public class TabFragment extends Fragment {
         tab_view_pager.setAdapter(adapter);
         tab_tab_layout.setViewPager(tab_view_pager);
     }
-
 }

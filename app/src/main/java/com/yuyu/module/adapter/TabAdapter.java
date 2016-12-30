@@ -19,11 +19,6 @@ public class TabAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
-    public void addFragment(Fragment fragment, String title) {
-        fragments.add(fragment);
-        fragmentsTitle.add(title);
-    }
-
     @Override
     public Fragment getItem(int position) {
         return fragments.get(position);
@@ -37,5 +32,9 @@ public class TabAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return fragmentsTitle.get(position);
+    }
+    public void addFragment(Fragment fragment, String title) {
+        fragments.add(fragment);
+        fragmentsTitle.add(title);
     }
 }

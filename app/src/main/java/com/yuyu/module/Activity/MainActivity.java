@@ -14,11 +14,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.yuyu.module.R;
-import com.yuyu.module.fragment.MapFragment_;
-import com.yuyu.module.utils.Constant;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
+import com.yuyu.module.fragment.MapFragment_;
 import com.yuyu.module.fragment.TabFragment;
+import com.yuyu.module.utils.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -111,5 +111,4 @@ public class MainActivity extends AppCompatActivity
         nav_view.getMenu().getItem(0).setChecked(true);
         getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
     }
-
 }

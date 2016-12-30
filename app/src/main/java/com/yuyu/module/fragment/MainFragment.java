@@ -18,5 +18,4 @@ public class MainFragment extends Fragment {
         getActivity().setTitle(getString(R.string.nav_main));
         return view;
     }
-
 }

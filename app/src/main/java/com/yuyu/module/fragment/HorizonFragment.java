@@ -35,12 +35,11 @@ public class HorizonFragment extends Fragment {
 
     public void initialize() {
         ArrayList<HorizonVO> vo = new ArrayList<>(Arrays.asList(
-                new HorizonVO(R.drawable.ic_menu_camera, "TEST 1"),
-                new HorizonVO(R.drawable.ic_menu_gallery, "TEST 2"),
-                new HorizonVO(R.drawable.ic_menu_manage, "TEST 3"),
-                new HorizonVO(R.drawable.ic_menu_send, "TEST 4")));
+                new HorizonVO(R.drawable.ic_menu_camera, getString(R.string.view_1)),
+                new HorizonVO(R.drawable.ic_menu_gallery, getString(R.string.view_2)),
+                new HorizonVO(R.drawable.ic_menu_manage, getString(R.string.view_3)),
+                new HorizonVO(R.drawable.ic_menu_send, getString(R.string.view_4))));
         HorizonAdapter adapter = new HorizonAdapter(getActivity().getApplicationContext(), vo);
         horizon_view.setAdapter(adapter);
     }
-
 }
