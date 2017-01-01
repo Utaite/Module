@@ -7,23 +7,23 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
-import com.yuyu.module.fragment.MapFragment_;
+import com.yuyu.module.fragment.MapFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.utils.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends RxAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity
         } else if (iid == R.id.nav_horizon) {
             fragment = new HorizonFragment();
         } else if (iid == R.id.nav_map) {
-            fragment = new MapFragment_();
+            fragment = new MapFragment();
         } else if (iid == R.id.nav_5) {
         } else if (iid == R.id.nav_6) {
         }
