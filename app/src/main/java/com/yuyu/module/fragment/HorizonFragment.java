@@ -1,6 +1,7 @@
 package com.yuyu.module.fragment;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ public class HorizonFragment extends Fragment {
 
     private final String TAG = HorizonFragment.class.getSimpleName();
 
+    private Context context;
+
     @BindView(R.id.horizon_view)
     HorizontalInfiniteCycleViewPager horizon_view;
 
@@ -28,9 +31,15 @@ public class HorizonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_horizon, container, false);
         ButterKnife.bind(this, view);
+        context = getActivity();
         getActivity().setTitle(getString(R.string.nav_horizon));
-        initialize();
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        initialize();
     }
 
     public void initialize() {
@@ -39,7 +48,7 @@ public class HorizonFragment extends Fragment {
                 new HorizonVO(R.drawable.ic_menu_gallery, getString(R.string.view_2)),
                 new HorizonVO(R.drawable.ic_menu_manage, getString(R.string.view_3)),
                 new HorizonVO(R.drawable.ic_menu_send, getString(R.string.view_4))));
-        HorizonAdapter adapter = new HorizonAdapter(getActivity().getApplicationContext(), vo);
+        HorizonAdapter adapter = new HorizonAdapter(context.getApplicationContext(), vo);
         horizon_view.setAdapter(adapter);
     }
 }

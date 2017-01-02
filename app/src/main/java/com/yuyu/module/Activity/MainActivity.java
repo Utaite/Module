@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
-import com.yuyu.module.fragment.MapFragment;
+import com.yuyu.module.fragment.MapFragment_;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.utils.Constant;
 
@@ -51,7 +52,7 @@ public class MainActivity extends RxAppCompatActivity
         drawer_layout.setDrawerListener(toggle);
         toggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
-        initialize();
+        getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
     }
 
     @Override
@@ -96,7 +97,7 @@ public class MainActivity extends RxAppCompatActivity
         } else if (iid == R.id.nav_horizon) {
             fragment = new HorizonFragment();
         } else if (iid == R.id.nav_map) {
-            fragment = new MapFragment();
+            fragment = new MapFragment_();
         } else if (iid == R.id.nav_5) {
         } else if (iid == R.id.nav_6) {
         }
@@ -107,8 +108,7 @@ public class MainActivity extends RxAppCompatActivity
         return true;
     }
 
-    public void initialize() {
-        nav_view.getMenu().getItem(0).setChecked(true);
-        getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
+    public NavigationView getNav_view() {
+        return nav_view;
     }
 }

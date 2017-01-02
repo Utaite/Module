@@ -28,8 +28,13 @@ public class TabFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         ButterKnife.bind(this, view);
         getActivity().setTitle(getString(R.string.nav_tab));
-        initialize();
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        initialize();
     }
 
     public void initialize() {
