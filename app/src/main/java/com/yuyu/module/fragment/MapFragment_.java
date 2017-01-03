@@ -138,14 +138,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         }
     }
 
-    public GoogleApiClient buildApi() {
-        return new GoogleApiClient.Builder(context)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -160,6 +152,14 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 });
     }
 
+    public GoogleApiClient buildApi() {
+        return new GoogleApiClient.Builder(context)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
     @Override
     public void onConnected(Bundle bundle) {
         final int INTERVAL = 1000;
@@ -168,9 +168,9 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                         .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
                         .setInterval(INTERVAL)
                         .setFastestInterval(INTERVAL), this);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            addLocationMarker(LocationServices.FusedLocationApi.getLastLocation(googleApiClient));
+            prepareMarker(LocationServices.FusedLocationApi.getLastLocation(googleApiClient));
         }
     }
 
@@ -181,11 +181,11 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .filter(location1 -> isGPS)
                 .subscribe(location1 -> {
                     isGPS = false;
-                    addLocationMarker(location);
+                    prepareMarker(location);
                 });
     }
 
-    public void addLocationMarker(Location location) {
+    public void prepareMarker(Location location) {
         final int CAMERA_ZOOM = 15;
         Observable.just(location)
                 .compose(RxLifecycleAndroid.bindView(view))
@@ -199,11 +199,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     }
 
     @Override
-    public void onMapClick(LatLng latLng) {
-        selectedMarkerRemove();
-    }
-
-    @Override
     public boolean onMarkerClick(Marker marker) {
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
         selectedMarkerRemove();
@@ -211,22 +206,29 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         return true;
     }
 
+    @Override
+    public void onMapClick(LatLng latLng) {
+        selectedMarkerRemove();
+    }
+
     public void selectedMarkerRemove() {
-        if (selectedMarker != null) {
-            castMarker(selectedMarker, false);
-        }
+        Observable.just(selectedMarker)
+                .compose(RxLifecycleAndroid.bindView(view))
+                .subscribe(marker1 -> createMarker(marker1, false));
     }
 
     public void nonMarkerRemove(Marker marker) {
-        if (marker != null) {
-            selectedMarker = castMarker(marker, true);
-            marker.remove();
-        }
+        Observable.just(marker)
+                .compose(RxLifecycleAndroid.bindView(view))
+                .subscribe(marker1 -> selectedMarker = createMarker(marker1, true));
     }
 
-    public Marker castMarker(Marker marker, boolean isSelected) {
-        marker.remove();
-        return createMarker(new MapVO(marker.getPosition().latitude, marker.getPosition().longitude, marker.getTitle()), isSelected);
+    public Marker createMarker(Marker marker, boolean isSelected) {
+        if (marker != null) {
+            marker.remove();
+            return createMarker(new MapVO(marker.getPosition().latitude, marker.getPosition().longitude, marker.getTitle()), isSelected);
+        }
+        return null;
     }
 
     public Marker createMarker(MapVO vo, boolean isSelected) {
@@ -243,13 +245,16 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     public Bitmap createBitmap(Context context, View view) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.buildDrawingCache();
+        Observable.just(view)
+                .compose(RxLifecycleAndroid.bindView(view))
+                .doOnSubscribe(() -> {
+                    view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+                    view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+                })
+                .subscribe(View::buildDrawingCache);
         Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
+        view.draw(new Canvas(bitmap));
         return bitmap;
     }
 

@@ -32,7 +32,7 @@ public class MainActivity extends RxAppCompatActivity
 
     private Toast toast;
     private Context context;
-    private int position;
+    private int index;
     private ArrayList<Integer> items;
 
     @BindView(R.id.toolbar)
@@ -61,7 +61,7 @@ public class MainActivity extends RxAppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        nav_view.getMenu().getItem(position).setChecked(true);
+        nav_view.getMenu().getItem(index).setChecked(true);
     }
 
     @Override
@@ -118,11 +118,9 @@ public class MainActivity extends RxAppCompatActivity
         } else if (iid == R.id.nav_6) {
         }
         if (fragment != null) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.content_main, fragment)
-                    .commit();
+            getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
         }
-        position = items.indexOf(iid);
+        index = items.indexOf(iid);
         setTitle(item.getTitle());
         drawer_layout.closeDrawer(GravityCompat.START);
         return true;
@@ -135,9 +133,7 @@ public class MainActivity extends RxAppCompatActivity
             items.add(nav_view.getMenu().getItem(i).getItemId());
         }
         setTitle(getString(R.string.nav_main));
-        getFragmentManager().beginTransaction()
-                .replace(R.id.content_main, new MainFragment())
-                .commit();
+        getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
     }
 
     public Toast getToast() {
