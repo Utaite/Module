@@ -32,23 +32,16 @@ public class HorizonFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_horizon, container, false);
         ButterKnife.bind(this, view);
         context = getActivity();
-        getActivity().setTitle(getString(R.string.nav_horizon));
+        initialize();
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        initialize();
-    }
-
     public void initialize() {
-        ArrayList<HorizonVO> vo = new ArrayList<>(Arrays.asList(
-                new HorizonVO(R.drawable.ic_menu_camera, getString(R.string.view_1)),
-                new HorizonVO(R.drawable.ic_menu_gallery, getString(R.string.view_2)),
-                new HorizonVO(R.drawable.ic_menu_manage, getString(R.string.view_3)),
-                new HorizonVO(R.drawable.ic_menu_send, getString(R.string.view_4))));
-        HorizonAdapter adapter = new HorizonAdapter(context.getApplicationContext(), vo);
-        horizon_view.setAdapter(adapter);
+        horizon_view.setAdapter(new HorizonAdapter(context.getApplicationContext(),
+                new ArrayList<>(Arrays.asList(
+                        new HorizonVO(R.drawable.ic_menu_camera, getString(R.string.view_1)),
+                        new HorizonVO(R.drawable.ic_menu_gallery, getString(R.string.view_2)),
+                        new HorizonVO(R.drawable.ic_menu_manage, getString(R.string.view_3)),
+                        new HorizonVO(R.drawable.ic_menu_send, getString(R.string.view_4))))));
     }
 }

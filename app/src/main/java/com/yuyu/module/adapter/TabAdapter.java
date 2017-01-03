@@ -5,36 +5,34 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
 
+import com.yuyu.module.utils.TabVO;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
     private final String TAG = TabAdapter.class.getSimpleName();
 
-    private final List<Fragment> fragments = new ArrayList<>();
-    private final List<String> fragmentsTitle = new ArrayList<>();
+    private ArrayList<TabVO> vo;
 
-    public TabAdapter(FragmentManager fm) {
+    public TabAdapter(FragmentManager fm, ArrayList<TabVO> vo) {
         super(fm);
+        this.vo = vo;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return fragments.get(position);
+        return vo.get(position).getFragment();
     }
 
     @Override
     public int getCount() {
-        return fragments.size();
+        return vo.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return fragmentsTitle.get(position);
+        return vo.get(position).getTitle();
     }
-    public void addFragment(Fragment fragment, String title) {
-        fragments.add(fragment);
-        fragmentsTitle.add(title);
-    }
+
 }

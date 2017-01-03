@@ -21,6 +21,8 @@ import com.yuyu.module.fragment.MapFragment_;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.utils.Constant;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,6 +33,8 @@ public class MainActivity extends RxAppCompatActivity
 
     private Toast toast;
     private Context context;
+    private int position;
+    private ArrayList<Integer> items;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -52,7 +56,19 @@ public class MainActivity extends RxAppCompatActivity
         drawer_layout.setDrawerListener(toggle);
         toggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
-        getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
+        initialize();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        nav_view.getMenu().getItem(position).setChecked(true);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        nav_view.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
@@ -102,13 +118,26 @@ public class MainActivity extends RxAppCompatActivity
         } else if (iid == R.id.nav_6) {
         }
         if (fragment != null) {
-            getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.content_main, fragment)
+                    .commit();
         }
+        position = items.indexOf(iid);
+        setTitle(item.getTitle());
         drawer_layout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public NavigationView getNav_view() {
-        return nav_view;
+    public void initialize() {
+        items = new ArrayList<>();
+        int size = nav_view.getMenu().size();
+        for (int i = 0; i < size; i++) {
+            items.add(nav_view.getMenu().getItem(i).getItemId());
+        }
+        setTitle(getString(R.string.nav_main));
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content_main, new MainFragment())
+                .commit();
     }
+
 }

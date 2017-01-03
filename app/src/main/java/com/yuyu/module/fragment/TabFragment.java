@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStrip;
 import com.yuyu.module.R;
 import com.yuyu.module.adapter.TabAdapter;
+import com.yuyu.module.utils.TabVO;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,21 +31,15 @@ public class TabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         ButterKnife.bind(this, view);
-        getActivity().setTitle(getString(R.string.nav_tab));
+        initialize();
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        initialize();
-    }
-
     public void initialize() {
-        TabAdapter adapter = new TabAdapter(getChildFragmentManager());
-        adapter.addFragment(new TabFragment1(), getString(R.string.tab_1));
-        adapter.addFragment(new TabFragment2(), getString(R.string.tab_2));
-        tab_view_pager.setAdapter(adapter);
+        tab_view_pager.setAdapter(new TabAdapter(getChildFragmentManager(),
+                new ArrayList<>(Arrays.asList(
+                        new TabVO(new TabFragment1(), getString(R.string.tab_1)),
+                        new TabVO(new TabFragment2(), getString(R.string.tab_2))))));
         tab_tab_layout.setViewPager(tab_view_pager);
     }
 }

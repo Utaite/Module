@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +40,6 @@ import rx.Observable;
 public class MapFragment_ extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, OnMapReadyCallback {
 
     private final String TAG = MapFragment_.class.getSimpleName();
-    private final int INDEX = 3;
 
     private static View view;
     private final int GPS_REQUEST_CODE = 6888;
@@ -57,7 +55,6 @@ public class MapFragment_ extends Fragment implements GoogleApiClient.Connection
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container, false);
         context = getActivity();
-        getActivity().setTitle(getString(R.string.nav_map));
         return view;
     }
 
@@ -72,14 +69,11 @@ public class MapFragment_ extends Fragment implements GoogleApiClient.Connection
                 .setPermissionListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted() {
-                        Log.e(TAG, "권한 허가");
                         initialize();
                     }
 
                     @Override
                     public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                        Log.e(TAG, "권한 거부");
-                        Toast.makeText(context, getString(R.string.permission_request), Toast.LENGTH_SHORT).show();
                         Observable.just(view)
                                 .compose(RxLifecycleAndroid.bindView(view))
                                 .filter(view1 -> view1 != null)

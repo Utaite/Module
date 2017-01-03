@@ -13,13 +13,12 @@ import com.yuyu.module.R;
 import com.yuyu.module.utils.HorizonVO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HorizonAdapter extends PagerAdapter {
 
     private final String TAG = HorizonAdapter.class.getSimpleName();
 
-    private List<HorizonVO> vo;
+    private ArrayList<HorizonVO> vo;
     private Context context;
 
     public HorizonAdapter(Context context, ArrayList<HorizonVO> vo) {
@@ -43,6 +42,7 @@ public class HorizonAdapter extends PagerAdapter {
         TextView txt = (TextView) view.findViewById(R.id.txt_item);
         txt.setText(vo.get(position).getTitle());
         txt.setOnClickListener(v -> Toast.makeText(context, (position + 1) + container.getResources().getString(R.string.click_text), Toast.LENGTH_SHORT).show());
+
         ImageView img = (ImageView) view.findViewById(R.id.img_item);
         img.setImageResource(vo.get(position).getImg());
         img.setOnClickListener(v -> Toast.makeText(context, (position + 1) + container.getResources().getString(R.string.click_image), Toast.LENGTH_SHORT).show());
