@@ -140,4 +140,8 @@ public class MainActivity extends RxAppCompatActivity
                 .commit();
     }
 
+    public Toast getToast() {
+        return toast;
+    }
+
 }

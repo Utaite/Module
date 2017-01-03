@@ -1,20 +1,25 @@
 package com.yuyu.module.fragment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.common.ConnectionResult;
@@ -26,18 +31,22 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.trello.rxlifecycle.android.RxLifecycleAndroid;
 import com.yuyu.module.R;
+import com.yuyu.module.activity.MainActivity;
+import com.yuyu.module.utils.MapVO;
 
 import java.util.ArrayList;
 
 import rx.Observable;
 
-public class MapFragment_ extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, OnMapReadyCallback {
+public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, OnMapReadyCallback {
 
     private final String TAG = MapFragment_.class.getSimpleName();
 
@@ -46,6 +55,7 @@ public class MapFragment_ extends Fragment implements GoogleApiClient.Connection
 
     private Context context;
     private GoogleMap googleMap;
+    private Marker selectedMarker;
     private MapFragment mapFragment;
     private GoogleApiClient googleApiClient;
     private LocationManager locationManager;
@@ -99,10 +109,14 @@ public class MapFragment_ extends Fragment implements GoogleApiClient.Connection
         final LatLng SEOUL = new LatLng(37.56, 126.97);
         Observable.just(googleMap = map)
                 .compose(RxLifecycleAndroid.bindView(view))
+                .doOnSubscribe(() -> googleMap.clear())
+                .doOnUnsubscribe(() -> {
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_DEFAULT));
+                })
                 .subscribe(googleMap1 -> {
-                    googleMap1.clear();
-                    googleMap1.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-                    googleMap1.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_DEFAULT));
+                    googleMap1.setOnMarkerClickListener(this);
+                    googleMap1.setOnMapClickListener(this);
                     googleMap1.setOnMapLoadedCallback(this::checkGPS);
                 });
     }
@@ -141,7 +155,8 @@ public class MapFragment_ extends Fragment implements GoogleApiClient.Connection
                 .subscribe(o -> {
                     isGPS = true;
                     mapFragment.getMapAsync(this);
-                    Toast.makeText(context, getString(R.string.gps_load), Toast.LENGTH_SHORT).show();
+                    ((MainActivity) getActivity()).getToast().setText(getString(R.string.gps_load));
+                    ((MainActivity) getActivity()).getToast().show();
                 });
     }
 
@@ -155,7 +170,7 @@ public class MapFragment_ extends Fragment implements GoogleApiClient.Connection
                         .setFastestInterval(INTERVAL), this);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            makeMaker(LocationServices.FusedLocationApi.getLastLocation(googleApiClient));
+            addLocationMarker(LocationServices.FusedLocationApi.getLastLocation(googleApiClient));
         }
     }
 
@@ -166,23 +181,76 @@ public class MapFragment_ extends Fragment implements GoogleApiClient.Connection
                 .filter(location1 -> isGPS)
                 .subscribe(location1 -> {
                     isGPS = false;
-                    makeMaker(location);
+                    addLocationMarker(location);
                 });
     }
 
-    public void makeMaker(Location location) {
+    public void addLocationMarker(Location location) {
         final int CAMERA_ZOOM = 15;
         Observable.just(location)
                 .compose(RxLifecycleAndroid.bindView(view))
                 .filter(location1 -> location1 != null)
-                .map(location2 -> new LatLng(location2.getLatitude(), location2.getLongitude()))
-                .subscribe(latLng1 -> {
-                    googleMap.addMarker(new MarkerOptions()
-                            .position(latLng1)
-                            .title(getString(R.string.gps_locate)));
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng1));
+                .map(location2 -> new MapVO(location2.getLatitude(), location2.getLongitude(), getString(R.string.gps_locate)))
+                .doOnUnsubscribe(() -> {
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
                     googleMap.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_ZOOM));
-                });
+                })
+                .subscribe(vo -> createMarker(vo, false));
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        selectedMarkerRemove();
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+        selectedMarkerRemove();
+        nonMarkerRemove(marker);
+        return true;
+    }
+
+    public void selectedMarkerRemove() {
+        if (selectedMarker != null) {
+            castMarker(selectedMarker, false);
+        }
+    }
+
+    public void nonMarkerRemove(Marker marker) {
+        if (marker != null) {
+            selectedMarker = castMarker(marker, true);
+            marker.remove();
+        }
+    }
+
+    public Marker castMarker(Marker marker, boolean isSelected) {
+        marker.remove();
+        return createMarker(new MapVO(marker.getPosition().latitude, marker.getPosition().longitude, marker.getTitle()), isSelected);
+    }
+
+    public Marker createMarker(MapVO vo, boolean isSelected) {
+        View markerView = LayoutInflater.from(context).inflate(R.layout.custom_marker, null);
+        TextView tv_marker = (TextView) markerView.findViewById(R.id.tv_marker);
+        tv_marker.setText(vo.getDescription());
+        tv_marker.setBackgroundResource(isSelected ? R.drawable.ic_marker_phone_blue : R.drawable.ic_marker_phone);
+        tv_marker.setTextColor(isSelected ? Color.WHITE : Color.BLACK);
+        return googleMap.addMarker(new MarkerOptions().title(vo.getDescription())
+                .position(new LatLng(vo.getLat(), vo.getLon()))
+                .icon(BitmapDescriptorFactory.fromBitmap(createBitmap(context, markerView))));
+    }
+
+    public Bitmap createBitmap(Context context, View view) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
     }
 
     @Override

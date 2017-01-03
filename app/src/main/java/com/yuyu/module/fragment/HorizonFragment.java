@@ -37,7 +37,7 @@ public class HorizonFragment extends Fragment {
     }
 
     public void initialize() {
-        horizon_view.setAdapter(new HorizonAdapter(context.getApplicationContext(),
+        horizon_view.setAdapter(new HorizonAdapter(context,
                 new ArrayList<>(Arrays.asList(
                         new HorizonVO(R.drawable.ic_menu_camera, getString(R.string.view_1)),
                         new HorizonVO(R.drawable.ic_menu_gallery, getString(R.string.view_2)),
