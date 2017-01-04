@@ -46,7 +46,8 @@ import java.util.ArrayList;
 
 import rx.Observable;
 
-public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, OnMapReadyCallback {
+public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListener, GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, LocationListener, OnMapReadyCallback {
 
     private final String TAG = MapFragment_.class.getSimpleName();
 
@@ -59,6 +60,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     private MapFragment mapFragment;
     private GoogleApiClient googleApiClient;
     private LocationManager locationManager;
+    private int markerID;
     private boolean isGPS;
 
     @Override
@@ -117,6 +119,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .subscribe(googleMap1 -> {
                     googleMap1.setOnMarkerClickListener(this);
                     googleMap1.setOnMapClickListener(this);
+                    googleMap1.setOnMarkerDragListener(this);
                     googleMap1.setOnMapLoadedCallback(this::checkGPS);
                 });
     }
@@ -125,8 +128,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             new MaterialDialog.Builder(context)
                     .content(getString(R.string.gps_alert))
-                    .cancelable(false)
-                    .positiveText(getString(R.string.alert_yes))
+                    .positiveText(getString(R.string.alert_setting))
                     .negativeText(getString(R.string.alert_no))
                     .onPositive((dialog, which) -> startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), GPS_REQUEST_CODE))
                     .onNegative((dialog, which) -> dialog.cancel())
@@ -200,15 +202,31 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        Observable.just(selectedMarker)
+                .compose(RxLifecycleAndroid.bindView(view))
+                .filter(marker1 -> marker1 != null)
+                .map(marker1 -> marker1.getPosition().toString())
+                .filter(s -> !s.equals(marker.getPosition().toString()))
+                .doOnUnsubscribe(() -> nonMarkerRemove(marker))
+                .subscribe(s -> selectedMarkerRemove());
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-        selectedMarkerRemove();
-        nonMarkerRemove(marker);
         return true;
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        selectedMarkerRemove();
+        new MaterialDialog.Builder(context)
+                .content(getString(R.string.gps_alert_content))
+                .input(null, getString(R.string.gps_alert_input), (dialog, input) -> {
+                })
+                .positiveText(getString(R.string.alert_yes))
+                .negativeText(getString(R.string.alert_no))
+                .onPositive((dialog, which) -> {
+                    selectedMarkerRemove();
+                    selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString()), true);
+                })
+                .onNegative((dialog, which) -> dialog.cancel())
+                .show();
     }
 
     public void selectedMarkerRemove() {
@@ -239,7 +257,19 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         tv_marker.setTextColor(isSelected ? Color.WHITE : Color.BLACK);
         return googleMap.addMarker(new MarkerOptions().title(vo.getDescription())
                 .position(new LatLng(vo.getLat(), vo.getLon()))
-                .icon(BitmapDescriptorFactory.fromBitmap(createBitmap(context, markerView))));
+                .icon(BitmapDescriptorFactory.fromBitmap(createBitmap(context, markerView)))
+                .draggable(true));
+    }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+        Observable.just(selectedMarker)
+                .compose(RxLifecycleAndroid.bindView(view))
+                .filter(marker1 -> marker1 != null)
+                .map(marker1 -> marker1.getPosition().toString())
+                .filter(s -> !s.equals(marker.getPosition().toString()))
+                .doOnUnsubscribe(marker::remove)
+                .subscribe(s -> selectedMarker = null);
     }
 
     public Bitmap createBitmap(Context context, View view) {
@@ -277,4 +307,11 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     public void onConnectionSuspended(int i) {
     }
 
+    @Override
+    public void onMarkerDrag(Marker marker) {
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+    }
 }

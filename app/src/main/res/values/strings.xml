@@ -29,11 +29,14 @@
     <string name="click_image">번 이미지를 클릭하셨습니다.</string>
 
     <string name="permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
-    <string name="alert_yes">설정</string>
+    <string name="alert_setting">설정</string>
+    <string name="alert_yes">확인</string>
     <string name="alert_no">취소</string>
     <string name="gps_alert">현재위치를 가져오기 위해 GPS를 활성화 하시겠습니까?</string>
     <string name="gps_load">GPS를 읽어오는 중이에요.\n잠시만 기다려주세요.</string>
     <string name="gps_locate">현재위치</string>
+    <string name="gps_alert_content">Input Marker Name</string>
+    <string name="gps_alert_input">마커추가</string>
 
     <string name="call_empty">먼저 전화걸으실 번호를 입력해주세요.</string>
     <string name="call_cast_err">숫자만 입력해주세요.</string>

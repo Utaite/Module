@@ -69,6 +69,7 @@ public class MainActivity extends RxAppCompatActivity
     protected void onStop() {
         super.onStop();
         nav_view.getMenu().getItem(0).setChecked(true);
+
     }
 
     @Override
