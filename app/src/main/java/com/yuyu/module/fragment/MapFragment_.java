@@ -60,7 +60,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     private MapFragment mapFragment;
     private GoogleApiClient googleApiClient;
     private LocationManager locationManager;
-    private int markerID;
     private boolean isGPS;
 
     @Override
@@ -86,12 +85,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
 
                     @Override
                     public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                        Observable.just(view)
-                                .compose(RxLifecycleAndroid.bindView(view))
-                                .filter(view1 -> view1 != null)
-                                .map(view2 -> (ViewGroup) view2.getParent())
-                                .filter(viewGroup1 -> viewGroup1 != null)
-                                .subscribe(viewGroup2 -> viewGroup2.removeView(view));
+                        removeGoogleMap();
                     }
                 })
                 .setDeniedMessage(getString(R.string.permission_denied))
@@ -223,7 +217,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .negativeText(getString(R.string.alert_no))
                 .onPositive((dialog, which) -> {
                     selectedMarkerRemove();
-                    selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString()), true);
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLng((selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true)).getPosition()));
                 })
                 .onNegative((dialog, which) -> dialog.cancel())
                 .show();
@@ -267,7 +261,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .compose(RxLifecycleAndroid.bindView(view))
                 .filter(marker1 -> marker1 != null)
                 .map(marker1 -> marker1.getPosition().toString())
-                .filter(s -> !s.equals(marker.getPosition().toString()))
+                .filter(s -> s.equals(marker.getPosition().toString()))
                 .doOnUnsubscribe(marker::remove)
                 .subscribe(s -> selectedMarker = null);
     }
@@ -291,6 +285,10 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        removeGoogleMap();
+    }
+
+    public void removeGoogleMap() {
         Observable.just(view)
                 .compose(RxLifecycleAndroid.bindView(view))
                 .filter(view1 -> view1 != null)

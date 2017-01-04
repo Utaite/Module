@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/call_btn"
-        android:layout_margin="16dp"
         android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
         android:theme="@style/TextLabel">
 
         <AutoCompleteTextView
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="Input Called Number"
+            android:hint="@string/call_edit"
             android:inputType="phone"
             android:maxLines="1"
             android:textSize="20sp" />
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="CALL"
+        android:text="@string/call_btn"
         android:textColor="#fff"
         android:textSize="12sp"
         android:textStyle="bold"

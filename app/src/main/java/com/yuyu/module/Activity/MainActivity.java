@@ -18,6 +18,7 @@ import com.yuyu.module.fragment.CallFragment;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.MapFragment_;
+import com.yuyu.module.fragment.SpinnerFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.utils.Constant;
 
@@ -118,7 +119,8 @@ public class MainActivity extends RxAppCompatActivity
             fragment = new MapFragment_();
         } else if (iid == R.id.nav_call) {
             fragment = new CallFragment();
-        } else if (iid == R.id.nav_6) {
+        } else if (iid == R.id.nav_spinner) {
+            fragment = new SpinnerFragment();
         }
         if (fragment != null) {
             getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();

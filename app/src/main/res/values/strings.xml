@@ -15,7 +15,7 @@
     <string name="nav_horizon">가로 뷰</string>
     <string name="nav_map">맵</string>
     <string name="nav_call">전화</string>
-    <string name="nav_6">NAV 6</string>
+    <string name="nav_spinner">스피너</string>
 
     <string name="tab_1">TAB 1</string>
     <string name="tab_2">TAB 2</string>
@@ -40,4 +40,6 @@
 
     <string name="call_empty">먼저 전화걸으실 번호를 입력해주세요.</string>
     <string name="call_cast_err">숫자만 입력해주세요.</string>
+    <string name="call_edit">Input Called Number</string>
+    <string name="call_btn">CALL</string>
 </resources>
