@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
+import com.yuyu.module.fragment.CallFragment;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.MapFragment_;
@@ -114,7 +115,8 @@ public class MainActivity extends RxAppCompatActivity
             fragment = new HorizonFragment();
         } else if (iid == R.id.nav_map) {
             fragment = new MapFragment_();
-        } else if (iid == R.id.nav_5) {
+        } else if (iid == R.id.nav_call) {
+            fragment = new CallFragment();
         } else if (iid == R.id.nav_6) {
         }
         if (fragment != null) {

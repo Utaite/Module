@@ -1,16 +1,13 @@
 package com.yuyu.module.utils;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class HorizonVO {
 
-    private int img;
-    private String title;
-
-    public HorizonVO(int img, String title) {
-        this.img = img;
-        this.title = title;
-    }
+    private final int img;
+    private final String title;
 
 }

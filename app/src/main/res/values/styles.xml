@@ -15,4 +15,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@android:color/holo_green_light</item>
+        <item name="colorControlNormal">@android:color/holo_green_light</item>
+        <item name="colorControlActivated">@android:color/holo_blue_light</item>
+    </style>
+
+    <style name="CallButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#FFBB00</item>
+    </style>
+
 </resources>

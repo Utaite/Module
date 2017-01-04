@@ -14,7 +14,7 @@
     <string name="nav_tab">탭</string>
     <string name="nav_horizon">가로 뷰</string>
     <string name="nav_map">맵</string>
-    <string name="nav_5">NAV 5</string>
+    <string name="nav_call">전화</string>
     <string name="nav_6">NAV 6</string>
 
     <string name="tab_1">TAB 1</string>
@@ -34,4 +34,7 @@
     <string name="gps_alert">현재위치를 가져오기 위해 GPS를 활성화 하시겠습니까?</string>
     <string name="gps_load">GPS를 읽어오는 중이에요.\n잠시만 기다려주세요.</string>
     <string name="gps_locate">현재위치</string>
+
+    <string name="call_empty">먼저 전화걸으실 번호를 입력해주세요.</string>
+    <string name="call_cast_err">숫자만 입력해주세요.</string>
 </resources>

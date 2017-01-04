@@ -10,4 +10,5 @@
         android:background="@drawable/ic_marker_phone"
         android:gravity="center"
         android:textSize="16sp" />
+
 </FrameLayout>

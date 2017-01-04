@@ -9,41 +9,30 @@
             android:id="@+id/nav_main"
             android:checked="true"
             android:title="@string/nav_main" />
+
         <item
             android:id="@+id/nav_tab"
             android:title="@string/nav_tab" />
-    </group>
 
-    <group
-        android:id="@+id/group2"
-        android:checkableBehavior="single">
-        <item android:title="@string/group_2">
+        <item
+            android:id="@+id/nav_horizon"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_horizon" />
 
-            <item
-                android:id="@+id/nav_horizon"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_horizon" />
-            <item
-                android:id="@+id/nav_map"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="@string/nav_map" />
-        </item>
-    </group>
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/nav_map" />
 
-    <group
-        android:id="@+id/group3"
-        android:checkableBehavior="single">
-        <item android:title="@string/group_3">
+        <item
+            android:id="@+id/nav_call"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/nav_call" />
 
-            <item
-                android:id="@+id/nav_5"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="@string/nav_5" />
-            <item
-                android:id="@+id/nav_6"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/nav_6" />
-        </item>
+        <item
+            android:id="@+id/nav_6"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/nav_6" />
     </group>
 
 </menu>

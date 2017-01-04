@@ -180,7 +180,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .compose(RxLifecycleAndroid.bindView(view))
                 .filter(location1 -> isGPS)
                 .subscribe(location1 -> {
-                    isGPS = false;
                     prepareMarker(location);
                 });
     }
@@ -191,6 +190,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .compose(RxLifecycleAndroid.bindView(view))
                 .filter(location1 -> location1 != null)
                 .map(location2 -> new MapVO(location2.getLatitude(), location2.getLongitude(), getString(R.string.gps_locate)))
+                .doOnSubscribe(() -> isGPS = false)
                 .doOnUnsubscribe(() -> {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
                     googleMap.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_ZOOM));

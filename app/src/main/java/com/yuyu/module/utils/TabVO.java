@@ -3,16 +3,13 @@ package com.yuyu.module.utils;
 import android.app.Fragment;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class TabVO {
 
-    private Fragment fragment;
-    private String title;
-
-    public TabVO(Fragment fragment, String title) {
-        this.fragment = fragment;
-        this.title = title;
-    }
+    private final Fragment fragment;
+    private final String title;
 
 }
