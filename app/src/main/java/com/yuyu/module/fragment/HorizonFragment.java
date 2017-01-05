@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.yuyu.module.R;
 import com.yuyu.module.adapter.HorizonAdapter;
+import com.yuyu.module.utils.ChainedArrayList;
 import com.yuyu.module.utils.HorizonVO;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,10 +38,10 @@ public class HorizonFragment extends Fragment {
 
     public void initialize() {
         horizon_view.setAdapter(new HorizonAdapter(context,
-                new ArrayList<>(Arrays.asList(
+                (ArrayList<HorizonVO>) new ChainedArrayList<>().addMany(
                         new HorizonVO(R.drawable.ic_menu_camera, getString(R.string.view_1)),
                         new HorizonVO(R.drawable.ic_menu_gallery, getString(R.string.view_2)),
                         new HorizonVO(R.drawable.ic_menu_manage, getString(R.string.view_3)),
-                        new HorizonVO(R.drawable.ic_menu_send, getString(R.string.view_4))))));
+                        new HorizonVO(R.drawable.ic_menu_send, getString(R.string.view_4)))));
     }
 }

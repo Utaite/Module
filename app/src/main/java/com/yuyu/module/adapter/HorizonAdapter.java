@@ -42,13 +42,13 @@ public class HorizonAdapter extends PagerAdapter {
         TextView txt = (TextView) view.findViewById(R.id.txt_item);
         txt.setText(vo.get(position).getTitle());
         txt.setOnClickListener(v -> {
-            ((MainActivity) context).getToast().setText((position + 1) + container.getResources().getString(R.string.click_text));
+            ((MainActivity) context).getToast().setText(container.getResources().getString(R.string.click_text, (position + 1)));
             ((MainActivity) context).getToast().show();
         });
         ImageView img = (ImageView) view.findViewById(R.id.img_item);
         img.setImageResource(vo.get(position).getImg());
         img.setOnClickListener(v -> {
-            ((MainActivity) context).getToast().setText((position + 1) + container.getResources().getString(R.string.click_image));
+            ((MainActivity) context).getToast().setText(container.getResources().getString(R.string.click_image, (position + 1)));
             ((MainActivity) context).getToast().show();
         });
         container.addView(view);

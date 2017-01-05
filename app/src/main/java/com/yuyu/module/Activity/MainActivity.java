@@ -20,6 +20,7 @@ import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.MapFragment_;
 import com.yuyu.module.fragment.SpinnerFragment;
 import com.yuyu.module.fragment.TabFragment;
+import com.yuyu.module.utils.ChainedArrayList;
 import com.yuyu.module.utils.Constant;
 
 import java.util.ArrayList;
@@ -132,11 +133,7 @@ public class MainActivity extends RxAppCompatActivity
     }
 
     public void initialize() {
-        items = new ArrayList<>();
-        int size = nav_view.getMenu().size();
-        for (int i = 0; i < size; i++) {
-            items.add(nav_view.getMenu().getItem(i).getItemId());
-        }
+        items = (ArrayList<Integer>) new ChainedArrayList<>().addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
         setTitle(getString(R.string.nav_main));
         getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
     }
