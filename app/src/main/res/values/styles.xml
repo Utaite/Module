@@ -25,4 +25,8 @@
         <item name="colorButtonNormal">#FFBB00</item>
     </style>
 
+    <style name="CameraButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#6699FF</item>
+    </style>
+
 </resources>

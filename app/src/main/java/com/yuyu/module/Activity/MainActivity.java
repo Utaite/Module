@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
 import com.yuyu.module.fragment.CallFragment;
+import com.yuyu.module.fragment.CameraFragment;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.MapFragment_;
@@ -122,6 +123,8 @@ public class MainActivity extends RxAppCompatActivity
             fragment = new CallFragment();
         } else if (iid == R.id.nav_spinner) {
             fragment = new SpinnerFragment();
+        } else if (iid == R.id.nav_camera) {
+            fragment = new CameraFragment();
         }
         if (fragment != null) {
             getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();

@@ -8,14 +8,13 @@
 
     <string name="menu_develop">개발 중</string>
 
-    <string name="group_2">GROUP 2</string>
-    <string name="group_3">GROUP 3</string>
     <string name="nav_main">메인</string>
     <string name="nav_tab">탭</string>
     <string name="nav_horizon">가로 뷰</string>
     <string name="nav_map">맵</string>
     <string name="nav_call">전화</string>
     <string name="nav_spinner">스피너</string>
+    <string name="nav_camera">카메라</string>
 
     <string name="tab_1">TAB 1</string>
     <string name="tab_2">TAB 2</string>
@@ -45,4 +44,10 @@
 
     <string name="spinner_prompt">선택하기</string>
     <string name="spinner_selected">%1$d번은 %2$s입니다.</string>
+
+    <string name="camera_btn">CAMERA</string>
+    <string name="camera_none">카메라 어플이 설치되어있지 않습니다.</string>
+    <string name="camera_date_type">yyyyMMdd_HHmmss</string>
+    <string name="camera_name">IMG_</string>
+    <string name="camera_file">.jpg</string>
 </resources>

@@ -23,6 +23,8 @@ public class SpinnerFragment extends Fragment {
 
     private final String TAG = SpinnerFragment.class.getSimpleName();
 
+    private final int HIDE_INDEX = 0;
+
     private Context context;
 
     @BindView(R.id.spinner_spinner)
@@ -42,13 +44,15 @@ public class SpinnerFragment extends Fragment {
                 new ChainedArrayList().addMany(getString(R.string.spinner_prompt), getString(R.string.view_1), getString(R.string.view_2), getString(R.string.view_3), getString(R.string.view_4))) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                return position == 0 ? new ChainedTextView(context).setHeightTo(0) : super.getDropDownView(position, null, parent);
+                return position == HIDE_INDEX ? new ChainedTextView(context).setHeightTo(0) : super.getDropDownView(position, null, parent);
             }
         });
         spinner_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((MainActivity) context).getToast().setTextShow(getString(R.string.spinner_selected, position, spinner_spinner.getAdapter().getItem(position)));
+                if (position != HIDE_INDEX) {
+                    ((MainActivity) context).getToast().setTextShow(getString(R.string.spinner_selected, position, spinner_spinner.getAdapter().getItem(position)));
+                }
             }
 
             @Override
