@@ -43,6 +43,6 @@
     <string name="call_edit">Input Called Number</string>
     <string name="call_btn">CALL</string>
 
-    <string name="spinner_prompt">== SELECTED ==</string>
+    <string name="spinner_prompt">선택하기</string>
     <string name="spinner_selected">%1$d번은 %2$s입니다.</string>
 </resources>

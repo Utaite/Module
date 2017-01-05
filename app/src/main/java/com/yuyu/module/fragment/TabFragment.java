@@ -10,10 +10,8 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStrip;
 import com.yuyu.module.R;
 import com.yuyu.module.adapter.TabAdapter;
-import com.yuyu.module.utils.ChainedArrayList;
+import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.utils.TabVO;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +35,7 @@ public class TabFragment extends Fragment {
 
     public void initialize() {
         tab_view_pager.setAdapter(new TabAdapter(getChildFragmentManager(),
-                (ArrayList<TabVO>) new ChainedArrayList<>().addMany(
+                new ChainedArrayList().addMany(
                         new TabVO(new TabFragment1(), getString(R.string.tab_1)),
                         new TabVO(new TabFragment2(), getString(R.string.tab_2)))));
         tab_tab_layout.setViewPager(tab_view_pager);

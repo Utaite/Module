@@ -41,16 +41,10 @@ public class HorizonAdapter extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.item, container, false);
         TextView txt = (TextView) view.findViewById(R.id.txt_item);
         txt.setText(vo.get(position).getTitle());
-        txt.setOnClickListener(v -> {
-            ((MainActivity) context).getToast().setText(container.getResources().getString(R.string.click_text, (position + 1)));
-            ((MainActivity) context).getToast().show();
-        });
+        txt.setOnClickListener(v -> ((MainActivity) context).getToast().setTextShow(container.getResources().getString(R.string.click_text, (position + 1))));
         ImageView img = (ImageView) view.findViewById(R.id.img_item);
         img.setImageResource(vo.get(position).getImg());
-        img.setOnClickListener(v -> {
-            ((MainActivity) context).getToast().setText(container.getResources().getString(R.string.click_image, (position + 1)));
-            ((MainActivity) context).getToast().show();
-        });
+        img.setOnClickListener(v -> ((MainActivity) context).getToast().setTextShow(container.getResources().getString(R.string.click_image, (position + 1))));
         container.addView(view);
         return view;
     }

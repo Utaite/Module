@@ -142,8 +142,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .filter(o -> requestCode == GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 .subscribe(o -> {
                     mapFragment.getMapAsync(this);
-                    ((MainActivity) getActivity()).getToast().setText(getString(R.string.gps_load));
-                    ((MainActivity) getActivity()).getToast().show();
+                    ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.gps_load));
                     isGPS = true;
                 });
     }

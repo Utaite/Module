@@ -20,7 +20,8 @@ import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.MapFragment_;
 import com.yuyu.module.fragment.SpinnerFragment;
 import com.yuyu.module.fragment.TabFragment;
-import com.yuyu.module.utils.ChainedArrayList;
+import com.yuyu.module.chain.ChainedArrayList;
+import com.yuyu.module.chain.ChainedToast;
 import com.yuyu.module.utils.Constant;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class MainActivity extends RxAppCompatActivity
 
     private final String TAG = MainActivity.class.getSimpleName();
 
-    private Toast toast;
+    private ChainedToast toast;
     private Context context;
     private int index;
     private ArrayList<Integer> items;
@@ -51,7 +52,7 @@ public class MainActivity extends RxAppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         context = this;
-        toast = Toast.makeText(context, "", Toast.LENGTH_SHORT);
+        toast = new ChainedToast(context).makeTextTo(context, "", Toast.LENGTH_SHORT);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -82,8 +83,7 @@ public class MainActivity extends RxAppCompatActivity
         } else {
             if (Constant.CURRENT_TIME + Constant.BACK_TIME < System.currentTimeMillis()) {
                 Constant.CURRENT_TIME = System.currentTimeMillis();
-                toast.setText(getString(R.string.onBackPressed));
-                toast.show();
+                toast.setTextShow(getString(R.string.onBackPressed));
 
             } else {
                 super.onBackPressed();
@@ -133,12 +133,12 @@ public class MainActivity extends RxAppCompatActivity
     }
 
     public void initialize() {
-        items = (ArrayList<Integer>) new ChainedArrayList<>().addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
+        items = (ArrayList<Integer>) new ChainedArrayList().addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
         setTitle(getString(R.string.nav_main));
         getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
     }
 
-    public Toast getToast() {
+    public ChainedToast getToast() {
         return toast;
     }
 

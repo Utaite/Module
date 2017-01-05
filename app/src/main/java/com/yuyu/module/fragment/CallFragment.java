@@ -60,8 +60,7 @@ public class CallFragment extends Fragment {
                 .map(call_edit1 -> call_edit1.getText().toString())
                 .filter(s -> {
                     if (TextUtils.isEmpty(s)) {
-                        ((MainActivity) context).getToast().setText(R.string.call_empty);
-                        ((MainActivity) context).getToast().show();
+                        ((MainActivity) context).getToast().setTextShow(getString(R.string.call_empty));
                     }
                     return !TextUtils.isEmpty(s);
                 })
