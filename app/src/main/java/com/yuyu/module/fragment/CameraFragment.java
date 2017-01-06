@@ -113,6 +113,7 @@ public class CameraFragment extends Fragment {
         try {
             String name = getString(R.string.camera_name) + new SimpleDateFormat(getString(R.string.camera_date_type)).format(new Date());
             file = File.createTempFile(name.replace("-", ""), getString(R.string.camera_file), dir);
+            Log.e(TAG, file.getAbsolutePath());
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }
@@ -170,9 +171,6 @@ public class CameraFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) {
-            return;
-        }
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = false;
         options.inPurgeable = true;
@@ -180,6 +178,9 @@ public class CameraFragment extends Fragment {
         switch (requestCode) {
 
             case GALLERY_REQUEST_CODE: {
+                if (resultCode != RESULT_OK) {
+                    return;
+                }
                 try {
                     file = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_PICTURES + "/" + getString(R.string.app_name) + "/" + getName(data.getData()));
                     imagePath = file.getAbsolutePath();
@@ -193,6 +194,15 @@ public class CameraFragment extends Fragment {
             break;
 
             case CAMERA_REQUEST_CODE: {
+                if (resultCode != RESULT_OK) {
+                    Log.e(TAG, file.getAbsolutePath());
+                    if(file.delete()) {
+                        Log.e(TAG, "삭제성공");
+                    } else {
+                        Log.e(TAG, "삭제실패");
+                    }
+                    return;
+                }
                 try {
                     Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
                     int orientation = getRotate(new ExifInterface(imagePath).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
