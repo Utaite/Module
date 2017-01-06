@@ -10,16 +10,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/camera_btn"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/camera_btn"
-        android:textColor="#fff"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:theme="@style/CameraButton" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/camera_camera_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/camera_camera_btn"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:theme="@style/CameraButton" />
+
+        <Button
+            android:id="@+id/camera_submit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/camera_submit_btn"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:theme="@style/SubmitButton" />
+
+    </LinearLayout>
 
 </RelativeLayout>

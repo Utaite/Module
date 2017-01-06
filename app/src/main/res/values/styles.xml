@@ -29,4 +29,8 @@
         <item name="colorButtonNormal">#6699FF</item>
     </style>
 
+    <style name="SubmitButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#FFA7A7</item>
+    </style>
+
 </resources>

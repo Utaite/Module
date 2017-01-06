@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.yuyu.module.R;
 
+import butterknife.ButterKnife;
+
 public class TabFragment1 extends Fragment {
 
     private final String TAG = TabFragment1.class.getSimpleName();
@@ -15,6 +17,7 @@ public class TabFragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_1, container, false);
+        ButterKnife.bind(this, view);
         return view;
     }
 }

@@ -29,8 +29,6 @@ public class CallFragment extends Fragment {
 
     private final String TAG = CallFragment.class.getSimpleName();
 
-    private final String INTENT_TEL = "tel:";
-
     private View view;
     private Context context;
 
@@ -65,7 +63,7 @@ public class CallFragment extends Fragment {
                     return !TextUtils.isEmpty(s);
                 })
                 .subscribe(s -> {
-                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(INTENT_TEL + s)));
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(getString(R.string.call_intent) + s)));
                     new Handler() {
                         @Override
                         public void handleMessage(Message msg) {

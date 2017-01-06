@@ -23,6 +23,7 @@ import com.yuyu.module.fragment.SpinnerFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
+import com.yuyu.module.rest.RestUtils;
 import com.yuyu.module.utils.Constant;
 
 import java.util.ArrayList;
@@ -35,8 +36,8 @@ public class MainActivity extends RxAppCompatActivity
 
     private final String TAG = MainActivity.class.getSimpleName();
 
-    private ChainedToast toast;
     private Context context;
+    private ChainedToast toast;
     private int index;
     private ArrayList<Integer> items;
 
@@ -55,11 +56,12 @@ public class MainActivity extends RxAppCompatActivity
         context = this;
         toast = new ChainedToast(context).makeTextTo(context, "", Toast.LENGTH_SHORT);
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer_layout.setDrawerListener(toggle);
         toggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
+        RestUtils.initialize();
         initialize();
     }
 
@@ -127,7 +129,9 @@ public class MainActivity extends RxAppCompatActivity
             fragment = new CameraFragment();
         }
         if (fragment != null) {
-            getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.content_main, fragment)
+                    .commit();
         }
         index = items.indexOf(iid);
         setTitle(item.getTitle());
@@ -136,9 +140,12 @@ public class MainActivity extends RxAppCompatActivity
     }
 
     public void initialize() {
-        items = (ArrayList<Integer>) new ChainedArrayList().addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
+        items = (ArrayList<Integer>) new ChainedArrayList()
+                .addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
         setTitle(getString(R.string.nav_main));
-        getFragmentManager().beginTransaction().replace(R.id.content_main, new MainFragment()).commit();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content_main, new MainFragment())
+                .commit();
     }
 
     public ChainedToast getToast() {

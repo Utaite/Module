@@ -128,10 +128,18 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                     .onNegative((dialog, which) -> dialog.cancel())
                     .show();
         } else {
-            Observable.just(googleApiClient = buildApi())
+            Observable.just(googleApiClient = buildGoogleApiClient())
                     .compose(RxLifecycleAndroid.bindView(view))
                     .subscribe(GoogleApiClient::connect);
         }
+    }
+
+    public GoogleApiClient buildGoogleApiClient() {
+        return new GoogleApiClient.Builder(context)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
     }
 
     @Override
@@ -139,20 +147,13 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         super.onActivityResult(requestCode, resultCode, data);
         Observable.just(requestCode)
                 .compose(RxLifecycleAndroid.bindView(view))
-                .filter(o -> requestCode == GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                .filter(o -> requestCode == GPS_REQUEST_CODE &&
+                        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 .subscribe(o -> {
                     mapFragment.getMapAsync(this);
                     ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.gps_load));
                     isGPS = true;
                 });
-    }
-
-    public GoogleApiClient buildApi() {
-        return new GoogleApiClient.Builder(context)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
     }
 
     @Override
@@ -216,7 +217,8 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .negativeText(getString(R.string.alert_no))
                 .onPositive((dialog, which) -> {
                     selectedMarkerRemove();
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLng((selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true)).getPosition()));
+                    selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true);
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLng((selectedMarker.getPosition())));
                 })
                 .onNegative((dialog, which) -> dialog.cancel())
                 .show();
@@ -245,12 +247,17 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     public Marker createMarker(MapVO vo, boolean isSelected) {
         View markerView = LayoutInflater.from(context).inflate(R.layout.custom_marker, null);
         TextView tv_marker = (TextView) markerView.findViewById(R.id.tv_marker);
+
         tv_marker.setText(vo.getDescription());
-        tv_marker.setBackgroundResource(isSelected ? R.drawable.ic_marker_phone_blue : R.drawable.ic_marker_phone);
-        tv_marker.setTextColor(isSelected ? Color.WHITE : Color.BLACK);
-        return googleMap.addMarker(new MarkerOptions().title(vo.getDescription())
+        tv_marker.setBackgroundResource(isSelected ?
+                R.drawable.ic_marker_phone_blue : R.drawable.ic_marker_phone);
+        tv_marker.setTextColor(isSelected ?
+                Color.WHITE : Color.BLACK);
+
+        return googleMap.addMarker(new MarkerOptions()
+                .title(vo.getDescription())
                 .position(new LatLng(vo.getLat(), vo.getLon()))
-                .icon(BitmapDescriptorFactory.fromBitmap(createBitmap(context, markerView)))
+                .icon(BitmapDescriptorFactory.fromBitmap(createBitmap(markerView)))
                 .draggable(true));
     }
 
@@ -265,19 +272,17 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .subscribe(s -> selectedMarker = null);
     }
 
-    public Bitmap createBitmap(Context context, View view) {
+    public Bitmap createBitmap(View markerView) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Observable.just(view)
-                .compose(RxLifecycleAndroid.bindView(view))
-                .doOnSubscribe(() -> {
-                    view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                    view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
-                    view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
-                })
-                .subscribe(View::buildDrawingCache);
-        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        view.draw(new Canvas(bitmap));
+
+        markerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        markerView.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        markerView.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        markerView.buildDrawingCache();
+
+        Bitmap bitmap = Bitmap.createBitmap(markerView.getMeasuredWidth(), markerView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        markerView.draw(new Canvas(bitmap));
         return bitmap;
     }
 

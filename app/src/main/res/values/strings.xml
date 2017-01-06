@@ -16,27 +16,27 @@
     <string name="nav_spinner">스피너</string>
     <string name="nav_camera">카메라</string>
 
-    <string name="tab_1">TAB 1</string>
-    <string name="tab_2">TAB 2</string>
+    <string name="tab_title_1">TAB 1</string>
+    <string name="tab_title_2">TAB 2</string>
 
-    <string name="view_1">VIEW 1</string>
-    <string name="view_2">VIEW 2</string>
-    <string name="view_3">VIEW 3</string>
-    <string name="view_4">VIEW 4</string>
+    <string name="horizon_view_1">VIEW 1</string>
+    <string name="horizon_view_2">VIEW 2</string>
+    <string name="horizon_view_3">VIEW 3</string>
+    <string name="horizon_view_4">VIEW 4</string>
+    <string name="horizon_text">%d번 텍스트를 클릭하셨습니다.</string>
+    <string name="horizon_image">%d번 이미지를 클릭하셨습니다.</string>
 
-    <string name="click_text">%d번 텍스트를 클릭하셨습니다.</string>
-    <string name="click_image">%d번 이미지를 클릭하셨습니다.</string>
+    <string name="map_permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
+    <string name="map_alert_setting">설정</string>
+    <string name="map_alert_yes">확인</string>
+    <string name="map_alert_no">취소</string>
+    <string name="map_gps_alert">현재위치를 가져오기 위해 GPS를 활성화 하시겠습니까?</string>
+    <string name="map_gps_load">GPS를 읽어오는 중이에요.\n잠시만 기다려주세요.</string>
+    <string name="map_gps_locate">현재위치</string>
+    <string name="map_gps_alert_content">Input Marker Name</string>
+    <string name="map_gps_alert_input">마커추가</string>
 
-    <string name="permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
-    <string name="alert_setting">설정</string>
-    <string name="alert_yes">확인</string>
-    <string name="alert_no">취소</string>
-    <string name="gps_alert">현재위치를 가져오기 위해 GPS를 활성화 하시겠습니까?</string>
-    <string name="gps_load">GPS를 읽어오는 중이에요.\n잠시만 기다려주세요.</string>
-    <string name="gps_locate">현재위치</string>
-    <string name="gps_alert_content">Input Marker Name</string>
-    <string name="gps_alert_input">마커추가</string>
-
+    <string name="call_intent">tel:</string>
     <string name="call_empty">먼저 전화걸으실 번호를 입력해주세요.</string>
     <string name="call_cast_err">숫자만 입력해주세요.</string>
     <string name="call_edit">Input Called Number</string>
@@ -45,7 +45,11 @@
     <string name="spinner_prompt">선택하기</string>
     <string name="spinner_selected">%1$d번은 %2$s입니다.</string>
 
-    <string name="camera_btn">CAMERA</string>
+    <string name="camera_camera_btn">CAMERA</string>
+    <string name="camera_submit_btn">SUBMIT</string>
+    <string name="camera_ing">사진을 전송하는 중입니다 ...\n잠시만 기다려주세요 ...</string>
+    <string name="camera_complete">사진 전송을 완료했습니다.</string>
+    <string name="camera_file_none">전송할 사진이 없습니다.</string>
     <string name="camera_none">카메라 어플이 설치되어있지 않습니다.</string>
     <string name="camera_date_type">yyyyMMdd_HHmmss</string>
     <string name="camera_name">IMG_</string>
