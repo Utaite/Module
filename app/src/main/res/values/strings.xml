@@ -3,6 +3,8 @@
 
     <string name="onBackPressed">\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.</string>
 
+    <string name="permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -19,14 +21,13 @@
     <string name="tab_title_1">TAB 1</string>
     <string name="tab_title_2">TAB 2</string>
 
-    <string name="horizon_view_1">VIEW 1</string>
-    <string name="horizon_view_2">VIEW 2</string>
-    <string name="horizon_view_3">VIEW 3</string>
-    <string name="horizon_view_4">VIEW 4</string>
+    <string name="horizon_view_1">HORIZON 1</string>
+    <string name="horizon_view_2">HORIZON 2</string>
+    <string name="horizon_view_3">HORIZON 3</string>
+    <string name="horizon_view_4">HORIZON 4</string>
     <string name="horizon_text">%d번 텍스트를 클릭하셨습니다.</string>
     <string name="horizon_image">%d번 이미지를 클릭하셨습니다.</string>
 
-    <string name="map_permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
     <string name="map_alert_setting">설정</string>
     <string name="map_alert_yes">확인</string>
     <string name="map_alert_no">취소</string>
@@ -43,9 +44,14 @@
     <string name="call_btn">CALL</string>
 
     <string name="spinner_prompt">선택하기</string>
+    <string name="spinner_view_1">SPINNER 1</string>
+    <string name="spinner_view_2">SPINNER 2</string>
+    <string name="spinner_view_3">SPINNER 3</string>
+    <string name="spinner_view_4">SPINNER 4</string>
     <string name="spinner_selected">%1$d번은 %2$s입니다.</string>
 
     <string name="camera_camera_btn">CAMERA</string>
+    <string name="camera_gallery_btn">GALLERY</string>
     <string name="camera_submit_btn">SUBMIT</string>
     <string name="camera_ing">사진을 전송하는 중입니다 ...\n잠시만 기다려주세요 ...</string>
     <string name="camera_complete">사진 전송을 완료했습니다.</string>

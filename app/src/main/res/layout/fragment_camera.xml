@@ -15,29 +15,25 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/camera_camera_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            style="@style/CameraButtonStyle"
             android:text="@string/camera_camera_btn"
-            android:textColor="#fff"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:theme="@style/CameraButton" />
+            android:theme="@style/CameraCameraButton" />
+
+        <Button
+            android:id="@+id/camera_gallery_btn"
+            style="@style/CameraButtonStyle"
+            android:text="@string/camera_gallery_btn"
+            android:theme="@style/CameraGalleryButton" />
 
         <Button
             android:id="@+id/camera_submit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            style="@style/CameraButtonStyle"
             android:text="@string/camera_submit_btn"
-            android:textColor="#fff"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:theme="@style/SubmitButton" />
+            android:theme="@style/CameraSubmitButton" />
 
     </LinearLayout>
 

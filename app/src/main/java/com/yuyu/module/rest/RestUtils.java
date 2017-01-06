@@ -35,7 +35,7 @@ public class RestUtils {
         @Multipart
         @POST("test.jsp")
         Observable<Void> upload(@Part("message") RequestBody message,
-                                        @Part MultipartBody.Part file);
+                                        @Part MultipartBody.Part body);
     }
 
 }

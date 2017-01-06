@@ -121,9 +121,9 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     public void checkGPS() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             new MaterialDialog.Builder(context)
-                    .content(getString(R.string.gps_alert))
-                    .positiveText(getString(R.string.alert_setting))
-                    .negativeText(getString(R.string.alert_no))
+                    .content(getString(R.string.map_gps_alert))
+                    .positiveText(getString(R.string.map_alert_setting))
+                    .negativeText(getString(R.string.map_alert_no))
                     .onPositive((dialog, which) -> startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), GPS_REQUEST_CODE))
                     .onNegative((dialog, which) -> dialog.cancel())
                     .show();
@@ -145,15 +145,11 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Observable.just(requestCode)
-                .compose(RxLifecycleAndroid.bindView(view))
-                .filter(o -> requestCode == GPS_REQUEST_CODE &&
-                        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-                .subscribe(o -> {
-                    mapFragment.getMapAsync(this);
-                    ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.gps_load));
-                    isGPS = true;
-                });
+        if (requestCode == GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            mapFragment.getMapAsync(this);
+            ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.map_gps_load));
+            isGPS = true;
+        }
     }
 
     @Override
@@ -185,7 +181,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         Observable.just(location)
                 .compose(RxLifecycleAndroid.bindView(view))
                 .filter(location1 -> location1 != null)
-                .map(location2 -> new MapVO(location2.getLatitude(), location2.getLongitude(), getString(R.string.gps_locate)))
+                .map(location2 -> new MapVO(location2.getLatitude(), location2.getLongitude(), getString(R.string.map_gps_locate)))
                 .doOnSubscribe(() -> isGPS = false)
                 .doOnUnsubscribe(() -> {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
@@ -210,11 +206,11 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     @Override
     public void onMapClick(LatLng latLng) {
         new MaterialDialog.Builder(context)
-                .content(getString(R.string.gps_alert_content))
-                .input(null, getString(R.string.gps_alert_input), (dialog, input) -> {
+                .content(getString(R.string.map_gps_alert_content))
+                .input(null, getString(R.string.map_gps_alert_input), (dialog, input) -> {
                 })
-                .positiveText(getString(R.string.alert_yes))
-                .negativeText(getString(R.string.alert_no))
+                .positiveText(getString(R.string.map_alert_yes))
+                .negativeText(getString(R.string.map_alert_no))
                 .onPositive((dialog, which) -> {
                     selectedMarkerRemove();
                     selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true);

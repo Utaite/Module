@@ -37,8 +37,8 @@ public class TabFragment extends Fragment {
 
     public void initialize() {
         ArrayList<TabVO> arrayList = new ChainedArrayList().addMany(
-                new TabVO(new TabFragment1(), getString(R.string.tab_1)),
-                new TabVO(new TabFragment2(), getString(R.string.tab_2)));
+                new TabVO(new TabFragment1(), getString(R.string.tab_title_1)),
+                new TabVO(new TabFragment2(), getString(R.string.tab_title_2)));
 
         tab_view_pager.setAdapter(new TabAdapter(getChildFragmentManager(), arrayList));
         tab_tab_layout.setViewPager(tab_view_pager);

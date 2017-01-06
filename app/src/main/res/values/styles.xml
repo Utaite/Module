@@ -25,11 +25,24 @@
         <item name="colorButtonNormal">#FFBB00</item>
     </style>
 
-    <style name="CameraButton" parent="Widget.AppCompat.Button.Colored">
+    <style name="CameraButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CameraCameraButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">#6699FF</item>
     </style>
 
-    <style name="SubmitButton" parent="Widget.AppCompat.Button.Colored">
+    <style name="CameraGalleryButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#FFCA6C</item>
+    </style>
+
+    <style name="CameraSubmitButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">#FFA7A7</item>
     </style>
 

@@ -43,8 +43,8 @@ public class SpinnerFragment extends Fragment {
 
     public void initialize() {
         ArrayList<String> arrayList = new ChainedArrayList().addMany(
-                getString(R.string.spinner_prompt),getString(R.string.view_1),
-                getString(R.string.view_2), getString(R.string.view_3), getString(R.string.view_4));
+                getString(R.string.spinner_prompt),getString(R.string.spinner_view_1),
+                getString(R.string.spinner_view_2), getString(R.string.spinner_view_3), getString(R.string.spinner_view_4));
 
         spinner_spinner.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, arrayList) {
             @Override

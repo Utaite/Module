@@ -16,4 +16,10 @@ public class Chained {
         }
     }
 
+    public static void setAlpha(int alpha, View... view) {
+        for(View v : view) {
+            v.getBackground().setAlpha(alpha);
+        }
+    }
+
 }
