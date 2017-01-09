@@ -31,6 +31,7 @@ public class CallFragment extends Fragment {
 
     private View view;
     private Context context;
+    private Handler handler;
 
     @BindView(R.id.call_edit)
     AutoCompleteTextView call_edit;
@@ -40,7 +41,7 @@ public class CallFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_call, container, false);
         ButterKnife.bind(this, view);
         context = getActivity();
-        call_edit.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        initialize();
         return view;
     }
 
@@ -49,6 +50,17 @@ public class CallFragment extends Fragment {
         super.onStop();
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(call_edit.getWindowToken(), 0);
+    }
+
+    public void initialize() {
+        call_edit.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                call_edit.getText().clear();
+                call_edit.clearFocus();
+            }
+        };
     }
 
     @OnClick(R.id.call_btn)
@@ -64,13 +76,7 @@ public class CallFragment extends Fragment {
                 })
                 .subscribe(s -> {
                     startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(getString(R.string.call_intent) + s)));
-                    new Handler() {
-                        @Override
-                        public void handleMessage(Message msg) {
-                            call_edit.getText().clear();
-                            call_edit.clearFocus();
-                        }
-                    }.sendEmptyMessageDelayed(0, 500);
+                    handler.sendEmptyMessageDelayed(0, 500);
                 });
     }
 

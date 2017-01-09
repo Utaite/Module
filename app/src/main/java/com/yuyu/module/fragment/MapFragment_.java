@@ -60,7 +60,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     private MapFragment mapFragment;
     private GoogleApiClient googleApiClient;
     private LocationManager locationManager;
-    private boolean isGPS;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -148,7 +147,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         if (requestCode == GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             mapFragment.getMapAsync(this);
             ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.map_gps_load));
-            isGPS = true;
         }
     }
 
@@ -172,7 +170,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .compose(RxLifecycleAndroid.bindView(view))
                 .filter(location1 -> location1 != null)
                 .map(location2 -> new MapVO(location2.getLatitude(), location2.getLongitude(), getString(R.string.map_gps_locate)))
-                .doOnSubscribe(() -> isGPS = false)
                 .doOnUnsubscribe(() -> {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
                     googleMap.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_ZOOM));

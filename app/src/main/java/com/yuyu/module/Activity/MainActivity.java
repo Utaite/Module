@@ -36,10 +36,10 @@ public class MainActivity extends RxAppCompatActivity
 
     private final String TAG = MainActivity.class.getSimpleName();
 
-    private Context context;
     private ChainedToast toast;
-    private int index;
     private ArrayList<Integer> items;
+
+    private int index;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -53,15 +53,13 @@ public class MainActivity extends RxAppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        context = this;
-        toast = new ChainedToast(context).makeTextTo(context, "", Toast.LENGTH_SHORT);
+        toast = new ChainedToast(this).makeTextTo(this, "", Toast.LENGTH_SHORT);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer_layout.setDrawerListener(toggle);
         toggle.syncState();
         nav_view.setNavigationItemSelectedListener(this);
-        RestUtils.initialize();
         initialize();
     }
 
@@ -111,8 +109,17 @@ public class MainActivity extends RxAppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content_main, getFragment(item.getItemId()))
+                        .commit();
+        setTitle(item.getTitle());
+        drawer_layout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public Fragment getFragment(int iid) {
+        index = items.indexOf(iid);
         Fragment fragment = null;
-        int iid = item.getItemId();
         if (iid == R.id.nav_main) {
             fragment = new MainFragment();
         } else if (iid == R.id.nav_tab) {
@@ -128,15 +135,7 @@ public class MainActivity extends RxAppCompatActivity
         } else if (iid == R.id.nav_camera) {
             fragment = new CameraFragment();
         }
-        if (fragment != null) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.content_main, fragment)
-                    .commit();
-        }
-        index = items.indexOf(iid);
-        setTitle(item.getTitle());
-        drawer_layout.closeDrawer(GravityCompat.START);
-        return true;
+        return fragment;
     }
 
     public void initialize() {

@@ -18,12 +18,12 @@ public class HorizonAdapter extends PagerAdapter {
 
     private final String TAG = HorizonAdapter.class.getSimpleName();
 
-    private ArrayList<HorizonVO> vo;
     private Context context;
+    private ArrayList<HorizonVO> vo;
 
     public HorizonAdapter(Context context, ArrayList<HorizonVO> vo) {
-        this.vo = vo;
         this.context = context;
+        this.vo = vo;
     }
 
     @Override

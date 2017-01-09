@@ -32,7 +32,6 @@ import com.yuyu.module.chain.Chained;
 import com.yuyu.module.rest.RestUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,7 +56,8 @@ public class CameraFragment extends Fragment {
     private View view;
     private File file;
     private Context context;
-    private String imagePath;
+
+    private boolean isResult;
 
     @BindView(R.id.camera_camera_btn)
     Button camera_camera_btn;
@@ -88,8 +88,6 @@ public class CameraFragment extends Fragment {
                 .setPermissionListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted() {
-                        final int ALPHA = 150;
-                        Chained.setAlpha(ALPHA, camera_camera_btn, camera_submit_btn, camera_gallery_btn);
                         Chained.setVisibilityMany(View.VISIBLE, camera_camera_btn, camera_gallery_btn, camera_submit_btn, camera_img);
                     }
 
@@ -118,7 +116,7 @@ public class CameraFragment extends Fragment {
         }
 
         if (context.getPackageManager().queryIntentActivities(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), PackageManager.MATCH_DEFAULT_ONLY).size() > 0 && file != null) {
-            Uri uri = Uri.fromFile(new File(imagePath = file.getAbsolutePath()));
+            Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).setData(uri));
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
@@ -137,16 +135,16 @@ public class CameraFragment extends Fragment {
 
     @OnClick(R.id.camera_submit_btn)
     public void onSubmitButtonClick() {
-        if (file == null) {
+        if (file == null || camera_img == null) {
             ((MainActivity) context).getToast().setTextShow(getString(R.string.camera_file_none));
         } else {
             UploadTask uploadTask = new UploadTask();
             uploadTask.onPreExecute();
 
-            RequestBody message = RequestBody.create(MediaType.parse("multipart/form-data"), "TEST");
-            MultipartBody.Part body = MultipartBody.Part.createFormData("picture", file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
+            String message = "message";
+            MultipartBody.Part body = MultipartBody.Part.createFormData(getString(R.string.file), file.getName(), RequestBody.create(MediaType.parse(getString(R.string.multipart)), file));
 
-            RestUtils.getRestClient()
+            RestUtils.getRetrofit()
                     .create(RestUtils.FileUploadService.class)
                     .upload(message, body)
                     .subscribe(new Subscriber<Void>() {
@@ -157,10 +155,13 @@ public class CameraFragment extends Fragment {
                         @Override
                         public void onError(Throwable e) {
                             Log.e(TAG, e.getMessage());
+                            isResult = false;
+                            uploadTask.onPostExecute(null);
                         }
 
                         @Override
                         public void onNext(Void aVoid) {
+                            isResult = true;
                             uploadTask.onPostExecute(null);
                         }
                     });
@@ -170,51 +171,48 @@ public class CameraFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = false;
-        options.inPurgeable = true;
+        if (resultCode != RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST_CODE) {
+                file.delete();
+            }
+            return;
+        }
 
         switch (requestCode) {
-
             case GALLERY_REQUEST_CODE: {
-                if (resultCode != RESULT_OK) {
-                    return;
-                }
-                try {
-                    file = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_PICTURES + "/" + getString(R.string.app_name) + "/" + getName(data.getData()));
-                    imagePath = file.getAbsolutePath();
-                    Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
-                    int orientation = getRotate(new ExifInterface(imagePath).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
-                    camera_img.setImageBitmap(getBitmap(bitmap, orientation));
-                } catch (IOException e) {
-                    Log.e(TAG, e.getMessage());
-                }
+                file = new File(getName(data.getData()));
+                setImageBitmap();
             }
             break;
 
             case CAMERA_REQUEST_CODE: {
-                if (resultCode != RESULT_OK) {
-                    file.delete();
-                    return;
-                }
-                try {
-                    Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
-                    int orientation = getRotate(new ExifInterface(imagePath).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
-                    camera_img.setImageBitmap(getBitmap(bitmap, orientation));
-                } catch (Exception e) {
-                    Log.e(TAG, e.getMessage());
-                }
+                setImageBitmap();
             }
             break;
-
         }
+
+        final int ALPHA = 150;
+        Chained.setAlpha(ALPHA, camera_camera_btn, camera_submit_btn, camera_gallery_btn);
     }
 
     public String getName(Uri uri) {
         Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
         cursor.moveToFirst();
-        String imgPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
-        return imgPath.substring(imgPath.lastIndexOf("/") + 1);
+        return cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+    }
+
+    public void setImageBitmap() {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = false;
+            options.inPurgeable = true;
+
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+            int orientation = getRotate(new ExifInterface(file.getAbsolutePath()).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
+            camera_img.setImageBitmap(getBitmap(bitmap, orientation));
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
     }
 
     public int getRotate(int orientation) {
@@ -265,7 +263,7 @@ public class CameraFragment extends Fragment {
         public void onPostExecute(Void result) {
             super.onPostExecute(result);
             asyncDialog.dismiss();
-            ((MainActivity) context).getToast().setTextShow(getString(R.string.camera_complete));
+            ((MainActivity) context).getToast().setTextShow(getString(isResult ? R.string.camera_complete : R.string.camera_error));
         }
     }
 

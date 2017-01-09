@@ -18,24 +18,24 @@ public class RestUtils {
 
     private static Retrofit retrofit;
 
-    public static void initialize() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE)
-                .client(new OkHttpClient.Builder().build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(new RxThreadCallAdapter(Schedulers.io(), AndroidSchedulers.mainThread()))
-                .build();
-    }
+    public static Retrofit getRetrofit() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE)
+                    .client(new OkHttpClient.Builder().build())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(new RxThreadCallAdapter(Schedulers.io(), AndroidSchedulers.mainThread()))
+                    .build();
+        }
 
-    public static Retrofit getRestClient() {
         return retrofit;
     }
 
     public interface FileUploadService {
         @Multipart
         @POST("test.jsp")
-        Observable<Void> upload(@Part("message") RequestBody message,
-                                        @Part MultipartBody.Part body);
+        Observable<Void> upload(@Part("message") String message,
+                                @Part MultipartBody.Part body);
     }
 
 }

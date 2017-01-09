@@ -5,6 +5,9 @@
 
     <string name="permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
 
+    <string name="multipart">multipart/form-data</string>
+    <string name="file">file</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -53,8 +56,9 @@
     <string name="camera_camera_btn">CAMERA</string>
     <string name="camera_gallery_btn">GALLERY</string>
     <string name="camera_submit_btn">SUBMIT</string>
-    <string name="camera_ing">사진을 전송하는 중입니다 ...\n잠시만 기다려주세요 ...</string>
+    <string name="camera_ing">사진을 전송하는 중입니다.\n잠시만 기다려주세요 ...</string>
     <string name="camera_complete">사진 전송을 완료했습니다.</string>
+    <string name="camera_error">사진 전송에 실패했습니다.</string>
     <string name="camera_file_none">전송할 사진이 없습니다.</string>
     <string name="camera_none">카메라 어플이 설치되어있지 않습니다.</string>
     <string name="camera_date_type">yyyyMMdd_HHmmss</string>
