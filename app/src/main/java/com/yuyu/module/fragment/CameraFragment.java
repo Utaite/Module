@@ -175,6 +175,9 @@ public class CameraFragment extends Fragment {
             if (requestCode == CAMERA_REQUEST_CODE) {
                 file.delete();
             }
+            final int ALPHA = 255;
+            Chained.setAlpha(ALPHA, camera_camera_btn, camera_submit_btn, camera_gallery_btn);
+            camera_img.setImageResource(android.R.color.white);
             return;
         }
 
