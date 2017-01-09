@@ -157,11 +157,13 @@ public class MainActivity extends RxAppCompatActivity
         title.setVisibility(View.VISIBLE);
 
         if (tabId == R.id.bottom_tab_camera) {
-            toast.setTextShow(getString(R.string.bottom_tab_1));
+            toast.setTextShow(getString(R.string.bottom_tab_camera));
+        } else if (tabId == R.id.bottom_tab_gallery) {
+            toast.setTextShow(getString(R.string.bottom_tab_gallery));
         } else if (tabId == R.id.bottom_tab_manage) {
-            toast.setTextShow(getString(R.string.bottom_tab_2));
+            toast.setTextShow(getString(R.string.bottom_tab_manage));
         } else if (tabId == R.id.bottom_tab_send) {
-            toast.setTextShow(getString(R.string.bottom_tab_3));
+            toast.setTextShow(getString(R.string.bottom_tab_send));
         }
     }
 

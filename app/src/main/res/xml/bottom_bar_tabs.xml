@@ -10,6 +10,14 @@
     <tab
         activeColor="#6699FF"
         barColorWhenSelected="#ffffff"
+        icon="@drawable/ic_menu_gallery"
+        id="@+id/bottom_tab_gallery"
+        inActiveColor="#8C8C8C"
+        title="Gallery" />
+
+    <tab
+        activeColor="#6699FF"
+        barColorWhenSelected="#ffffff"
         icon="@drawable/ic_menu_manage"
         id="@+id/bottom_tab_manage"
         inActiveColor="#8C8C8C"

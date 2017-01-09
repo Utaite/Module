@@ -21,9 +21,10 @@
     <string name="nav_spinner">스피너</string>
     <string name="nav_camera">카메라</string>
 
-    <string name="bottom_tab_1">camera</string>
-    <string name="bottom_tab_2">manage</string>
-    <string name="bottom_tab_3">send</string>
+    <string name="bottom_tab_camera">camera</string>
+    <string name="bottom_tab_gallery">gallery</string>
+    <string name="bottom_tab_manage">manage</string>
+    <string name="bottom_tab_send">send</string>
 
     <string name="tab_title_1">TAB 1</string>
     <string name="tab_title_2">TAB 2</string>
