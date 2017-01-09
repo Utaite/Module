@@ -1,0 +1,25 @@
+<tabs>
+    <tab
+        activeColor="#6699FF"
+        barColorWhenSelected="#ffffff"
+        icon="@drawable/ic_menu_camera"
+        id="@+id/bottom_tab_camera"
+        inActiveColor="#8C8C8C"
+        title="Camera" />
+
+    <tab
+        activeColor="#6699FF"
+        barColorWhenSelected="#ffffff"
+        icon="@drawable/ic_menu_manage"
+        id="@+id/bottom_tab_manage"
+        inActiveColor="#8C8C8C"
+        title="Manage" />
+
+    <tab
+        activeColor="#6699FF"
+        barColorWhenSelected="#ffffff"
+        icon="@drawable/ic_menu_send"
+        id="@+id/bottom_tab_send"
+        inActiveColor="#8C8C8C"
+        title="Send" />
+</tabs>

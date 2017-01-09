@@ -46,4 +46,8 @@
         <item name="colorButtonNormal">#FFA7A7</item>
     </style>
 
+    <style name="BottomBarTextView" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">10sp</item>
+    </style>
+
 </resources>

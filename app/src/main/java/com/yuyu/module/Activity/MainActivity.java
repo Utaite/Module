@@ -1,17 +1,23 @@
 package com.yuyu.module.activity;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.roughike.bottombar.BottomBar;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
 import com.yuyu.module.fragment.CallFragment;
@@ -23,7 +29,6 @@ import com.yuyu.module.fragment.SpinnerFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
-import com.yuyu.module.rest.RestUtils;
 import com.yuyu.module.utils.Constant;
 
 import java.util.ArrayList;
@@ -47,6 +52,8 @@ public class MainActivity extends RxAppCompatActivity
     DrawerLayout drawer_layout;
     @BindView(R.id.nav_view)
     NavigationView nav_view;
+    @BindView(R.id.bottom_tab_bar)
+    BottomBar bottom_tab_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +118,7 @@ public class MainActivity extends RxAppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_main, getFragment(item.getItemId()))
-                        .commit();
+                .commit();
         setTitle(item.getTitle());
         drawer_layout.closeDrawer(GravityCompat.START);
         return true;
@@ -138,7 +145,33 @@ public class MainActivity extends RxAppCompatActivity
         return fragment;
     }
 
+    public void setTab(int tabId) {
+        for (int i = 0; i < bottom_tab_bar.getTabCount(); i++) {
+            bottom_tab_bar.getTabAtPosition(i).setPadding(0, 30, 0, 0);
+            TextView title = (TextView) bottom_tab_bar.getTabAtPosition(i).findViewById(R.id.bb_bottom_bar_title);
+            title.setVisibility(View.GONE);
+        }
+
+        bottom_tab_bar.getTabWithId(tabId).setPadding(0, 5, 0, 0);
+        TextView title = (TextView) bottom_tab_bar.getTabWithId(tabId).findViewById(R.id.bb_bottom_bar_title);
+        title.setVisibility(View.VISIBLE);
+
+        if (tabId == R.id.bottom_tab_camera) {
+            toast.setTextShow(getString(R.string.bottom_tab_1));
+        } else if (tabId == R.id.bottom_tab_manage) {
+            toast.setTextShow(getString(R.string.bottom_tab_2));
+        } else if (tabId == R.id.bottom_tab_send) {
+            toast.setTextShow(getString(R.string.bottom_tab_3));
+        }
+    }
+
     public void initialize() {
+        for (int i = 0; i < bottom_tab_bar.getTabCount(); i++) {
+            bottom_tab_bar.getTabAtPosition(i).setScaleX(1.25f);
+            bottom_tab_bar.getTabAtPosition(i).setScaleY(1.25f);
+        }
+        bottom_tab_bar.setOnTabSelectListener(this::setTab);
+
         items = (ArrayList<Integer>) new ChainedArrayList()
                 .addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
         setTitle(getString(R.string.nav_main));
