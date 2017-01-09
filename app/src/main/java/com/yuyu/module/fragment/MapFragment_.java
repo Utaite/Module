@@ -166,16 +166,6 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         }
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-        Observable.just(location)
-                .compose(RxLifecycleAndroid.bindView(view))
-                .filter(location1 -> isGPS)
-                .subscribe(location1 -> {
-                    prepareMarker(location);
-                });
-    }
-
     public void prepareMarker(Location location) {
         final int CAMERA_ZOOM = 15;
         Observable.just(location)
@@ -295,6 +285,10 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                 .map(view2 -> (ViewGroup) view2.getParent())
                 .filter(viewGroup1 -> viewGroup1 != null)
                 .subscribe(viewGroup2 -> viewGroup2.removeView(view));
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
     }
 
     @Override

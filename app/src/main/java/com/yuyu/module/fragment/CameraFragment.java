@@ -112,8 +112,7 @@ public class CameraFragment extends Fragment {
 
         try {
             String name = getString(R.string.camera_name) + new SimpleDateFormat(getString(R.string.camera_date_type)).format(new Date());
-            file = File.createTempFile(name.replace("-", ""), getString(R.string.camera_file), dir);
-            Log.e(TAG, file.getAbsolutePath());
+            file = File.createTempFile(name, getString(R.string.camera_file), dir);
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }
@@ -195,12 +194,7 @@ public class CameraFragment extends Fragment {
 
             case CAMERA_REQUEST_CODE: {
                 if (resultCode != RESULT_OK) {
-                    Log.e(TAG, file.getAbsolutePath());
-                    if(file.delete()) {
-                        Log.e(TAG, "삭제성공");
-                    } else {
-                        Log.e(TAG, "삭제실패");
-                    }
+                    file.delete();
                     return;
                 }
                 try {
