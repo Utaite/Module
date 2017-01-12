@@ -23,6 +23,8 @@
     <string name="login_status">STATUS</string>
     <string name="login_check">CHECK</string>
     <string name="login_save">SAVE</string>
+    <string name="login_id">ID</string>
+    <string name="login_pw">PW</string>
 
     <string name="nav_main">메인</string>
     <string name="nav_tab">탭</string>

@@ -1,8 +1,7 @@
 package com.yuyu.module.activity;
 
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -12,20 +11,14 @@ import android.widget.Toast;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
-import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
 import com.yuyu.module.utils.Constant;
 import com.yuyu.module.utils.MainParcel;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.subjects.PublishSubject;
 
 public class LoginActivity extends RxAppCompatActivity {
 
@@ -37,10 +30,10 @@ public class LoginActivity extends RxAppCompatActivity {
     AutoCompleteTextView login_id_edit;
     @BindView(R.id.login_pw_edit)
     EditText login_pw_edit;
-    @BindView(R.id.login_check_btn)
-    AppCompatCheckBox login_check_btn;
     @BindView(R.id.login_save_btn)
     AppCompatCheckBox login_save_btn;
+    @BindView(R.id.login_check_btn)
+    AppCompatCheckBox login_check_btn;
     @BindView(R.id.login_login_btn)
     Button login_login_btn;
 
@@ -69,14 +62,6 @@ public class LoginActivity extends RxAppCompatActivity {
         loginPrepare();
     }
 
-    @OnClick({R.id.login_check_btn, R.id.login_check_txt})
-    public void onCheck(View view) {
-        if (view.getId() == R.id.login_check_txt) {
-            login_check_btn.setChecked(!login_check_btn.isChecked());
-        }
-        login_save_btn.setChecked(false);
-    }
-
     @OnClick({R.id.login_save_btn, R.id.login_save_txt})
     public void onSave(View view) {
         if (view.getId() == R.id.login_save_txt) {
@@ -85,7 +70,34 @@ public class LoginActivity extends RxAppCompatActivity {
         login_check_btn.setChecked(false);
     }
 
+    @OnClick({R.id.login_check_btn, R.id.login_check_txt})
+    public void onCheck(View view) {
+        if (view.getId() == R.id.login_check_txt) {
+            login_check_btn.setChecked(!login_check_btn.isChecked());
+        }
+        login_save_btn.setChecked(false);
+    }
+
     public void initialize() {
+        String status = getSharedPreferences(getString(R.string.login_login), MODE_PRIVATE).getString(getString(R.string.login_status), null);
+
+        Observable.just(status)
+                .compose(bindToLifecycle())
+                .filter(status1 -> status1 != null)
+                .flatMap(status1 -> Observable.just(status1)
+                        .compose(bindToLifecycle())
+                        .groupBy(status2 -> status2.equals(getString(R.string.login_check))))
+                .subscribe(group -> {
+                    SharedPreferences preferences = getSharedPreferences(getString(R.string.login_login), MODE_PRIVATE);
+                    login_id_edit.setText(preferences.getString(getString(R.string.login_id), null));
+                    login_pw_edit.setText(group.getKey() ? preferences.getString(getString(R.string.login_pw), null) : null);
+                    login_check_btn.setChecked(group.getKey());
+                    login_save_btn.setChecked(!group.getKey());
+                    if (group.getKey()) {
+                        loginPrepare();
+                    }
+                });
+
     }
 
     public void loginPrepare() {
@@ -101,5 +113,6 @@ public class LoginActivity extends RxAppCompatActivity {
                 .gotoMainActivity()
                 .mainParcel(new MainParcel(name, age))
                 .build());
+        finish();
     }
 }

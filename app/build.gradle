@@ -43,6 +43,7 @@ dependencies {
     compile 'com.roughike:bottom-bar:2.0.2'
 
     compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'org.projectlombok:lombok:1.16.12'
 
