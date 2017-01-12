@@ -13,6 +13,17 @@
 
     <string name="menu_develop">개발 중</string>
 
+    <string name="_login_id">아이디</string>
+    <string name="_login_pw">비밀번호</string>
+    <string name="_login_login_btn">로그인</string>
+    <string name="_login_remember_id">아이디 저장</string>
+    <string name="_login_remember_me">자동 로그인</string>
+
+    <string name="login_login">LOGIN</string>
+    <string name="login_status">STATUS</string>
+    <string name="login_check">CHECK</string>
+    <string name="login_save">SAVE</string>
+
     <string name="nav_main">메인</string>
     <string name="nav_tab">탭</string>
     <string name="nav_horizon">가로 뷰</string>

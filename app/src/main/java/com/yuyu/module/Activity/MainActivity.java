@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.f2prateek.dart.Dart;
@@ -91,14 +90,12 @@ public class MainActivity extends RxAppCompatActivity
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START);
 
-        } else {
-            if (Constant.CURRENT_TIME + Constant.BACK_TIME < System.currentTimeMillis()) {
-                Constant.CURRENT_TIME = System.currentTimeMillis();
-                toast.setTextShow(getString(R.string.onBackPressed));
+        } else if (Constant.CURRENT_TIME + Constant.BACK_TIME < System.currentTimeMillis()) {
+            Constant.CURRENT_TIME = System.currentTimeMillis();
+            toast.setTextShow(getString(R.string.onBackPressed));
 
-            } else {
-                super.onBackPressed();
-            }
+        } else {
+            super.onBackPressed();
         }
     }
 
@@ -181,6 +178,7 @@ public class MainActivity extends RxAppCompatActivity
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_main, new MainFragment())
                 .commit();
+        toast.setTextShow(mainParcel.getName() + "은 " + mainParcel.getAge() + "살입니다.");
     }
 
     public ChainedToast getToast() {

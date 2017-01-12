@@ -1,8 +1,24 @@
 package com.yuyu.module.rest;
 
+import android.content.Context;
+
+import com.yuyu.module.R;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
+
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Multipart;
@@ -17,6 +33,9 @@ public class RestUtils {
     public static final String BASE = "IN YOUR URL";
 
     private static Retrofit retrofit;
+    private static Retrofit retrofitSSL;
+
+    private static final String TAG = RestUtils.class.getSimpleName();
 
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
@@ -31,11 +50,48 @@ public class RestUtils {
         return retrofit;
     }
 
+/*    public static Retrofit getRetrofitSSL(Context context) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        if (retrofitSSL == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE)
+                    .client(new OkHttpClient.Builder()
+                            .sslSocketFactory(getSSLConfig(context).getSocketFactory())
+                            .build())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(new RxThreadCallAdapter(Schedulers.io(), AndroidSchedulers.mainThread()))
+                    .build();
+        }
+
+        return retrofitSSL;
+    }*/
+
     public interface FileUploadService {
         @Multipart
         @POST("test.jsp")
         Observable<Void> upload(@Part("message") String message,
                                 @Part MultipartBody.Part body);
     }
+
+
+/*    public static SSLContext getSSLConfig(Context context) throws KeyStoreException, CertificateException, IOException, NoSuchAlgorithmException, KeyManagementException {
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        BufferedInputStream bis = new BufferedInputStream(context.getResources().openRawResource(R.raw.your_certificate));
+        Certificate certificate = cf.generateCertificate(bis);
+        bis.close();
+
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, null);
+        keyStore.setCertificateEntry("certificate", certificate);
+
+        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+        tmf.init(keyStore);
+
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, tmf.getTrustManagers(), null);
+
+        return sslContext;
+    }*/
 
 }

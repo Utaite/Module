@@ -6,20 +6,31 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.NoActionBar.FullScreen" parent="AppTheme.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <item name="android:textColorHint">@android:color/holo_green_light</item>
         <item name="colorControlNormal">@android:color/holo_green_light</item>
         <item name="colorControlActivated">@android:color/holo_blue_light</item>
     </style>
+
+
 
     <style name="CallButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">#FFBB00</item>
@@ -46,8 +57,30 @@
         <item name="colorButtonNormal">#FFA7A7</item>
     </style>
 
+
+
     <style name="BottomBarTextView" parent="@android:style/TextAppearance.Widget.TextView">
         <item name="android:textSize">10sp</item>
+    </style>
+
+
+
+    <style name="LoginForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="LoginButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="LoginLoginButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#3CB371</item>
     </style>
 
 </resources>

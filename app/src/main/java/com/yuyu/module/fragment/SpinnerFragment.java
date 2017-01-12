@@ -25,7 +25,7 @@ public class SpinnerFragment extends Fragment {
 
     private final String TAG = SpinnerFragment.class.getSimpleName();
 
-    private final int HIDE_INDEX = 0;
+    private final int HIDE_POSITION = 0;
 
     private Context context;
 
@@ -49,7 +49,7 @@ public class SpinnerFragment extends Fragment {
         spinner_spinner.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, arrayList) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                return position == HIDE_INDEX ?
+                return position == HIDE_POSITION ?
                         new ChainedTextView(context).setHeightTo(0) : super.getDropDownView(position, null, parent);
             }
         });
@@ -57,7 +57,7 @@ public class SpinnerFragment extends Fragment {
         spinner_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != HIDE_INDEX) {
+                if (position != HIDE_POSITION) {
                     ((MainActivity) context).getToast().setTextShow(
                             getString(R.string.spinner_selected, position, spinner_spinner.getAdapter().getItem(position)));
                 }
