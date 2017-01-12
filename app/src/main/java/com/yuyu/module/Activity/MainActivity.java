@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.f2prateek.dart.Dart;
+import com.f2prateek.dart.InjectExtra;
 import com.roughike.bottombar.BottomBar;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
@@ -26,6 +28,7 @@ import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
 import com.yuyu.module.utils.Constant;
+import com.yuyu.module.utils.MainParcel;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,9 @@ public class MainActivity extends RxAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
+
+    @InjectExtra
+    MainParcel mainParcel;
 
     private ChainedToast toast;
     private ArrayList<Integer> items;
@@ -56,6 +62,7 @@ public class MainActivity extends RxAppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        Dart.inject(this);
         toast = new ChainedToast(this).makeTextTo(this, "", Toast.LENGTH_SHORT);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
@@ -144,13 +151,11 @@ public class MainActivity extends RxAppCompatActivity
     public void setTab(int tabId) {
         for (int i = 0; i < bottom_tab_bar.getTabCount(); i++) {
             bottom_tab_bar.getTabAtPosition(i).setPadding(0, 30, 0, 0);
-            TextView title = (TextView) bottom_tab_bar.getTabAtPosition(i).findViewById(R.id.bb_bottom_bar_title);
-            title.setVisibility(View.GONE);
+            bottom_tab_bar.getTabAtPosition(i).findViewById(R.id.bb_bottom_bar_title).setVisibility(View.GONE);
         }
 
         bottom_tab_bar.getTabWithId(tabId).setPadding(0, 5, 0, 0);
-        TextView title = (TextView) bottom_tab_bar.getTabWithId(tabId).findViewById(R.id.bb_bottom_bar_title);
-        title.setVisibility(View.VISIBLE);
+        bottom_tab_bar.getTabWithId(tabId).findViewById(R.id.bb_bottom_bar_title).setVisibility(View.VISIBLE);
 
         if (tabId == R.id.bottom_tab_camera) {
             toast.setTextShow(getString(R.string.bottom_tab_camera));
@@ -181,5 +186,6 @@ public class MainActivity extends RxAppCompatActivity
     public ChainedToast getToast() {
         return toast;
     }
+
 
 }

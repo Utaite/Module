@@ -14,7 +14,7 @@ import rx.schedulers.Schedulers;
 
 public class RestUtils {
 
-    public static final String BASE = "http://192.168.2.136/FCM/";
+    public static final String BASE = "IN YOUR URL";
 
     private static Retrofit retrofit;
 
