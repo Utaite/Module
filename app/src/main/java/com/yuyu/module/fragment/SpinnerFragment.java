@@ -1,6 +1,5 @@
 package com.yuyu.module.fragment;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
 import com.yuyu.module.chain.ChainedArrayList;
@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class SpinnerFragment extends Fragment {
+public class SpinnerFragment extends RxFragment {
 
     private final String TAG = SpinnerFragment.class.getSimpleName();
 

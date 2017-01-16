@@ -1,6 +1,5 @@
 package com.yuyu.module.fragment;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
+import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.adapter.HorizonAdapter;
 import com.yuyu.module.chain.ChainedArrayList;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HorizonFragment extends Fragment {
+public class HorizonFragment extends RxFragment {
 
     private final String TAG = HorizonFragment.class.getSimpleName();
 

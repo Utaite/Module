@@ -1,6 +1,5 @@
 package com.yuyu.module.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -8,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.adapter.TabAdapter;
 import com.yuyu.module.chain.ChainedArrayList;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TabFragment extends Fragment {
+public class TabFragment extends RxFragment {
 
     private final String TAG = TabFragment.class.getSimpleName();
 

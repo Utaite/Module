@@ -2,7 +2,6 @@ package com.yuyu.module.fragment;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -37,7 +36,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.trello.rxlifecycle.android.RxLifecycleAndroid;
+import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
 import com.yuyu.module.utils.MapVO;
@@ -46,7 +45,7 @@ import java.util.ArrayList;
 
 import rx.Observable;
 
-public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListener, GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks,
+public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickListener, GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener, OnMapReadyCallback {
 
     private final String TAG = MapFragment_.class.getSimpleName();
@@ -103,7 +102,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
         final int CAMERA_DEFAULT = 10;
         final LatLng SEOUL = new LatLng(37.56, 126.97);
         Observable.just(googleMap = map)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .doOnSubscribe(() -> googleMap.clear())
                 .doOnUnsubscribe(() -> {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
@@ -128,7 +127,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
                     .show();
         } else {
             Observable.just(googleApiClient = buildGoogleApiClient())
-                    .compose(RxLifecycleAndroid.bindView(view))
+                    .compose(bindToLifecycle())
                     .subscribe(GoogleApiClient::connect);
         }
     }
@@ -167,7 +166,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     public void prepareMarker(Location location) {
         final int CAMERA_ZOOM = 15;
         Observable.just(location)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .filter(location1 -> location1 != null)
                 .map(location2 -> new MapVO(location2.getLatitude(), location2.getLongitude(), getString(R.string.map_gps_locate)))
                 .doOnUnsubscribe(() -> {
@@ -180,7 +179,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     @Override
     public boolean onMarkerClick(Marker marker) {
         Observable.just(selectedMarker)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .filter(marker1 -> marker1 != null)
                 .map(marker1 -> marker1.getPosition().toString())
                 .filter(s -> !s.equals(marker.getPosition().toString()))
@@ -209,13 +208,13 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
 
     public void selectedMarkerRemove() {
         Observable.just(selectedMarker)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .subscribe(marker1 -> createMarker(marker1, false));
     }
 
     public void nonMarkerRemove(Marker marker) {
         Observable.just(marker)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .subscribe(marker1 -> selectedMarker = createMarker(marker1, true));
     }
 
@@ -247,7 +246,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
     @Override
     public void onMarkerDragStart(Marker marker) {
         Observable.just(selectedMarker)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .filter(marker1 -> marker1 != null)
                 .map(marker1 -> marker1.getPosition().toString())
                 .filter(s -> s.equals(marker.getPosition().toString()))
@@ -277,7 +276,7 @@ public class MapFragment_ extends Fragment implements GoogleMap.OnMapClickListen
 
     public void removeGoogleMap() {
         Observable.just(view)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .filter(view1 -> view1 != null)
                 .map(view2 -> (ViewGroup) view2.getParent())
                 .filter(viewGroup1 -> viewGroup1 != null)

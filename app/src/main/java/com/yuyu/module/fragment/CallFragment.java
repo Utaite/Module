@@ -1,6 +1,5 @@
 package com.yuyu.module.fragment;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +14,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 
-import com.trello.rxlifecycle.android.RxLifecycleAndroid;
+import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
 
@@ -25,7 +24,7 @@ import butterknife.OnClick;
 import rx.Observable;
 
 
-public class CallFragment extends Fragment {
+public class CallFragment extends RxFragment {
 
     private final String TAG = CallFragment.class.getSimpleName();
 
@@ -66,7 +65,7 @@ public class CallFragment extends Fragment {
     @OnClick(R.id.call_btn)
     public void onButtonClick() {
         Observable.just(call_edit)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .map(call_edit1 -> call_edit1.getText().toString())
                 .filter(s -> {
                     if (TextUtils.isEmpty(s)) {

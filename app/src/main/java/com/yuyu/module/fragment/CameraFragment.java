@@ -27,6 +27,7 @@ import com.f2prateek.dart.HensonNavigable;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.trello.rxlifecycle.android.RxLifecycleAndroid;
+import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
 import com.yuyu.module.chain.Chained;
@@ -48,13 +49,12 @@ import rx.Subscriber;
 
 import static android.app.Activity.RESULT_OK;
 
-public class CameraFragment extends Fragment {
+public class CameraFragment extends RxFragment {
 
     private final String TAG = CameraFragment.class.getSimpleName();
 
     private final int CAMERA_REQUEST_CODE = 7888, GALLERY_REQUEST_CODE = 8888;
 
-    private View view;
     private File file;
     private Context context;
 
@@ -71,7 +71,7 @@ public class CameraFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_camera, container, false);
+        View view = inflater.inflate(R.layout.fragment_camera, container, false);
         ButterKnife.bind(this, view);
         context = getActivity();
         Chained.setVisibilityMany(View.GONE, camera_camera_btn, camera_gallery_btn, camera_submit_btn, camera_img);
@@ -105,7 +105,7 @@ public class CameraFragment extends Fragment {
     public void onCameraButtonClick() {
         File dir = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_PICTURES + "/" + getString(R.string.app_name) + "/");
         Observable.just(dir)
-                .compose(RxLifecycleAndroid.bindView(view))
+                .compose(bindToLifecycle())
                 .filter(file1 -> !file1.exists())
                 .subscribe(File::mkdirs);
 
@@ -149,13 +149,13 @@ public class CameraFragment extends Fragment {
             RestUtils.getRetrofit()
                     .create(RestUtils.FileUploadService.class)
                     .upload(message, body)
-                    .subscribe(onError -> {
-                                Log.e(TAG, String.valueOf(onError));
-                                isResult = false;
+                    .subscribe(object -> {
+                                isResult = true;
                                 uploadTask.onPostExecute(null);
                             },
-                            onNext -> {
-                                isResult = true;
+                            error -> {
+                                Log.e(TAG, String.valueOf(error));
+                                isResult = false;
                                 uploadTask.onPostExecute(null);
                             });
         }

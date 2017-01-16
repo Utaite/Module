@@ -1,16 +1,16 @@
 package com.yuyu.module.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 
 import butterknife.ButterKnife;
 
-public class TabFragment2 extends Fragment {
+public class TabFragment2 extends RxFragment {
 
     private final String TAG = TabFragment2.class.getSimpleName();
 

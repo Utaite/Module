@@ -14,6 +14,7 @@ import com.yuyu.module.R;
 import com.yuyu.module.chain.ChainedToast;
 import com.yuyu.module.utils.Constant;
 import com.yuyu.module.utils.MainParcel;
+import com.yuyu.module.utils.RxEvent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -97,21 +98,20 @@ public class LoginActivity extends RxAppCompatActivity {
                         loginPrepare();
                     }
                 });
-
     }
 
     public void loginPrepare() {
-        start(getString(login_id_edit), Integer.parseInt(getString(login_pw_edit)));
+        start(getString(login_id_edit), getString(login_pw_edit));
     }
 
     public String getString(EditText editText) {
         return editText.getText().toString().trim();
     }
 
-    public void start(String name, int age) {
+    public void start(String id, String pw) {
         startActivity(Henson.with(this)
                 .gotoMainActivity()
-                .mainParcel(new MainParcel(name, age))
+                .mainParcel(new MainParcel(id, pw))
                 .build());
         finish();
     }
