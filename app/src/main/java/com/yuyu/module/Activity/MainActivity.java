@@ -19,6 +19,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
 import com.yuyu.module.fragment.CallFragment;
 import com.yuyu.module.fragment.CameraFragment;
+import com.yuyu.module.fragment.ChatFragment;
 import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.MapFragment_;
@@ -141,6 +142,8 @@ public class MainActivity extends RxAppCompatActivity
             fragment = new SpinnerFragment();
         } else if (iid == R.id.nav_camera) {
             fragment = new CameraFragment();
+        } else if (iid == R.id.nav_chat) {
+            fragment = new ChatFragment();
         }
         return fragment;
     }
@@ -183,6 +186,10 @@ public class MainActivity extends RxAppCompatActivity
 
     public ChainedToast getToast() {
         return toast;
+    }
+
+    public BottomBar getBottom_tab_bar() {
+        return bottom_tab_bar;
     }
 
 

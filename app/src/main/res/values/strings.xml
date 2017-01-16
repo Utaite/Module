@@ -38,6 +38,7 @@
     <string name="nav_call">전화</string>
     <string name="nav_spinner">스피너</string>
     <string name="nav_camera">카메라</string>
+    <string name="nav_chat">채팅</string>
 
     <string name="bottom_tab_camera">camera</string>
     <string name="bottom_tab_gallery">gallery</string>

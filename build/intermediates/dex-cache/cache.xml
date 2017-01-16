@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-10.0.1_f72339c306b008ee3cc6ab0c1e00ebf4a72e660b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -72,6 +81,15 @@
         revision="24.0.3"
         sha1="25438f55fc6d906a0e72f30b21487541430ede43">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_40eacb9c0d5e4604d973b37993be9f7029a177a3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-10.0.1_c7467451ab3017ac0c74195f1ca83c55ed870434\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,6 +156,33 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-10.0.1_15f51539465a32e1d104753d90a80bc539614f7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-10.0.1_20a2b3962aff056546bbb3bc8d115259a3e21d32\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-10.0.1_09df76037d1785cb502a5f76ae5c2feeb92c4e3a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
         jumboMode="true"
         optimize="true"
@@ -189,6 +234,15 @@
         revision="24.0.3"
         sha1="b32c2324baa75a12968b466b74064c49841a0018">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.trello-rxlifecycle-components-1.0_abdff380433dc4edfdd5eb62852a754c735ed49a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-10.0.1_8f103b0980bd616bd195db7d191dd1083fb18746\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -367,7 +421,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="f14a101d77e1915f873aeb59cb835097ca77bf62">
+        sha1="22d128a89cbc645eb0fbde1161d4d963f186a5c8">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5eb689a06fda5133828160133d68ddf28b852e11\classes.dex" />
     </item>
     <item
@@ -385,7 +439,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="f1fe5de2005824cca426db23db7c93388fa304bf">
+        sha1="fa8b1ea9fa08794626ccf6e510b9c85897c567b1">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8e7344458e4b0c921c9d4fb820fdb025ad93532a\classes.dex" />
     </item>
     <item
