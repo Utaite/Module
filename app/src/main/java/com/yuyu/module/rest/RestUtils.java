@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
 
 public class RestUtils {
 
-    public static final String BASE = "IN YOUR URL";
+    public static final String BASE = "http://192.168.0.1/";
 
     private static Retrofit retrofit;
     private static Retrofit retrofitSSL;

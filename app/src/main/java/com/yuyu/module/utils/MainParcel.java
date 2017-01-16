@@ -11,8 +11,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class MainParcel {
 
-    private String name;
-    private int age;
+    String name;
+    int age;
 
     @ParcelConstructor
     public MainParcel(String name, int age) {

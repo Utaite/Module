@@ -178,7 +178,7 @@ public class MainActivity extends RxAppCompatActivity
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_main, new MainFragment())
                 .commit();
-        toast.setTextShow(mainParcel.getName() + "은 " + mainParcel.getAge() + "살입니다.");
+        toast.setTextShow("아이디: " + mainParcel.getName() + "\n비밀번호: " + mainParcel.getAge());
     }
 
     public ChainedToast getToast() {

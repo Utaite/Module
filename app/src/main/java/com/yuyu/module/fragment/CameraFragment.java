@@ -113,7 +113,7 @@ public class CameraFragment extends Fragment {
             String name = getString(R.string.camera_name) + new SimpleDateFormat(getString(R.string.camera_date_type)).format(new Date());
             file = File.createTempFile(name, getString(R.string.camera_file), dir);
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, String.valueOf(e));
         }
 
         if (context.getPackageManager().queryIntentActivities(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), PackageManager.MATCH_DEFAULT_ONLY).size() > 0 && file != null) {
@@ -145,27 +145,20 @@ public class CameraFragment extends Fragment {
             String message = "message";
             MultipartBody.Part body = MultipartBody.Part.createFormData(getString(R.string.file), file.getName(), RequestBody.create(MediaType.parse(getString(R.string.multipart)), file));
 
+
             RestUtils.getRetrofit()
                     .create(RestUtils.FileUploadService.class)
                     .upload(message, body)
-                    .subscribe(new Subscriber<Void>() {
-                        @Override
-                        public void onCompleted() {
-                        }
+                    .subscribe(onNext -> {
+                                isResult = true;
+                                uploadTask.onPostExecute(null);
+                            },
 
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.e(TAG, e.getMessage());
-                            isResult = false;
-                            uploadTask.onPostExecute(null);
-                        }
-
-                        @Override
-                        public void onNext(Void aVoid) {
-                            isResult = true;
-                            uploadTask.onPostExecute(null);
-                        }
-                    });
+                            onError -> {
+                                Log.e(TAG, String.valueOf(onError));
+                                isResult = false;
+                                uploadTask.onPostExecute(null);
+                            });
         }
     }
 
@@ -215,7 +208,7 @@ public class CameraFragment extends Fragment {
             int orientation = getRotate(new ExifInterface(file.getAbsolutePath()).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
             camera_img.setImageBitmap(getBitmap(bitmap, orientation));
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, String.valueOf(e));
         }
     }
 
@@ -238,7 +231,7 @@ public class CameraFragment extends Fragment {
                     bitmap = converted;
                 }
             } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
+                Log.e(TAG, String.valueOf(e));
             }
         }
         return bitmap;
