@@ -5,6 +5,8 @@
 
     <string name="permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
 
+    <string name="dialog_msg">로딩중입니다 ...</string>
+
     <string name="multipart">multipart/form-data</string>
     <string name="file">file</string>
 
@@ -25,6 +27,9 @@
     <string name="login_save">SAVE</string>
     <string name="login_id">ID</string>
     <string name="login_pw">PW</string>
+
+    <string name="login_network_err">네트워크 접속에 실패했습니다.</string>
+    <string name="login_required_err">값을 입력해주세요</string>
 
     <string name="nav_main">메인</string>
     <string name="nav_tab">탭</string>

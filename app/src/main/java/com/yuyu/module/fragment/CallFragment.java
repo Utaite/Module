@@ -63,7 +63,7 @@ public class CallFragment extends RxFragment {
     }
 
     @OnClick(R.id.call_btn)
-    public void onButtonClick() {
+    public void onCallButtonClick() {
         Observable.just(call_edit)
                 .compose(bindToLifecycle())
                 .map(call_edit1 -> call_edit1.getText().toString())

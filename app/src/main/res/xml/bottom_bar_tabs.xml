@@ -1,6 +1,6 @@
 <tabs>
     <tab
-        activeColor="#6699FF"
+        activeColor="#47C83E"
         barColorWhenSelected="#ffffff"
         icon="@drawable/ic_menu_camera"
         id="@+id/bottom_tab_camera"
@@ -8,7 +8,7 @@
         title="Camera" />
 
     <tab
-        activeColor="#6699FF"
+        activeColor="#A566FF"
         barColorWhenSelected="#ffffff"
         icon="@drawable/ic_menu_gallery"
         id="@+id/bottom_tab_gallery"
@@ -16,7 +16,7 @@
         title="Gallery" />
 
     <tab
-        activeColor="#6699FF"
+        activeColor="#5CD1E5"
         barColorWhenSelected="#ffffff"
         icon="@drawable/ic_menu_manage"
         id="@+id/bottom_tab_manage"
@@ -24,7 +24,7 @@
         title="Manage" />
 
     <tab
-        activeColor="#6699FF"
+        activeColor="#D9418C"
         barColorWhenSelected="#ffffff"
         icon="@drawable/ic_menu_send"
         id="@+id/bottom_tab_send"

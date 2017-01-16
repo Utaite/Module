@@ -147,14 +147,14 @@ public class CameraFragment extends RxFragment {
 
 
             RestUtils.getRetrofit()
-                    .create(RestUtils.FileUploadService.class)
+                    .create(RestUtils.Upload.class)
                     .upload(message, body)
-                    .subscribe(object -> {
+                    .subscribe(o -> {
                                 isResult = true;
                                 uploadTask.onPostExecute(null);
                             },
-                            error -> {
-                                Log.e(TAG, String.valueOf(error));
+                            e -> {
+                                Log.e(TAG, String.valueOf(e));
                                 isResult = false;
                                 uploadTask.onPostExecute(null);
                             });

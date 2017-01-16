@@ -1,8 +1,13 @@
 package com.yuyu.module.activity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -12,9 +17,12 @@ import android.widget.Toast;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
 import com.yuyu.module.chain.ChainedToast;
+import com.yuyu.module.rest.RestUtils;
 import com.yuyu.module.utils.Constant;
 import com.yuyu.module.utils.MainParcel;
-import com.yuyu.module.utils.RxEvent;
+import com.yuyu.module.utils.Task;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +33,7 @@ public class LoginActivity extends RxAppCompatActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
 
+    private Context context;
     private ChainedToast toast;
 
     @BindView(R.id.login_id_edit)
@@ -43,6 +52,7 @@ public class LoginActivity extends RxAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        context = this;
         toast = new ChainedToast(this).makeTextTo(this, "", Toast.LENGTH_SHORT);
         initialize();
     }
@@ -59,12 +69,12 @@ public class LoginActivity extends RxAppCompatActivity {
     }
 
     @OnClick(R.id.login_login_btn)
-    public void onLogin(View view) {
-        loginPrepare();
+    public void onLoginButtonClick(View view) {
+        loginCheck();
     }
 
     @OnClick({R.id.login_save_btn, R.id.login_save_txt})
-    public void onSave(View view) {
+    public void onSaveButtonClick(View view) {
         if (view.getId() == R.id.login_save_txt) {
             login_save_btn.setChecked(!login_save_btn.isChecked());
         }
@@ -72,7 +82,7 @@ public class LoginActivity extends RxAppCompatActivity {
     }
 
     @OnClick({R.id.login_check_btn, R.id.login_check_txt})
-    public void onCheck(View view) {
+    public void onCheckButtonClick(View view) {
         if (view.getId() == R.id.login_check_txt) {
             login_check_btn.setChecked(!login_check_btn.isChecked());
         }
@@ -95,24 +105,79 @@ public class LoginActivity extends RxAppCompatActivity {
                     login_check_btn.setChecked(group.getKey());
                     login_save_btn.setChecked(!group.getKey());
                     if (group.getKey()) {
-                        loginPrepare();
+                        loginCheck();
                     }
                 });
     }
 
-    public void loginPrepare() {
-        start(getString(login_id_edit), getString(login_pw_edit));
+    public void loginCheck() {
+        if (!networkCheck()) {
+            toast.setTextShow(getString(R.string.login_network_err));
+
+        } else {
+            ArrayList<String> arrayList = new ArrayList<>();
+            Observable.create((Observable.OnSubscribe<EditText>) subscriber -> {
+                subscriber.onNext(login_id_edit);
+                subscriber.onNext(login_pw_edit);
+                subscriber.onCompleted();
+            }).compose(bindToLifecycle())
+                    .filter(editText -> {
+                        boolean isEmpty = TextUtils.isEmpty(getText(editText));
+                        if (isEmpty) {
+                            editText.setError(getString(R.string.login_required_err));
+                            editText.requestFocus();
+                        }
+                        return !isEmpty;
+                    })
+                    .map(this::getText)
+                    .subscribe(arrayList::add,
+                            e -> Log.e(TAG, String.valueOf(e)),
+                            () -> {
+                                if (arrayList.size() == 2) {
+                                    loginPrepare(arrayList.get(0), arrayList.get(1));
+                                }
+                            });
+        }
     }
 
-    public String getString(EditText editText) {
+    public boolean networkCheck() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null;
+    }
+
+    public String getText(EditText editText) {
         return editText.getText().toString().trim();
     }
 
-    public void start(String id, String pw) {
-        startActivity(Henson.with(this)
-                .gotoMainActivity()
-                .mainParcel(new MainParcel(id, pw))
-                .build());
-        finish();
+    public void loginPrepare(String id, String pw) {
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.login_login), MODE_PRIVATE);
+
+        preferences.edit().putString(getString(R.string.login_status), login_check_btn.isChecked() ?
+                getString(R.string.login_check) : login_save_btn.isChecked() ?
+                getString(R.string.login_save) : null).apply();
+        preferences.edit().putString(getString(R.string.login_id), login_check_btn.isChecked() || login_save_btn.isChecked() ? id : null).apply();
+        preferences.edit().putString(getString(R.string.login_pw), login_check_btn.isChecked() ? pw : null).apply();
+
+        Task task = new Task(context);
+        task.onPreExecute();
+        RestUtils.getRetrofit()
+                .create(RestUtils.Login.class)
+                .login(id, pw)
+                .subscribe(o -> {
+                            task.onPostExecute(null);
+                            // loginProcess(o);
+                        },
+                        e -> {
+                            task.onPostExecute(null);
+                            Log.e(TAG, String.valueOf(e));
+                            toast.setTextShow(getString(R.string.login_network_err));
+
+                            startActivity(Henson.with(this)
+                                    .gotoMainActivity()
+                                    .mainParcel(new MainParcel(id, pw))
+                                    .build());
+                        });
     }
+
 }
