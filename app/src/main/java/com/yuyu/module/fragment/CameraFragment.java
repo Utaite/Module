@@ -149,14 +149,13 @@ public class CameraFragment extends Fragment {
             RestUtils.getRetrofit()
                     .create(RestUtils.FileUploadService.class)
                     .upload(message, body)
-                    .subscribe(onNext -> {
-                                isResult = true;
-                                uploadTask.onPostExecute(null);
-                            },
-
-                            onError -> {
+                    .subscribe(onError -> {
                                 Log.e(TAG, String.valueOf(onError));
                                 isResult = false;
+                                uploadTask.onPostExecute(null);
+                            },
+                            onNext -> {
+                                isResult = true;
                                 uploadTask.onPostExecute(null);
                             });
         }
