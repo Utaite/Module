@@ -16,7 +16,6 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.firebase.auth.AuthCredential;
@@ -26,7 +25,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
@@ -38,6 +36,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class ChatFragment extends RxFragment {
 
@@ -47,7 +47,6 @@ public class ChatFragment extends RxFragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private GoogleApiClient googleApiClient;
-    private DatabaseReference databaseReference;
 
     @BindView(R.id.chat_list)
     ListView chat_list;
@@ -61,14 +60,17 @@ public class ChatFragment extends RxFragment {
         context = getActivity();
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = auth -> {
-            if (auth.getCurrentUser() == null) {
+            FirebaseUser user = auth.getCurrentUser();
+            if (user == null) {
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent, Constant.AUTH_REQUEST_CODE);
+            } else {
+                Log.e("DisplayName", user.getDisplayName());
+                Log.e("Email", user.getEmail());
+                Log.e("Uid", user.getUid());
             }
         };
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         googleApiClient = buildGoogleApiClient();
-        initialize();
         return view;
     }
 
@@ -121,34 +123,35 @@ public class ChatFragment extends RxFragment {
 
     @OnClick(R.id.chat_btn)
     public void onChatButtonClick() {
-        ChatVO vo = new ChatVO(((MainActivity) context).getMainParcel().getId(), chat_edit.getText().toString().trim());
+        FirebaseDatabase.getInstance().getReference().child(getString(R.string.chat_message)).push().setValue(
+                new ChatVO(((MainActivity) context).getMainParcel().getId(), chat_edit.getText().toString().trim()));
         chat_edit.getText().clear();
-        databaseReference.child(getString(R.string.chat_message)).push().setValue(vo);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.AUTH_REQUEST_CODE) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+            if (resultCode != RESULT_OK) {
+                ((MainActivity) context).getToast().setTextShow(getString(R.string.chat_auth_err));
+            } else {
+                GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                handleSignInResult(result);
+            }
         }
     }
 
     public void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
+            ((MainActivity) context).getToast().setTextShow(getString(R.string.loading));
             GoogleSignInAccount account = result.getSignInAccount();
             AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
             firebaseAuth.signInWithCredential(credential)
                     .addOnCompleteListener((MainActivity) context, task -> {
-                        ((MainActivity) context).getToast().setTextShow(getString(R.string.chat_auth_success));
-                        Log.e("getDisplayName", account.getDisplayName());
-                        Log.e("getEmail", account.getEmail());
-                        Log.e("getPhotoUrl", String.valueOf(account.getPhotoUrl()));
-                        Log.e("getId", account.getId());
-                        Log.e("getIdToken", account.getIdToken());
-                        Log.e("getFamilyName", account.getFamilyName());
-                        Log.e("getGivenName", account.getGivenName());
+                        initialize();
+                        ((MainActivity) context).getToast().setTextShow(getString(R.string.chat_auth_load));
+                        Log.e("Id", account.getId());
+                        Log.e("IdToken", account.getIdToken());
                     });
         }
     }
@@ -157,7 +160,7 @@ public class ChatFragment extends RxFragment {
         ArrayAdapter adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, android.R.id.text1);
         chat_list.setAdapter(adapter);
 
-        databaseReference.child(getString(R.string.chat_message)).addChildEventListener(new ChildEventListener() {
+        FirebaseDatabase.getInstance().getReference().child(getString(R.string.chat_message)).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatVO vo = dataSnapshot.getValue(ChatVO.class);
@@ -166,22 +169,18 @@ public class ChatFragment extends RxFragment {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }

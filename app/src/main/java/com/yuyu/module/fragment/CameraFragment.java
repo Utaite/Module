@@ -46,7 +46,6 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import rx.Observable;
-import rx.Subscriber;
 
 import static android.app.Activity.RESULT_OK;
 

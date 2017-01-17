@@ -5,7 +5,7 @@
 
     <string name="permission_denied">권한을 동의해주셔야 이용이 가능해요.\n[설정]>[권한]에서 해당권한을 활성화 해주세요.</string>
 
-    <string name="dialog_msg">로딩중입니다 ...</string>
+    <string name="loading">로딩중입니다 ...</string>
 
     <string name="multipart">multipart/form-data</string>
     <string name="file">file</string>
@@ -89,6 +89,7 @@
     <string name="camera_name">IMG_</string>
     <string name="camera_file">.jpg</string>
 
-    <string name="chat_auth_success">로그인 인증 성공</string>
+    <string name="chat_auth_load">채팅 내역을 불러왔습니다.</string>
+    <string name="chat_auth_err">로그인 이후에 사용하실 수 있습니다.</string>
     <string name="chat_message">message</string>
 </resources>
