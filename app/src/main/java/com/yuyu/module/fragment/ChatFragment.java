@@ -3,14 +3,14 @@ package com.yuyu.module.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -25,10 +25,12 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
+import com.yuyu.module.adapter.ChatAdapter;
 import com.yuyu.module.utils.ChatVO;
 import com.yuyu.module.utils.Constant;
 
@@ -47,9 +49,12 @@ public class ChatFragment extends RxFragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private GoogleApiClient googleApiClient;
+    private DatabaseReference reference;
+
+    private String email, photoUrl;
 
     @BindView(R.id.chat_list)
-    ListView chat_list;
+    RecyclerView chat_list;
     @BindView(R.id.chat_edit)
     EditText chat_edit;
 
@@ -65,12 +70,16 @@ public class ChatFragment extends RxFragment {
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent, Constant.AUTH_REQUEST_CODE);
             } else {
+                email = user.getEmail();
+                photoUrl = String.valueOf(user.getPhotoUrl());
                 Log.e("DisplayName", user.getDisplayName());
                 Log.e("Email", user.getEmail());
                 Log.e("Uid", user.getUid());
+                Log.e("PhotoUrl", String.valueOf(user.getPhotoUrl()));
             }
         };
         googleApiClient = buildGoogleApiClient();
+        reference = FirebaseDatabase.getInstance().getReference();
         return view;
     }
 
@@ -123,8 +132,10 @@ public class ChatFragment extends RxFragment {
 
     @OnClick(R.id.chat_btn)
     public void onChatButtonClick() {
-        FirebaseDatabase.getInstance().getReference().child(getString(R.string.chat_message)).push().setValue(
-                new ChatVO(((MainActivity) context).getMainParcel().getId(), chat_edit.getText().toString().trim()));
+        String message = chat_edit.getText().toString().trim();
+        reference.child(getString(R.string.chat_message)).push().setValue(
+                new ChatVO(email, message, photoUrl));
+        // TODO FCM
         chat_edit.getText().clear();
     }
 
@@ -157,14 +168,19 @@ public class ChatFragment extends RxFragment {
     }
 
     public void initialize() {
-        ArrayAdapter adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, android.R.id.text1);
+        LinearLayoutManager llm = new LinearLayoutManager(context);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        chat_list.setHasFixedSize(true);
+        chat_list.setLayoutManager(llm);
+        ChatAdapter adapter = new ChatAdapter(context);
         chat_list.setAdapter(adapter);
 
-        FirebaseDatabase.getInstance().getReference().child(getString(R.string.chat_message)).addChildEventListener(new ChildEventListener() {
+        reference.child(getString(R.string.chat_message)).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatVO vo = dataSnapshot.getValue(ChatVO.class);
-                adapter.add(vo.getUserName() + ": " + vo.getMessage());
+                adapter.add(new ChatVO(vo.getEmail(), vo.getMessage(), vo.getPhotoUrl()));
+                chat_list.smoothScrollToPosition(adapter.getItemCount());
             }
 
             @Override

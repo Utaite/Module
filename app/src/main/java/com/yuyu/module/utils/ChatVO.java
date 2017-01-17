@@ -7,15 +7,15 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ChatVO {
 
-    private String userName;
-    private String message;
+    private String email, message, photoUrl;
 
     public ChatVO() {
     }
 
-    public ChatVO(String userName, String message) {
-        this.userName = userName;
+    public ChatVO(String email, String message, String photoUrl) {
+        this.email = email;
         this.message = message;
+        this.photoUrl = photoUrl;
     }
 
 }
