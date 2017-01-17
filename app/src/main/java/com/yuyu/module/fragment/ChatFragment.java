@@ -32,6 +32,7 @@ import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
 import com.yuyu.module.utils.ChatVO;
+import com.yuyu.module.utils.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,8 +42,6 @@ import butterknife.OnClick;
 public class ChatFragment extends RxFragment {
 
     private final String TAG = ChatFragment.class.getSimpleName();
-
-    private final int AUTH_REQUEST_CODE = 9999;
 
     private Context context;
     private FirebaseAuth firebaseAuth;
@@ -64,7 +63,7 @@ public class ChatFragment extends RxFragment {
         authStateListener = auth -> {
             if (auth.getCurrentUser() == null) {
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, AUTH_REQUEST_CODE);
+                startActivityForResult(intent, Constant.AUTH_REQUEST_CODE);
             }
         };
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -130,7 +129,7 @@ public class ChatFragment extends RxFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AUTH_REQUEST_CODE) {
+        if (requestCode == Constant.AUTH_REQUEST_CODE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }

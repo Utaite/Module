@@ -40,6 +40,7 @@ import com.gun0912.tedpermission.TedPermission;
 import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
+import com.yuyu.module.utils.Constant;
 import com.yuyu.module.utils.MapVO;
 
 import java.util.ArrayList;
@@ -51,7 +52,6 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
     private final String TAG = MapFragment_.class.getSimpleName();
 
     private static View view;
-    private final int GPS_REQUEST_CODE = 6888;
 
     private Context context;
     private GoogleMap googleMap;
@@ -165,7 +165,7 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
                     .content(getString(R.string.map_gps_alert))
                     .positiveText(getString(R.string.map_alert_setting))
                     .negativeText(getString(R.string.map_alert_no))
-                    .onPositive((dialog, which) -> startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), GPS_REQUEST_CODE))
+                    .onPositive((dialog, which) -> startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), Constant.GPS_REQUEST_CODE))
                     .onNegative((dialog, which) -> dialog.cancel())
                     .show();
         } else {
@@ -206,7 +206,7 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (requestCode == Constant.GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             mapFragment.getMapAsync(this);
             ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.map_gps_load));
         }
