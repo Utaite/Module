@@ -1,14 +1,12 @@
 package com.yuyu.module.utils;
 
-import java.util.Map;
-
 import rx.Observable;
 import rx.subjects.PublishSubject;
 
 public class RxEvent {
 
     private static RxEvent instance;
-    private PublishSubject<Map<String, String>> subject;
+    private PublishSubject<Object> subject;
 
     private RxEvent() {
         subject = PublishSubject.create();
@@ -21,11 +19,11 @@ public class RxEvent {
         return instance;
     }
 
-    public void sendEvent(Map<String, String> map) {
-        subject.onNext(map);
+    public void sendEvent(Object object) {
+        subject.onNext(object);
     }
 
-    public Observable<Map<String, String>> getObservable() {
+    public Observable<Object> getObservable() {
         return subject;
     }
 

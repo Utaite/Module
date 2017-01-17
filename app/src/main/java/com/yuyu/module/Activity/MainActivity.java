@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -181,7 +182,6 @@ public class MainActivity extends RxAppCompatActivity
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_main, new MainFragment())
                 .commit();
-        toast.setTextShow("아이디: " + mainParcel.getId() + "\n비밀번호: " + mainParcel.getPw());
     }
 
     public ChainedToast getToast() {
@@ -190,6 +190,10 @@ public class MainActivity extends RxAppCompatActivity
 
     public BottomBar getBottom_tab_bar() {
         return bottom_tab_bar;
+    }
+
+    public MainParcel getMainParcel() {
+        return mainParcel;
     }
 
 

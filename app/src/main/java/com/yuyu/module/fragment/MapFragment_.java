@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -45,8 +46,7 @@ import java.util.ArrayList;
 
 import rx.Observable;
 
-public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickListener, GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener, OnMapReadyCallback {
+public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
 
     private final String TAG = MapFragment_.class.getSimpleName();
 
@@ -109,9 +109,52 @@ public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickList
                     googleMap.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_DEFAULT));
                 })
                 .subscribe(googleMap1 -> {
-                    googleMap1.setOnMarkerClickListener(this);
-                    googleMap1.setOnMapClickListener(this);
-                    googleMap1.setOnMarkerDragListener(this);
+                    googleMap1.setOnMarkerClickListener(marker -> {
+                        Observable.just(selectedMarker)
+                                .compose(bindToLifecycle())
+                                .filter(marker1 -> marker1 != null)
+                                .map(marker1 -> marker1.getPosition().toString())
+                                .filter(s -> !s.equals(marker.getPosition().toString()))
+                                .doOnUnsubscribe(() -> nonMarkerRemove(marker))
+                                .subscribe(s -> selectedMarkerRemove());
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                        return true;
+                    });
+
+                    googleMap1.setOnMapClickListener(latLng -> new MaterialDialog.Builder(context)
+                            .content(getString(R.string.map_gps_alert_content))
+                            .input(null, getString(R.string.map_gps_alert_input), (dialog, input) -> {
+                            })
+                            .positiveText(getString(R.string.map_alert_yes))
+                            .negativeText(getString(R.string.map_alert_no))
+                            .onPositive((dialog, which) -> {
+                                selectedMarkerRemove();
+                                selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true);
+                                googleMap.animateCamera(CameraUpdateFactory.newLatLng((selectedMarker.getPosition())));
+                            })
+                            .onNegative((dialog, which) -> dialog.cancel())
+                            .show());
+
+                    googleMap1.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+                        @Override
+                        public void onMarkerDragStart(Marker marker) {
+                            Observable.just(selectedMarker)
+                                    .compose(bindToLifecycle())
+                                    .filter(marker1 -> marker1 != null)
+                                    .map(marker1 -> marker1.getPosition().toString())
+                                    .filter(s -> s.equals(marker.getPosition().toString()))
+                                    .doOnUnsubscribe(marker::remove)
+                                    .subscribe(s -> selectedMarker = null);
+                        }
+
+                        @Override
+                        public void onMarkerDrag(Marker marker) {
+                        }
+
+                        @Override
+                        public void onMarkerDragEnd(Marker marker) {
+                        }
+                    });
                     googleMap1.setOnMapLoadedCallback(this::checkGPS);
                 });
     }
@@ -134,8 +177,28 @@ public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickList
 
     public GoogleApiClient buildGoogleApiClient() {
         return new GoogleApiClient.Builder(context)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
+                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(@Nullable Bundle bundle) {
+                        final int INTERVAL = 1000;
+                        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient,
+                                new LocationRequest()
+                                        .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+                                        .setInterval(INTERVAL)
+                                        .setFastestInterval(INTERVAL), location -> {
+                                });
+                        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                                ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                            prepareMarker(LocationServices.FusedLocationApi.getLastLocation(googleApiClient));
+                        }
+                    }
+
+                    @Override
+                    public void onConnectionSuspended(int i) {
+                    }
+                })
+                .addOnConnectionFailedListener(connectionResult -> {
+                })
                 .addApi(LocationServices.API)
                 .build();
     }
@@ -146,20 +209,6 @@ public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickList
         if (requestCode == GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             mapFragment.getMapAsync(this);
             ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.map_gps_load));
-        }
-    }
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        final int INTERVAL = 1000;
-        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient,
-                new LocationRequest()
-                        .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
-                        .setInterval(INTERVAL)
-                        .setFastestInterval(INTERVAL), this);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            prepareMarker(LocationServices.FusedLocationApi.getLastLocation(googleApiClient));
         }
     }
 
@@ -174,36 +223,6 @@ public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickList
                     googleMap.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_ZOOM));
                 })
                 .subscribe(vo -> createMarker(vo, false));
-    }
-
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        Observable.just(selectedMarker)
-                .compose(bindToLifecycle())
-                .filter(marker1 -> marker1 != null)
-                .map(marker1 -> marker1.getPosition().toString())
-                .filter(s -> !s.equals(marker.getPosition().toString()))
-                .doOnUnsubscribe(() -> nonMarkerRemove(marker))
-                .subscribe(s -> selectedMarkerRemove());
-        googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-        return true;
-    }
-
-    @Override
-    public void onMapClick(LatLng latLng) {
-        new MaterialDialog.Builder(context)
-                .content(getString(R.string.map_gps_alert_content))
-                .input(null, getString(R.string.map_gps_alert_input), (dialog, input) -> {
-                })
-                .positiveText(getString(R.string.map_alert_yes))
-                .negativeText(getString(R.string.map_alert_no))
-                .onPositive((dialog, which) -> {
-                    selectedMarkerRemove();
-                    selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true);
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLng((selectedMarker.getPosition())));
-                })
-                .onNegative((dialog, which) -> dialog.cancel())
-                .show();
     }
 
     public void selectedMarkerRemove() {
@@ -243,17 +262,6 @@ public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickList
                 .draggable(true));
     }
 
-    @Override
-    public void onMarkerDragStart(Marker marker) {
-        Observable.just(selectedMarker)
-                .compose(bindToLifecycle())
-                .filter(marker1 -> marker1 != null)
-                .map(marker1 -> marker1.getPosition().toString())
-                .filter(s -> s.equals(marker.getPosition().toString()))
-                .doOnUnsubscribe(marker::remove)
-                .subscribe(s -> selectedMarker = null);
-    }
-
     public Bitmap createBitmap(View markerView) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -283,23 +291,4 @@ public class MapFragment_ extends RxFragment implements GoogleMap.OnMapClickList
                 .subscribe(viewGroup2 -> viewGroup2.removeView(view));
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-    }
-
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-    }
 }

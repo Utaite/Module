@@ -88,4 +88,7 @@
     <string name="camera_date_type">yyyyMMdd_HHmmss</string>
     <string name="camera_name">IMG_</string>
     <string name="camera_file">.jpg</string>
+
+    <string name="chat_auth_success">로그인 인증 성공</string>
+    <string name="chat_message">message</string>
 </resources>
