@@ -6,9 +6,9 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_main"
+            android:id="@+id/nav_auth"
             android:checked="true"
-            android:title="@string/nav_main" />
+            android:title="@string/nav_auth" />
 
         <item
             android:id="@+id/nav_tab"

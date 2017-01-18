@@ -131,7 +131,7 @@ public class LoginActivity extends RxAppCompatActivity {
                     })
                     .map(this::getText)
                     .subscribe(arrayList::add,
-                            e -> Log.e(TAG, String.valueOf(e)),
+                            e -> Log.e(TAG, e.toString()),
                             () -> {
                                 if (arrayList.size() == 2) {
                                     loginPrepare(arrayList.get(0), arrayList.get(1));
@@ -170,13 +170,14 @@ public class LoginActivity extends RxAppCompatActivity {
                         },
                         e -> {
                             task.onPostExecute(null);
-                            Log.e(TAG, String.valueOf(e));
+                            Log.e(TAG, e.toString());
                             toast.setTextShow(getString(R.string.login_network_err));
 
                             startActivity(Henson.with(this)
                                     .gotoMainActivity()
                                     .mainParcel(new MainParcel(id, pw))
                                     .build());
+                            finish();
                         });
     }
 

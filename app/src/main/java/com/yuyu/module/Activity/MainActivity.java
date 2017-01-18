@@ -22,13 +22,14 @@ import com.yuyu.module.fragment.CallFragment;
 import com.yuyu.module.fragment.CameraFragment;
 import com.yuyu.module.fragment.ChatFragment;
 import com.yuyu.module.fragment.HorizonFragment;
-import com.yuyu.module.fragment.MainFragment;
+import com.yuyu.module.fragment.AuthFragment;
 import com.yuyu.module.fragment.MapFragment_;
 import com.yuyu.module.fragment.SpinnerFragment;
 import com.yuyu.module.fragment.StorageFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
+import com.yuyu.module.utils.AuthVO;
 import com.yuyu.module.utils.Constant;
 import com.yuyu.module.utils.MainParcel;
 
@@ -44,6 +45,7 @@ public class MainActivity extends RxAppCompatActivity {
     @InjectExtra
     MainParcel mainParcel;
 
+    private AuthVO authVO;
     private Context context;
     private ChainedToast toast;
 
@@ -67,6 +69,7 @@ public class MainActivity extends RxAppCompatActivity {
         Dart.inject(this);
         context = this;
         toast = new ChainedToast(context).makeTextTo(context, "", Toast.LENGTH_SHORT);
+        authVO = new AuthVO();
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -86,8 +89,8 @@ public class MainActivity extends RxAppCompatActivity {
     public Fragment getFragment(int iid) {
         index = items.indexOf(iid);
         Fragment fragment = null;
-        if (iid == R.id.nav_main) {
-            fragment = new MainFragment();
+        if (iid == R.id.nav_auth) {
+            fragment = new AuthFragment();
         } else if (iid == R.id.nav_tab) {
             fragment = new TabFragment();
         } else if (iid == R.id.nav_horizon) {
@@ -118,7 +121,6 @@ public class MainActivity extends RxAppCompatActivity {
     protected void onStop() {
         super.onStop();
         nav_view.getMenu().getItem(0).setChecked(true);
-
     }
 
     @Override
@@ -159,9 +161,9 @@ public class MainActivity extends RxAppCompatActivity {
 
         items = (ArrayList<Integer>) new ChainedArrayList()
                 .addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
-        setTitle(getString(R.string.nav_main));
+        setTitle(getString(R.string.nav_auth));
         getFragmentManager().beginTransaction()
-                .replace(R.id.content_main, new MainFragment())
+                .replace(R.id.content_main, new AuthFragment())
                 .commit();
     }
 
@@ -195,6 +197,10 @@ public class MainActivity extends RxAppCompatActivity {
 
     public MainParcel getMainParcel() {
         return mainParcel;
+    }
+
+    public AuthVO getAuthVO() {
+        return authVO;
     }
 
 }

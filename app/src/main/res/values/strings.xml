@@ -36,7 +36,7 @@
     <string name="login_network_err">네트워크 접속에 실패했습니다.</string>
     <string name="login_required_err">값을 입력해주세요</string>
 
-    <string name="nav_main">메인</string>
+    <string name="nav_auth">인증</string>
     <string name="nav_tab">탭</string>
     <string name="nav_horizon">가로 뷰</string>
     <string name="nav_map">맵</string>
@@ -45,6 +45,8 @@
     <string name="nav_camera">카메라</string>
     <string name="nav_chat">채팅</string>
     <string name="nav_storage">저장소</string>
+
+    <string name="auth_err">인증 이후에 이용하실 수 있습니다.</string>
 
     <string name="bottom_tab_camera">camera</string>
     <string name="bottom_tab_gallery">gallery</string>
@@ -88,7 +90,7 @@
     <string name="_camera_submit_btn">SUBMIT</string>
 
     <string name="camera_ing">사진을 전송하는 중입니다.\n잠시만 기다려주세요 ...</string>
-    <string name="camera_suc">사진 전송을 완료했습니다.</string>
+    <string name="camera_suc">사진 전송에 성공했습니다.</string>
     <string name="camera_err">사진 전송에 실패했습니다.</string>
     <string name="camera_file_none">전송할 사진이 없습니다.</string>
     <string name="camera_none">카메라 어플이 설치되어있지 않습니다.</string>
@@ -96,15 +98,15 @@
     <string name="camera_name">IMG_</string>
     <string name="camera_file">.jpg</string>
 
-    <string name="chat_auth_load">채팅 내역을 불러왔습니다.</string>
-    <string name="chat_auth_err">로그인 이후에 사용하실 수 있습니다.</string>
     <string name="chat_message">message</string>
 
-    <string name="_storage_upload_btn">업로드</string>
-    <string name="_storage_download_btn">다운로드</string>
+    <string name="_storage_upload_btn">UPLOAD</string>
+    <string name="_storage_download_btn">DOWNLOAD</string>
 
     <string name="storage_gs">gs://module-5c85f.appspot.com</string>
-    <string name="storage_download_suc">다운로드 완료</string>
+    <string name="storage_upload_suc">업로드 성공</string>
+    <string name="storage_upload_err">업로드 실패</string>
+    <string name="storage_download_suc">다운로드 성공</string>
     <string name="storage_download_err">다운로드 실패</string>
 
 </resources>

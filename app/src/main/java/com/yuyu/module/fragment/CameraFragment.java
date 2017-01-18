@@ -101,7 +101,7 @@ public class CameraFragment extends RxFragment {
 
     @OnClick(R.id.camera_camera_btn)
     public void onCameraButtonClick() {
-        File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name) + "/");
+        File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name));
         Observable.just(dir)
                 .compose(bindToLifecycle())
                 .filter(file1 -> !file1.exists())
@@ -111,7 +111,7 @@ public class CameraFragment extends RxFragment {
             String name = getString(R.string.camera_name) + new SimpleDateFormat(getString(R.string.camera_date_type)).format(new Date());
             file = File.createTempFile(name, getString(R.string.camera_file), dir);
         } catch (Exception e) {
-            Log.e(TAG, String.valueOf(e));
+            Log.e(TAG, e.toString());
         }
 
         if (context.getPackageManager().queryIntentActivities(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), PackageManager.MATCH_DEFAULT_ONLY).size() > 0 && file != null) {
@@ -152,7 +152,7 @@ public class CameraFragment extends RxFragment {
                                 uploadTask.onPostExecute(null);
                             },
                             e -> {
-                                Log.e(TAG, String.valueOf(e));
+                                Log.e(TAG, e.toString());
                                 isResult = false;
                                 uploadTask.onPostExecute(null);
                             });
@@ -205,7 +205,7 @@ public class CameraFragment extends RxFragment {
             int orientation = getRotate(new ExifInterface(file.getAbsolutePath()).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
             camera_img.setImageBitmap(getBitmap(bitmap, orientation));
         } catch (Exception e) {
-            Log.e(TAG, String.valueOf(e));
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -228,7 +228,7 @@ public class CameraFragment extends RxFragment {
                     bitmap = converted;
                 }
             } catch (Exception e) {
-                Log.e(TAG, String.valueOf(e));
+                Log.e(TAG, e.toString());
             }
         }
         return bitmap;

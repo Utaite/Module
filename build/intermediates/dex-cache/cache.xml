@@ -39,21 +39,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-10.0.1_64fecc22d943b9cdc64d01d7cef9be47008bbe6c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
         sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_1a02b4046a3378391fb2940e0dcf7f9940bfd7d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-10.0.1_64fecc22d943b9cdc64d01d7cef9be47008bbe6c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -475,7 +475,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="1349bcd50ec4b71ca13181a484935f5c584407f4">
+        sha1="9b6580998c925d61a6548c608747e5e8ba8894c8">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5eb689a06fda5133828160133d68ddf28b852e11\classes.dex" />
     </item>
     <item
@@ -502,7 +502,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="26d3f085d437f1bfc9e63c64807c71cfcd83353c">
+        sha1="5461b3daaf29464018ef2ec30264b6c9b98bdd1e">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8e7344458e4b0c921c9d4fb820fdb025ad93532a\classes.dex" />
     </item>
     <item

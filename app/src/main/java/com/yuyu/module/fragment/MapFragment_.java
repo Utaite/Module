@@ -264,7 +264,7 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
 
     public Bitmap createBitmap(View markerView) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        ((MainActivity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         markerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         markerView.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
