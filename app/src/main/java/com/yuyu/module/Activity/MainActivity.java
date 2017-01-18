@@ -1,13 +1,13 @@
 package com.yuyu.module.activity;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +25,7 @@ import com.yuyu.module.fragment.HorizonFragment;
 import com.yuyu.module.fragment.MainFragment;
 import com.yuyu.module.fragment.MapFragment_;
 import com.yuyu.module.fragment.SpinnerFragment;
+import com.yuyu.module.fragment.StorageFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
@@ -36,18 +37,18 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends RxAppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends RxAppCompatActivity {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
     @InjectExtra
     MainParcel mainParcel;
 
+    private Context context;
     private ChainedToast toast;
-    private ArrayList<Integer> items;
 
     private int index;
+    private ArrayList<Integer> items;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -64,14 +65,47 @@ public class MainActivity extends RxAppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         Dart.inject(this);
-        toast = new ChainedToast(this).makeTextTo(this, "", Toast.LENGTH_SHORT);
+        context = this;
+        toast = new ChainedToast(context).makeTextTo(context, "", Toast.LENGTH_SHORT);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer_layout.setDrawerListener(toggle);
         toggle.syncState();
-        nav_view.setNavigationItemSelectedListener(this);
+        nav_view.setNavigationItemSelectedListener(item -> {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.content_main, getFragment(item.getItemId()))
+                    .commit();
+            setTitle(item.getTitle());
+            drawer_layout.closeDrawer(GravityCompat.START);
+            return true;
+        });
         initialize();
+    }
+
+    public Fragment getFragment(int iid) {
+        index = items.indexOf(iid);
+        Fragment fragment = null;
+        if (iid == R.id.nav_main) {
+            fragment = new MainFragment();
+        } else if (iid == R.id.nav_tab) {
+            fragment = new TabFragment();
+        } else if (iid == R.id.nav_horizon) {
+            fragment = new HorizonFragment();
+        } else if (iid == R.id.nav_map) {
+            fragment = new MapFragment_();
+        } else if (iid == R.id.nav_call) {
+            fragment = new CallFragment();
+        } else if (iid == R.id.nav_spinner) {
+            fragment = new SpinnerFragment();
+        } else if (iid == R.id.nav_camera) {
+            fragment = new CameraFragment();
+        } else if (iid == R.id.nav_chat) {
+            fragment = new ChatFragment();
+        } else if (iid == R.id.nav_storage) {
+            fragment = new StorageFragment();
+        }
+        return fragment;
     }
 
     @Override
@@ -116,37 +150,19 @@ public class MainActivity extends RxAppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        getFragmentManager().beginTransaction()
-                .replace(R.id.content_main, getFragment(item.getItemId()))
-                .commit();
-        setTitle(item.getTitle());
-        drawer_layout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    public Fragment getFragment(int iid) {
-        index = items.indexOf(iid);
-        Fragment fragment = null;
-        if (iid == R.id.nav_main) {
-            fragment = new MainFragment();
-        } else if (iid == R.id.nav_tab) {
-            fragment = new TabFragment();
-        } else if (iid == R.id.nav_horizon) {
-            fragment = new HorizonFragment();
-        } else if (iid == R.id.nav_map) {
-            fragment = new MapFragment_();
-        } else if (iid == R.id.nav_call) {
-            fragment = new CallFragment();
-        } else if (iid == R.id.nav_spinner) {
-            fragment = new SpinnerFragment();
-        } else if (iid == R.id.nav_camera) {
-            fragment = new CameraFragment();
-        } else if (iid == R.id.nav_chat) {
-            fragment = new ChatFragment();
+    public void initialize() {
+        for (int i = 0; i < bottom_tab_bar.getTabCount(); i++) {
+            bottom_tab_bar.getTabAtPosition(i).setScaleX(1.25f);
+            bottom_tab_bar.getTabAtPosition(i).setScaleY(1.25f);
         }
-        return fragment;
+        bottom_tab_bar.setOnTabSelectListener(this::setTab);
+
+        items = (ArrayList<Integer>) new ChainedArrayList()
+                .addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
+        setTitle(getString(R.string.nav_main));
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content_main, new MainFragment())
+                .commit();
     }
 
     public void setTab(int tabId) {
@@ -169,21 +185,6 @@ public class MainActivity extends RxAppCompatActivity
         }
     }
 
-    public void initialize() {
-        for (int i = 0; i < bottom_tab_bar.getTabCount(); i++) {
-            bottom_tab_bar.getTabAtPosition(i).setScaleX(1.25f);
-            bottom_tab_bar.getTabAtPosition(i).setScaleY(1.25f);
-        }
-        bottom_tab_bar.setOnTabSelectListener(this::setTab);
-
-        items = (ArrayList<Integer>) new ChainedArrayList()
-                .addMenu(nav_view.getMenu(), 0, nav_view.getMenu().size());
-        setTitle(getString(R.string.nav_main));
-        getFragmentManager().beginTransaction()
-                .replace(R.id.content_main, new MainFragment())
-                .commit();
-    }
-
     public ChainedToast getToast() {
         return toast;
     }
@@ -195,6 +196,5 @@ public class MainActivity extends RxAppCompatActivity
     public MainParcel getMainParcel() {
         return mainParcel;
     }
-
 
 }

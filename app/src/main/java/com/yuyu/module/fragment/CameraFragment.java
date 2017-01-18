@@ -101,7 +101,7 @@ public class CameraFragment extends RxFragment {
 
     @OnClick(R.id.camera_camera_btn)
     public void onCameraButtonClick() {
-        File dir = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_PICTURES + "/" + getString(R.string.app_name) + "/");
+        File dir = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name) + "/");
         Observable.just(dir)
                 .compose(bindToLifecycle())
                 .filter(file1 -> !file1.exists())
@@ -257,7 +257,7 @@ public class CameraFragment extends RxFragment {
         public void onPostExecute(Void result) {
             super.onPostExecute(result);
             asyncDialog.dismiss();
-            ((MainActivity) context).getToast().setTextShow(getString(isResult ? R.string.camera_complete : R.string.camera_error));
+            ((MainActivity) context).getToast().setTextShow(getString(isResult ? R.string.camera_suc: R.string.camera_err));
         }
     }
 

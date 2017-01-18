@@ -49,7 +49,7 @@ public class ChatFragment extends RxFragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private GoogleApiClient googleApiClient;
-    private DatabaseReference reference;
+    private DatabaseReference databaseReference;
 
     private String email, photoUrl;
 
@@ -79,7 +79,7 @@ public class ChatFragment extends RxFragment {
             }
         };
         googleApiClient = buildGoogleApiClient();
-        reference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         return view;
     }
 
@@ -133,7 +133,7 @@ public class ChatFragment extends RxFragment {
     @OnClick(R.id.chat_btn)
     public void onChatButtonClick() {
         String message = chat_edit.getText().toString().trim();
-        reference.child(getString(R.string.chat_message)).push().setValue(
+        databaseReference.child(getString(R.string.chat_message)).push().setValue(
                 new ChatVO(email, message, photoUrl));
         // TODO FCM
         chat_edit.getText().clear();
@@ -175,7 +175,7 @@ public class ChatFragment extends RxFragment {
         ChatAdapter adapter = new ChatAdapter(context);
         chat_list.setAdapter(adapter);
 
-        reference.child(getString(R.string.chat_message)).addChildEventListener(new ChildEventListener() {
+        databaseReference.child(getString(R.string.chat_message)).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatVO vo = dataSnapshot.getValue(ChatVO.class);

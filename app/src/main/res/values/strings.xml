@@ -44,6 +44,7 @@
     <string name="nav_spinner">스피너</string>
     <string name="nav_camera">카메라</string>
     <string name="nav_chat">채팅</string>
+    <string name="nav_storage">저장소</string>
 
     <string name="bottom_tab_camera">camera</string>
     <string name="bottom_tab_gallery">gallery</string>
@@ -82,12 +83,13 @@
     <string name="spinner_view_4">SPINNER 4</string>
     <string name="spinner_selected">%1$d번은 %2$s입니다.</string>
 
-    <string name="camera_camera_btn">CAMERA</string>
-    <string name="camera_gallery_btn">GALLERY</string>
-    <string name="camera_submit_btn">SUBMIT</string>
+    <string name="_camera_camera_btn">CAMERA</string>
+    <string name="_camera_gallery_btn">GALLERY</string>
+    <string name="_camera_submit_btn">SUBMIT</string>
+
     <string name="camera_ing">사진을 전송하는 중입니다.\n잠시만 기다려주세요 ...</string>
-    <string name="camera_complete">사진 전송을 완료했습니다.</string>
-    <string name="camera_error">사진 전송에 실패했습니다.</string>
+    <string name="camera_suc">사진 전송을 완료했습니다.</string>
+    <string name="camera_err">사진 전송에 실패했습니다.</string>
     <string name="camera_file_none">전송할 사진이 없습니다.</string>
     <string name="camera_none">카메라 어플이 설치되어있지 않습니다.</string>
     <string name="camera_date_type">yyyyMMdd_HHmmss</string>
@@ -97,5 +99,12 @@
     <string name="chat_auth_load">채팅 내역을 불러왔습니다.</string>
     <string name="chat_auth_err">로그인 이후에 사용하실 수 있습니다.</string>
     <string name="chat_message">message</string>
+
+    <string name="_storage_upload_btn">업로드</string>
+    <string name="_storage_download_btn">다운로드</string>
+
+    <string name="storage_gs">gs://module-5c85f.appspot.com</string>
+    <string name="storage_download_suc">다운로드 완료</string>
+    <string name="storage_download_err">다운로드 실패</string>
 
 </resources>

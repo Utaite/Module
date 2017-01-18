@@ -83,4 +83,23 @@
         <item name="colorButtonNormal">#3CB371</item>
     </style>
 
+
+
+    <style name="StorageButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="StorageUploadButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#662500</item>
+    </style>
+
+    <style name="StorageDownloadButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#99004C</item>
+    </style>
+
 </resources>

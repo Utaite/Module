@@ -39,6 +39,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-10.0.1_64fecc22d943b9cdc64d01d7cef9be47008bbe6c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -225,6 +234,15 @@
         revision="24.0.3"
         sha1="2a06b6b1ecf5dadee8a874dfb51ad018fde3e6c5">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\parceler-api-1.1.6_8e7b13df03aebbf1cf31f6b4d5c43aa9c491ae8e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-10.0.1_00965efad227a8a1ef8b6d9e5f848554e6aea8d9\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -457,7 +475,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="a15bae7e9f5085552e2d074838c6a6a6b04771d2">
+        sha1="1349bcd50ec4b71ca13181a484935f5c584407f4">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5eb689a06fda5133828160133d68ddf28b852e11\classes.dex" />
     </item>
     <item
