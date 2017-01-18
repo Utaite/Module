@@ -11,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.trello.rxlifecycle.components.RxFragment;
@@ -79,20 +77,17 @@ public class StorageFragment extends RxFragment {
     public void onUploadButtonClick() {
         Uri file = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name) + "/" + "Music.mp3"));
         StorageReference music = reference.child("Test/" + file.getLastPathSegment());
-        UploadTask uploadTask = music.putFile(file);
-        uploadTask.addOnSuccessListener(taskSnapshot -> ((MainActivity) context).getToast().setTextShow(getString(R.string.storage_upload_suc)))
+        music.putFile(file).addOnSuccessListener(taskSnapshot -> ((MainActivity) context).getToast().setTextShow(getString(R.string.storage_upload_suc)))
                 .addOnFailureListener(e -> {
                     Log.e(TAG, e.toString());
                     ((MainActivity) context).getToast().setTextShow(getString(R.string.storage_upload_err));
                 });
-
     }
 
     @OnClick(R.id.storage_download_btn)
     public void onDownloadButtonClick() {
         StorageReference music = reference.child("Test/1.mp3");
         File f = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name) + "/" + "Music.mp3");
-
         music.getFile(f).addOnSuccessListener(taskSnapshot -> ((MainActivity) context).getToast().setTextShow(getString(R.string.storage_download_suc)))
                 .addOnFailureListener(e -> {
                     Log.e(TAG, e.toString());
