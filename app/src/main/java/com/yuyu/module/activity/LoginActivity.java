@@ -122,12 +122,11 @@ public class LoginActivity extends RxAppCompatActivity {
                 subscriber.onCompleted();
             }).compose(bindToLifecycle())
                     .filter(editText -> {
-                        boolean isEmpty = TextUtils.isEmpty(getText(editText));
-                        if (isEmpty) {
+                        if (TextUtils.isEmpty(getText(editText))) {
                             editText.setError(getString(R.string.login_required_err));
                             editText.requestFocus();
                         }
-                        return !isEmpty;
+                        return !TextUtils.isEmpty(getText(editText));
                     })
                     .map(this::getText)
                     .subscribe(arrayList::add,
