@@ -20,7 +20,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
-import com.yuyu.module.utils.Constant;
+import com.yuyu.module.utils.ConstantK;
 
 import butterknife.ButterKnife;
 
@@ -51,12 +51,15 @@ public class AuthFragment extends RxFragment {
             FirebaseUser user = auth.getCurrentUser();
             if (user == null) {
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, Constant.AUTH_REQUEST_CODE);
+                startActivityForResult(intent, ConstantK.AUTH_REQUEST_CODE);
             } else {
                 ((MainActivity) context).getAuthVO()
-                        .setDisplayName(user.getDisplayName())
-                        .setEmail(user.getEmail())
-                        .setUid(user.getUid())
+                        .setDisplayName(user.getDisplayName());
+                ((MainActivity) context).getAuthVO()
+                        .setEmail(user.getEmail());
+                ((MainActivity) context).getAuthVO()
+                        .setUid(user.getUid());
+                ((MainActivity) context).getAuthVO()
                         .setPhotoUrl(String.valueOf(user.getPhotoUrl()));
             }
         };
@@ -103,7 +106,7 @@ public class AuthFragment extends RxFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constant.AUTH_REQUEST_CODE) {
+        if (requestCode == ConstantK.AUTH_REQUEST_CODE) {
             if (resultCode != RESULT_OK) {
                 ((MainActivity) context).getToast().setTextShow(getString(R.string.auth_err));
                 ((MainActivity) context).finish();
@@ -120,7 +123,8 @@ public class AuthFragment extends RxFragment {
             firebaseAuth.signInWithCredential(credential)
                     .addOnCompleteListener((MainActivity) context, task -> {
                         ((MainActivity) context).getAuthVO()
-                                .setId(account.getId())
+                                .setId(account.getId());
+                        ((MainActivity) context).getAuthVO()
                                 .setIdToken(account.getIdToken());
                     });
         }

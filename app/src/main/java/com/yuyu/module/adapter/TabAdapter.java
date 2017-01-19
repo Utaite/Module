@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
 
-import com.yuyu.module.utils.TabVO;
+import com.yuyu.module.utils.TabVOK;
 
 import java.util.ArrayList;
 
@@ -13,9 +13,9 @@ public class TabAdapter extends FragmentPagerAdapter {
 
     private final String TAG = TabAdapter.class.getSimpleName();
 
-    private ArrayList<TabVO> vo;
+    private ArrayList<TabVOK> vo;
 
-    public TabAdapter(FragmentManager fm, ArrayList<TabVO> vo) {
+    public TabAdapter(FragmentManager fm, ArrayList<TabVOK> vo) {
         super(fm);
         this.vo = vo;
     }

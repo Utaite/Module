@@ -29,9 +29,9 @@ import com.yuyu.module.fragment.StorageFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
-import com.yuyu.module.utils.AuthVO;
-import com.yuyu.module.utils.Constant;
-import com.yuyu.module.utils.MainParcel;
+import com.yuyu.module.utils.AuthVOK;
+import com.yuyu.module.utils.ConstantK;
+import com.yuyu.module.utils.MainParcelK;
 
 import java.util.ArrayList;
 
@@ -43,9 +43,9 @@ public class MainActivity extends RxAppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
 
     @InjectExtra
-    MainParcel mainParcel;
+    MainParcelK mainParcel;
 
-    private AuthVO authVO;
+    private AuthVOK authVO;
     private Context context;
     private ChainedToast toast;
 
@@ -69,7 +69,7 @@ public class MainActivity extends RxAppCompatActivity {
         Dart.inject(this);
         context = this;
         toast = new ChainedToast(context).makeTextTo(context, "", Toast.LENGTH_SHORT);
-        authVO = new AuthVO();
+        authVO = new AuthVOK();
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -128,8 +128,8 @@ public class MainActivity extends RxAppCompatActivity {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START);
 
-        } else if (Constant.CURRENT_TIME + Constant.BACK_TIME < System.currentTimeMillis()) {
-            Constant.CURRENT_TIME = System.currentTimeMillis();
+        } else if (ConstantK.CURRENT_TIME + ConstantK.BACK_TIME < System.currentTimeMillis()) {
+            ConstantK.CURRENT_TIME = System.currentTimeMillis();
             toast.setTextShow(getString(R.string.onBackPressed));
 
         } else {
@@ -195,11 +195,11 @@ public class MainActivity extends RxAppCompatActivity {
         return bottom_tab_bar;
     }
 
-    public MainParcel getMainParcel() {
-        return mainParcel;
+    public MainParcelK getMainParcelK() {
+        return mainParcelK;
     }
 
-    public AuthVO getAuthVO() {
+    public AuthVOK getAuthVO() {
         return authVO;
     }
 

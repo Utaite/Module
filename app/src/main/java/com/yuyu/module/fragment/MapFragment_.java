@@ -36,8 +36,8 @@ import com.gun0912.tedpermission.TedPermission;
 import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
-import com.yuyu.module.utils.Constant;
-import com.yuyu.module.utils.MapVO;
+import com.yuyu.module.utils.ConstantK;
+import com.yuyu.module.utils.MapVOK;
 
 import java.util.ArrayList;
 
@@ -125,7 +125,7 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
                             .negativeText(getString(R.string.map_alert_no))
                             .onPositive((dialog, which) -> {
                                 selectedMarkerRemove();
-                                selectedMarker = createMarker(new MapVO(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true);
+                                selectedMarker = createMarker(new MapVOK(latLng.latitude, latLng.longitude, dialog.getInputEditText().getText().toString().trim()), true);
                                 googleMap.animateCamera(CameraUpdateFactory.newLatLng((selectedMarker.getPosition())));
                             })
                             .onNegative((dialog, which) -> dialog.cancel())
@@ -161,7 +161,7 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
                     .content(getString(R.string.map_gps_alert))
                     .positiveText(getString(R.string.map_alert_setting))
                     .negativeText(getString(R.string.map_alert_no))
-                    .onPositive((dialog, which) -> startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), Constant.GPS_REQUEST_CODE))
+                    .onPositive((dialog, which) -> startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), ConstantK.GPS_REQUEST_CODE))
                     .onNegative((dialog, which) -> dialog.cancel())
                     .show();
         } else {
@@ -202,7 +202,7 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constant.GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (requestCode == ConstantK.GPS_REQUEST_CODE && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             mapFragment.getMapAsync(this);
             ((MainActivity) getActivity()).getToast().setTextShow(getString(R.string.map_gps_load));
         }
@@ -213,7 +213,7 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
         Observable.just(location)
                 .compose(bindToLifecycle())
                 .filter(location1 -> location1 != null)
-                .map(location2 -> new MapVO(location2.getLatitude(), location2.getLongitude(), getString(R.string.map_gps_locate)))
+                .map(location2 -> new MapVOK(location2.getLatitude(), location2.getLongitude(), getString(R.string.map_gps_locate)))
                 .doOnUnsubscribe(() -> {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
                     googleMap.animateCamera(CameraUpdateFactory.zoomTo(CAMERA_ZOOM));
@@ -236,12 +236,12 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
     public Marker createMarker(Marker marker, boolean isSelected) {
         if (marker != null) {
             marker.remove();
-            return createMarker(new MapVO(marker.getPosition().latitude, marker.getPosition().longitude, marker.getTitle()), isSelected);
+            return createMarker(new MapVOK(marker.getPosition().latitude, marker.getPosition().longitude, marker.getTitle()), isSelected);
         }
         return null;
     }
 
-    public Marker createMarker(MapVO vo, boolean isSelected) {
+    public Marker createMarker(MapVOK vo, boolean isSelected) {
         View markerView = LayoutInflater.from(context).inflate(R.layout.custom_marker, null);
         TextView tv_marker = (TextView) markerView.findViewById(R.id.tv_marker);
 

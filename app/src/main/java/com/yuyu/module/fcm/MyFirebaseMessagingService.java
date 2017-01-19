@@ -11,7 +11,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.LoginActivity;
-import com.yuyu.module.utils.Constant;
+import com.yuyu.module.utils.ConstantK;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -25,7 +25,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(String userName, String message) {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, Constant.NOTIFICATION_ID, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, ConstantK.NOTIFICATION_ID, intent,
                 PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
@@ -36,7 +36,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent);
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(Constant.NOTIFICATION_ID, notificationBuilder.build());
+        notificationManager.notify(ConstantK.NOTIFICATION_ID, notificationBuilder.build());
     }
 
 }

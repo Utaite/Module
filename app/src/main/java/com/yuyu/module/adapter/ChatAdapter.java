@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuyu.module.R;
-import com.yuyu.module.utils.ChatVO;
+import com.yuyu.module.utils.ChatVOK;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private final String TAG = ChatAdapter.class.getSimpleName();
 
     private Context context;
-    private ArrayList<ChatVO> vo;
+    private ArrayList<ChatVOK> vo;
 
     public ChatAdapter(Context context) {
         this.context = context;
@@ -49,7 +49,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         return vo.size();
     }
 
-    public void add(ChatVO chatVO) {
+    public void add(ChatVOK chatVO) {
         vo.add(chatVO);
         notifyDataSetChanged();
     }
