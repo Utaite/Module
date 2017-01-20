@@ -7,10 +7,9 @@ import com.yuyu.module.R
 
 class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {
 
-    override fun onTokenRefresh() {
-        getSharedPreferences(getString(R.string.token), Context.MODE_PRIVATE).edit().putString(
-                getString(R.string.token), FirebaseInstanceId.getInstance().token).apply()
-    }
+    override fun onTokenRefresh() =
+            getSharedPreferences(getString(R.string.token), Context.MODE_PRIVATE).edit().putString(
+                    getString(R.string.token), FirebaseInstanceId.getInstance().token).apply()
 
 }
 

@@ -10,24 +10,24 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.Observable;
 import rx.Scheduler;
 
-public class RxThreadCallAdapter extends CallAdapter.Factory {
+class RxThreadCallAdapter extends CallAdapter.Factory {
 
     private RxJavaCallAdapterFactory rxFactory = RxJavaCallAdapterFactory.create();
     private Scheduler subscribeScheduler;
     private Scheduler observerScheduler;
 
-    public RxThreadCallAdapter(Scheduler subscribeScheduler, Scheduler observerScheduler) {
+    RxThreadCallAdapter(Scheduler subscribeScheduler, Scheduler observerScheduler) {
         this.subscribeScheduler = subscribeScheduler;
         this.observerScheduler = observerScheduler;
     }
 
     @Override
-    public CallAdapter<?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
-        CallAdapter<Observable<?>> callAdapter = (CallAdapter<Observable<?>>) rxFactory.get(returnType, annotations, retrofit);
+    public CallAdapter<?> get(Type type, Annotation[] annotations, Retrofit retrofit) {
+        CallAdapter<Observable<?>> callAdapter = (CallAdapter<Observable<?>>) rxFactory.get(type, annotations, retrofit);
         return callAdapter != null ? new ThreadCallAdapter(callAdapter) : null;
     }
 
-    private final class ThreadCallAdapter implements CallAdapter<Observable<?>> {
+    private class ThreadCallAdapter implements CallAdapter<Observable<?>> {
         CallAdapter<Observable<?>> delegateAdapter;
 
         ThreadCallAdapter(CallAdapter<Observable<?>> delegateAdapter) {
