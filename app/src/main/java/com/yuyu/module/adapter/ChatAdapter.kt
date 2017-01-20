@@ -29,8 +29,8 @@ class ChatAdapter(private val context: Context) : RecyclerView.Adapter<ChatAdapt
         Glide.with(context).load(vo[position].photoUrl)
                 .bitmapTransform(CropCircleTransformation(context))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(holder.imageView)
-        holder.textView.text = "${vo[position].email}: ${vo[position].message}"
+                .into(holder.img)
+        holder.txt.text = "${vo[position].email}: ${vo[position].message}"
     }
 
     override fun getItemCount() = vo.size
@@ -41,8 +41,8 @@ class ChatAdapter(private val context: Context) : RecyclerView.Adapter<ChatAdapt
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view.findViewById(R.id.image_view) as ImageView
-        val textView: TextView = view.findViewById(R.id.text_view) as TextView
+        val txt: TextView = view.findViewById(R.id.text_view) as TextView
+        val img: ImageView = view.findViewById(R.id.image_view) as ImageView
     }
 
 }
@@ -90,8 +90,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         Glide.with(context).load(vo.get(position).getPhotoUrl())
                 .bitmapTransform(new CropCircleTransformation(context))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(holder.imageView);
-        holder.textView.setText(vo.get(position).getEmail() + ": " + vo.get(position).getMessage());
+                .into(holder.img);
+        holder.txt.setText(vo.get(position).getEmail() + ": " + vo.get(position).getMessage());
     }
 
     @Override
@@ -106,13 +106,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+        ImageView img;
+        TextView txt;
 
         ViewHolder(View view) {
             super(view);
-            imageView = (ImageView) view.findViewById(R.id.image_view);
-            textView = (TextView) view.findViewById(R.id.text_view);
+            img = (ImageView) view.findViewById(R.id.image_view);
+            txt = (TextView) view.findViewById(R.id.text_view);
         }
     }
 }*/

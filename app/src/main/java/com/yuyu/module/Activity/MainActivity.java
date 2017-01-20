@@ -154,8 +154,6 @@ public class MainActivity extends RxAppCompatActivity {
     }
 
     public void initialize() {
-        Log.e(TAG, mainParcel.getId() + " / " + mainParcel.getPw());
-
         for (int i = 0; i < bottom_tab_bar.getTabCount(); i++) {
             bottom_tab_bar.getTabAtPosition(i).setScaleX(1.25f);
             bottom_tab_bar.getTabAtPosition(i).setScaleY(1.25f);
