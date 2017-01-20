@@ -25,17 +25,15 @@ class HorizonAdapter(private val context: Context,
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(context).inflate(R.layout.item, container, false)
-        val txt = view.findViewById(R.id.txt_item) as TextView
-        val img = view.findViewById(R.id.img_item) as ImageView
-
-        txt.run {
+        (view.findViewById(R.id.txt_item) as TextView).apply {
             text = vo[position].title
             setOnClickListener {
                 (context as MainActivity).toast.setTextShow(
                         context.getString(R.string.horizon_text, position + 1))
             }
         }
-        img.run {
+
+        (view.findViewById(R.id.img_item) as ImageView).apply {
             setImageResource(vo[position].img)
             setOnClickListener {
                 (context as MainActivity).toast.setTextShow(
