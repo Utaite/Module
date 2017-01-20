@@ -31,7 +31,7 @@ import rx.Observable;
 
 public class LoginActivity extends RxAppCompatActivity {
 
-    private static final String TAG = LoginActivity.class.getSimpleName();
+    private final String TAG = LoginActivity.class.getSimpleName();
 
     private Context context;
     private ChainedToast toast;

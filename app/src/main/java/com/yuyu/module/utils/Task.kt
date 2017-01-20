@@ -9,16 +9,17 @@ import com.yuyu.module.R
 class Task(context: Context) : AsyncTask<Void, Void, Void>() {
 
     private val msg: String = context.getString(R.string.loading)
-    private val dialog: ProgressDialog = ProgressDialog(context).apply {
-        setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        setMessage(msg)
-        setCancelable(false)
-        setCanceledOnTouchOutside(false)
-        show()
-    }
+    private val dialog: ProgressDialog = ProgressDialog(context)
 
     public override fun onPreExecute() {
         super.onPreExecute()
+        dialog.run {
+            setProgressStyle(ProgressDialog.STYLE_SPINNER)
+            setMessage(msg)
+            setCancelable(false)
+            setCanceledOnTouchOutside(false)
+            show()
+        }
     }
 
     public override fun doInBackground(vararg void: Void) = null
