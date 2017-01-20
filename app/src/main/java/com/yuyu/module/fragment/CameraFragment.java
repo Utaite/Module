@@ -30,6 +30,7 @@ import com.yuyu.module.activity.MainActivity;
 import com.yuyu.module.chain.Chained;
 import com.yuyu.module.rest.RestUtils;
 import com.yuyu.module.utils.Constant;
+import com.yuyu.module.utils.Task;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -52,8 +53,6 @@ public class CameraFragment extends RxFragment {
 
     private File file;
     private Context context;
-
-    private boolean isResult;
 
     @BindView(R.id.camera_camera_btn)
     Button camera_camera_btn;
@@ -134,24 +133,23 @@ public class CameraFragment extends RxFragment {
         if (file == null || camera_img == null) {
             ((MainActivity) context).getToast().setTextShow(getString(R.string.camera_file_none));
         } else {
-            UploadTask uploadTask = new UploadTask();
-            uploadTask.onPreExecute();
+            Task task = new Task(context);
+            task.onPreExecute();
 
             String message = "message";
             MultipartBody.Part body = MultipartBody.Part.createFormData(getString(R.string.file), file.getName(), RequestBody.create(MediaType.parse(getString(R.string.multipart)), file));
-
 
             RestUtils.getRetrofit()
                     .create(RestUtils.Upload.class)
                     .upload(message, body)
                     .subscribe(o -> {
-                                isResult = true;
-                                uploadTask.onPostExecute(null);
+                                task.onPostExecute(null);
+                                ((MainActivity) context).getToast().setTextShow(getString(R.string.camera_suc));
                             },
                             e -> {
                                 Log.e(TAG, e.toString());
-                                isResult = false;
-                                uploadTask.onPostExecute(null);
+                                task.onPostExecute(null);
+                                ((MainActivity) context).getToast().setTextShow(getString(R.string.camera_err));
                             });
         }
     }
@@ -229,33 +227,6 @@ public class CameraFragment extends RxFragment {
             }
         }
         return bitmap;
-    }
-
-    private class UploadTask extends AsyncTask<Void, Void, Void> {
-
-        private ProgressDialog asyncDialog = new ProgressDialog(context);
-
-        @Override
-        public void onPreExecute() {
-            super.onPreExecute();
-            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            asyncDialog.setMessage(getString(R.string.camera_ing));
-            asyncDialog.setCancelable(false);
-            asyncDialog.setCanceledOnTouchOutside(false);
-            asyncDialog.show();
-        }
-
-        @Override
-        public Void doInBackground(Void... arg0) {
-            return null;
-        }
-
-        @Override
-        public void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            asyncDialog.dismiss();
-            ((MainActivity) context).getToast().setTextShow(getString(isResult ? R.string.camera_suc: R.string.camera_err));
-        }
     }
 
 }

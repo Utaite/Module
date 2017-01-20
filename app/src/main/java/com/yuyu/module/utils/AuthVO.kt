@@ -1,7 +1,11 @@
 package com.yuyu.module.utils
 
-data class AuthVO(var email: String? = null, var displayName: String? = null, var uid: String? = null,
-                  var photoUrl: String? = null, var id: String? = null, var idToken: String? = null)
+data class AuthVO(var email: String? = null,
+                  var displayName: String? = null,
+                  var uid: String? = null,
+                  var photoUrl: String? = null,
+                  var id: String? = null,
+                  var idToken: String? = null)
 
 /*
 package com.yuyu.module.utils;

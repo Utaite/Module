@@ -1,6 +1,8 @@
 package com.yuyu.module.utils
 
-data class MapVO(val lat: Double? = null, val lon: Double? = null, val description: String? = null)
+data class MapVO(val lat: Double,
+                 val lon: Double,
+                 val description: String)
 
 /*
 package com.yuyu.module.utils;

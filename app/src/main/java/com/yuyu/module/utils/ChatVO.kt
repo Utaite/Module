@@ -1,6 +1,8 @@
 package com.yuyu.module.utils
 
-data class ChatVO(val email: String? = null, val message: String? = null, val photoUrl: String? = null)
+data class ChatVO(val email: String,
+                  val message: String,
+                  val photoUrl: String)
 
 /*
 package com.yuyu.module.utils;

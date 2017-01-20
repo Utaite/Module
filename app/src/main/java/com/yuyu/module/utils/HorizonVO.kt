@@ -1,6 +1,7 @@
 package com.yuyu.module.utils
 
-data class HorizonVO(val img: Int? = null, val title: String? = null)
+data class HorizonVO(val img: Int,
+                     val title: String)
 
 /*
 package com.yuyu.module.utils;

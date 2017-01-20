@@ -2,7 +2,8 @@ package com.yuyu.module.utils
 
 import android.app.Fragment
 
-data class TabVO(val fragment: Fragment? = null, val title: String? = null)
+data class TabVO(val fragment: Fragment,
+                 val title: String)
 
 /*
 package com.yuyu.module.utils;
