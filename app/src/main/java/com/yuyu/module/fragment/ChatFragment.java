@@ -19,7 +19,7 @@ import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
 import com.yuyu.module.adapter.ChatAdapter;
-import com.yuyu.module.utils.ChatVOK;
+import com.yuyu.module.utils.ChatVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,7 +75,7 @@ public class ChatFragment extends RxFragment {
     public void onChatButtonClick() {
         String message = chat_edit.getText().toString().trim();
         databaseReference.child(getString(R.string.chat_message)).push().setValue(
-                new ChatVOK(((MainActivity) context).getAuthVO().getEmail(), message,
+                new ChatVO(((MainActivity) context).getAuthVO().getEmail(), message,
                         ((MainActivity) context).getAuthVO().getPhotoUrl()));
         // TODO FCM
         chat_edit.getText().clear();
@@ -93,8 +93,8 @@ public class ChatFragment extends RxFragment {
         databaseReference.child(getString(R.string.chat_message)).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ChatVOK vo = dataSnapshot.getValue(ChatVOK.class);
-                adapter.add(new ChatVOK(vo.getEmail(), vo.getMessage(), vo.getPhotoUrl()));
+                ChatVO vo = dataSnapshot.getValue(ChatVO.class);
+                adapter.add(new ChatVO(vo.getEmail(), vo.getMessage(), vo.getPhotoUrl()));
                 chat_list.smoothScrollToPosition(adapter.getItemCount());
             }
 

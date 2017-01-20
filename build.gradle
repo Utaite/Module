@@ -3,6 +3,10 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
+
+        maven {
+            url 'http://oss.sonatype.org/content/repositories/snapshots'
+        }
     }
 
     dependencies {
@@ -11,6 +15,7 @@ buildscript {
         classpath 'me.tatarka:gradle-retrolambda:3.4.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:0.1-SNAPSHOT"
     }
 }
 

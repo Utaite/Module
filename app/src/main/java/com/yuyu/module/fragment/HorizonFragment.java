@@ -11,7 +11,7 @@ import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.adapter.HorizonAdapter;
 import com.yuyu.module.chain.ChainedArrayList;
-import com.yuyu.module.utils.HorizonVOK;
+import com.yuyu.module.utils.HorizonVO;
 
 import java.util.ArrayList;
 
@@ -37,11 +37,11 @@ public class HorizonFragment extends RxFragment {
     }
 
     public void initialize() {
-        ArrayList<HorizonVOK> arrayList = new ChainedArrayList().addMany(
-                new HorizonVOK(R.drawable.ic_menu_camera, getString(R.string.horizon_view_1)),
-                new HorizonVOK(R.drawable.ic_menu_gallery, getString(R.string.horizon_view_2)),
-                new HorizonVOK(R.drawable.ic_menu_manage, getString(R.string.horizon_view_3)),
-                new HorizonVOK(R.drawable.ic_menu_send, getString(R.string.horizon_view_4)));
+        ArrayList<HorizonVO> arrayList = new ChainedArrayList().addMany(
+                new HorizonVO(R.drawable.ic_menu_camera, getString(R.string.horizon_view_1)),
+                new HorizonVO(R.drawable.ic_menu_gallery, getString(R.string.horizon_view_2)),
+                new HorizonVO(R.drawable.ic_menu_manage, getString(R.string.horizon_view_3)),
+                new HorizonVO(R.drawable.ic_menu_send, getString(R.string.horizon_view_4)));
 
         horizon_view.setAdapter(new HorizonAdapter(context, arrayList));
     }

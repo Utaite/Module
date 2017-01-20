@@ -11,7 +11,7 @@ import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.adapter.TabAdapter;
 import com.yuyu.module.chain.ChainedArrayList;
-import com.yuyu.module.utils.TabVOK;
+import com.yuyu.module.utils.TabVO;
 
 import java.util.ArrayList;
 
@@ -36,9 +36,9 @@ public class TabFragment extends RxFragment {
     }
 
     public void initialize() {
-        ArrayList<TabVOK> arrayList = new ChainedArrayList().addMany(
-                new TabVOK(new TabFragment1(), getString(R.string.tab_title_1)),
-                new TabVOK(new TabFragment2(), getString(R.string.tab_title_2)));
+        ArrayList<TabVO> arrayList = new ChainedArrayList().addMany(
+                new TabVO(new TabFragment1(), getString(R.string.tab_title_1)),
+                new TabVO(new TabFragment2(), getString(R.string.tab_title_2)));
 
         tab_view_pager.setAdapter(new TabAdapter(getChildFragmentManager(), arrayList));
         tab_tab_layout.setViewPager(tab_view_pager);

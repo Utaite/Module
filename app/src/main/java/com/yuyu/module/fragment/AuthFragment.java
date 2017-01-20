@@ -20,7 +20,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
-import com.yuyu.module.utils.ConstantK;
+import com.yuyu.module.utils.Constant;
 
 import butterknife.ButterKnife;
 
@@ -51,7 +51,7 @@ public class AuthFragment extends RxFragment {
             FirebaseUser user = auth.getCurrentUser();
             if (user == null) {
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, ConstantK.AUTH_REQUEST_CODE);
+                startActivityForResult(intent, Constant.AUTH_REQUEST_CODE);
             } else {
                 ((MainActivity) context).getAuthVO()
                         .setDisplayName(user.getDisplayName());
@@ -106,7 +106,7 @@ public class AuthFragment extends RxFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ConstantK.AUTH_REQUEST_CODE) {
+        if (requestCode == Constant.AUTH_REQUEST_CODE) {
             if (resultCode != RESULT_OK) {
                 ((MainActivity) context).getToast().setTextShow(getString(R.string.auth_err));
                 ((MainActivity) context).finish();

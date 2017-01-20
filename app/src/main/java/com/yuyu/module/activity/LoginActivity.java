@@ -18,8 +18,8 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.yuyu.module.R;
 import com.yuyu.module.chain.ChainedToast;
 import com.yuyu.module.rest.RestUtils;
-import com.yuyu.module.utils.ConstantK;
-import com.yuyu.module.utils.MainParcelK;
+import com.yuyu.module.utils.Constant;
+import com.yuyu.module.utils.MainParcel;
 import com.yuyu.module.utils.Task;
 
 import java.util.ArrayList;
@@ -59,8 +59,8 @@ public class LoginActivity extends RxAppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (ConstantK.CURRENT_TIME + ConstantK.BACK_TIME < System.currentTimeMillis()) {
-            ConstantK.CURRENT_TIME = System.currentTimeMillis();
+        if (Constant.CURRENT_TIME + Constant.BACK_TIME < System.currentTimeMillis()) {
+            Constant.CURRENT_TIME = System.currentTimeMillis();
             toast.setTextShow(getString(R.string.onBackPressed));
 
         } else {
@@ -174,7 +174,7 @@ public class LoginActivity extends RxAppCompatActivity {
 
                             startActivity(Henson.with(this)
                                     .gotoMainActivity()
-                                    .mainParcelK(new MainParcelK(id, pw))
+                                    .mainParcel(new MainParcel(id, pw))
                                     .build());
                             finish();
                         });

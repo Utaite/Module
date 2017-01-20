@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
-import com.yuyu.module.utils.HorizonVOK;
+import com.yuyu.module.utils.HorizonVO;
 
 import java.util.ArrayList;
 
@@ -19,9 +19,9 @@ public class HorizonAdapter extends PagerAdapter {
     private final String TAG = HorizonAdapter.class.getSimpleName();
 
     private Context context;
-    private ArrayList<HorizonVOK> vo;
+    private ArrayList<HorizonVO> vo;
 
-    public HorizonAdapter(Context context, ArrayList<HorizonVOK> vo) {
+    public HorizonAdapter(Context context, ArrayList<HorizonVO> vo) {
         this.context = context;
         this.vo = vo;
     }

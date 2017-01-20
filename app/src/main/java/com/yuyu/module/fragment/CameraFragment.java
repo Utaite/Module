@@ -1,7 +1,6 @@
 package com.yuyu.module.fragment;
 
 import android.Manifest;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,16 +22,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.f2prateek.dart.HensonNavigable;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.trello.rxlifecycle.android.RxLifecycleAndroid;
 import com.trello.rxlifecycle.components.RxFragment;
 import com.yuyu.module.R;
 import com.yuyu.module.activity.MainActivity;
 import com.yuyu.module.chain.Chained;
 import com.yuyu.module.rest.RestUtils;
-import com.yuyu.module.utils.ConstantK;
+import com.yuyu.module.utils.Constant;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -119,7 +116,7 @@ public class CameraFragment extends RxFragment {
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).setData(uri));
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-            startActivityForResult(intent, ConstantK.CAMERA_REQUEST_CODE);
+            startActivityForResult(intent, Constant.CAMERA_REQUEST_CODE);
         } else {
             ((MainActivity) context).getToast().setTextShow(getString(R.string.camera_none));
             file.delete();
@@ -129,7 +126,7 @@ public class CameraFragment extends RxFragment {
     @OnClick(R.id.camera_gallery_btn)
     public void onGalleryButtonClick() {
         Intent intent = new Intent(Intent.ACTION_PICK).setType(MediaStore.Images.Media.CONTENT_TYPE);
-        startActivityForResult(intent, ConstantK.GALLERY_REQUEST_CODE);
+        startActivityForResult(intent, Constant.GALLERY_REQUEST_CODE);
     }
 
     @OnClick(R.id.camera_submit_btn)
@@ -163,7 +160,7 @@ public class CameraFragment extends RxFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) {
-            if (requestCode == ConstantK.CAMERA_REQUEST_CODE) {
+            if (requestCode == Constant.CAMERA_REQUEST_CODE) {
                 file.delete();
             }
             final int ALPHA = 255;
@@ -173,13 +170,13 @@ public class CameraFragment extends RxFragment {
         }
 
         switch (requestCode) {
-            case ConstantK.GALLERY_REQUEST_CODE: {
+            case Constant.GALLERY_REQUEST_CODE: {
                 file = new File(getName(data.getData()));
                 setImageBitmap();
             }
             break;
 
-            case ConstantK.CAMERA_REQUEST_CODE: {
+            case Constant.CAMERA_REQUEST_CODE: {
                 setImageBitmap();
             }
             break;

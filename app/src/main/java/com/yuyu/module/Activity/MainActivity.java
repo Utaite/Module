@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,9 +30,9 @@ import com.yuyu.module.fragment.StorageFragment;
 import com.yuyu.module.fragment.TabFragment;
 import com.yuyu.module.chain.ChainedArrayList;
 import com.yuyu.module.chain.ChainedToast;
-import com.yuyu.module.utils.AuthVOK;
-import com.yuyu.module.utils.ConstantK;
-import com.yuyu.module.utils.MainParcelK;
+import com.yuyu.module.utils.AuthVO;
+import com.yuyu.module.utils.Constant;
+import com.yuyu.module.utils.MainParcel;
 
 import java.util.ArrayList;
 
@@ -43,9 +44,9 @@ public class MainActivity extends RxAppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
 
     @InjectExtra
-    MainParcelK mainParcel;
+    MainParcel mainParcel;
 
-    private AuthVOK authVO;
+    private AuthVO authVO;
     private Context context;
     private ChainedToast toast;
 
@@ -69,7 +70,7 @@ public class MainActivity extends RxAppCompatActivity {
         Dart.inject(this);
         context = this;
         toast = new ChainedToast(context).makeTextTo(context, "", Toast.LENGTH_SHORT);
-        authVO = new AuthVOK();
+        authVO = new AuthVO();
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -128,8 +129,8 @@ public class MainActivity extends RxAppCompatActivity {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START);
 
-        } else if (ConstantK.CURRENT_TIME + ConstantK.BACK_TIME < System.currentTimeMillis()) {
-            ConstantK.CURRENT_TIME = System.currentTimeMillis();
+        } else if (Constant.CURRENT_TIME + Constant.BACK_TIME < System.currentTimeMillis()) {
+            Constant.CURRENT_TIME = System.currentTimeMillis();
             toast.setTextShow(getString(R.string.onBackPressed));
 
         } else {
@@ -153,6 +154,8 @@ public class MainActivity extends RxAppCompatActivity {
     }
 
     public void initialize() {
+        Log.e(TAG, mainParcel.getId() + " / " + mainParcel.getPw());
+
         for (int i = 0; i < bottom_tab_bar.getTabCount(); i++) {
             bottom_tab_bar.getTabAtPosition(i).setScaleX(1.25f);
             bottom_tab_bar.getTabAtPosition(i).setScaleY(1.25f);
@@ -195,11 +198,11 @@ public class MainActivity extends RxAppCompatActivity {
         return bottom_tab_bar;
     }
 
-    public MainParcelK getMainParcelK() {
-        return mainParcelK;
+    public MainParcel getMainParcel() {
+        return mainParcel;
     }
 
-    public AuthVOK getAuthVO() {
+    public AuthVO getAuthVO() {
         return authVO;
     }
 
