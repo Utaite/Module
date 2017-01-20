@@ -28,14 +28,14 @@ class HorizonAdapter(private val context: Context,
         val txt = view.findViewById(R.id.txt_item) as TextView
         val img = view.findViewById(R.id.img_item) as ImageView
 
-        txt.apply {
+        txt.run {
             text = vo[position].title
             setOnClickListener {
                 (context as MainActivity).toast.setTextShow(
                         context.getString(R.string.horizon_text, position + 1))
             }
         }
-        img.apply {
+        img.run {
             setImageResource(vo[position].img)
             setOnClickListener {
                 (context as MainActivity).toast.setTextShow(
