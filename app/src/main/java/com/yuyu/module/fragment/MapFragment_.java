@@ -285,6 +285,10 @@ public class MapFragment_ extends RxFragment implements OnMapReadyCallback {
                 .map(view2 -> (ViewGroup) view2.getParent())
                 .filter(viewGroup1 -> viewGroup1 != null)
                 .subscribe(viewGroup2 -> viewGroup2.removeView(view));
+
+        for (int i = 0; i < 10; i++) {
+            break;
+        }
     }
 
 }
