@@ -5,3 +5,9 @@ Module [예제실습]
 - 실습 기간 : 2016.12 ~ 2017.01
 
 - 사용 기술 : Kotlin, Retrofit2, RxJava, RxRetrofit2, Glide, Dart, Henson, Parceler, FirebaseAuth, FirebaseDatabase, FirebaseCloudMessaging, FirebaseStorage, GoogleAuth, GoogleMaps, GoogleLocation, ButterKnife, ProjectLombok, RetroLambda
+
+
+<img width="140" height="250" src="/readme/image/module-1.png"/>
+<img width="140" height="250" src="/readme/image/module-2.png"/>
+<img width="140" height="250" src="/readme/image/module-3.png"/>
+<img width="140" height="250" src="/readme/image/module-4.png"/>
