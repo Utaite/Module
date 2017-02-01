@@ -3,14 +3,12 @@ package com.yuyu.module.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,8 +42,6 @@ public class LoginActivity extends RxAppCompatActivity {
     AppCompatCheckBox login_save_btn;
     @BindView(R.id.login_check_btn)
     AppCompatCheckBox login_check_btn;
-    @BindView(R.id.login_login_btn)
-    Button login_login_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +159,6 @@ public class LoginActivity extends RxAppCompatActivity {
                 .login(id, pw)
                 .subscribe(o -> {
                             task.onPostExecute(null);
-                            // loginProcess(o);
                         },
                         e -> {
                             task.onPostExecute(null);

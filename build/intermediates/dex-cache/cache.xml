@@ -12,15 +12,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\io.reactivex\rxkotlin\0.60.0\6729c889262e7c2cb6bba30cb9aa93d78167f69b\rxkotlin-0.60.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="6729c889262e7c2cb6bba30cb9aa93d78167f69b">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\rxkotlin-0.60.0_16a6f9d1077bfbd554cfe974833652f40d9f6f82\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -111,15 +102,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-support-v4\0.8.1\e7ad4f42aa5578e5b5349d66a28fee67d177b39c\anko-support-v4-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="e7ad4f42aa5578e5b5349d66a28fee67d177b39c">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-support-v4-0.8.1_a8cb4b6cef727717d592b97f31a3ef550359c14f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -144,15 +126,6 @@
         revision="24.0.3"
         sha1="f7be08ec23c21485b9b5a1cf1654c2ec8c58168d">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\jsr305-3.0.1_fe0031282381386f89ba0fde16d8d2374571fb9f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-percent\0.8.1\affb39631ab33c7df8f3336de36fd92d574b10ba\anko-percent-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="affb39631ab33c7df8f3336de36fd92d574b10ba">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-percent-0.8.1_35099170f3039e29401b10dcf6c9a4b106e11bd6\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -250,7 +223,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="e33eb1a88809a5cb326b33657abefef302ff6eb3">
+        sha1="ad62e6581fd558fad22576b413611c65062b6acc">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5eb689a06fda5133828160133d68ddf28b852e11\classes.dex" />
     </item>
     <item
@@ -259,17 +232,8 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="b304e82c5ada8fc92403b39322438de58dab5b82">
+        sha1="977345a40685f05c6d4d2338a57b9b4678e9e89f">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8e7344458e4b0c921c9d4fb820fdb025ad93532a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-recyclerview-v7\0.8.1\e97361ca6ac862e7844043c15f6bae29b96e976d\anko-recyclerview-v7-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="e97361ca6ac862e7844043c15f6bae29b96e976d">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-recyclerview-v7-0.8.1_4d3e83fb930a77b77a11280fa288af48725024de\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -288,15 +252,6 @@
         revision="24.0.3"
         sha1="4b17463c814bdc562fb0392fa3494063623a0904">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-messaging-10.0.1_0090e8a2ba6718ca0ec5362a085ff03672103e3d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-common\0.8.1\6446633125565376bdefb883421e33e123a9dee8\anko-common-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="6446633125565376bdefb883421e33e123a9dee8">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-common-0.8.1_b67f13b94fb351b70221039d7858378c3b3e95c4\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -372,15 +327,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-gridlayout-v7\0.8.1\482bc1f34c8f56b9b4d94f1a385eaf81eadf2fc1\anko-gridlayout-v7-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="482bc1f34c8f56b9b4d94f1a385eaf81eadf2fc1">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-gridlayout-v7-0.8.1_e0dfdce22cf7a9d0566f510fb5d2270033c45fac\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.android.support\support-v13\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -417,15 +363,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-appcompat-v7\0.8.1\9549427d620f8a3ca49b9d45c3df033c402ba8a6\anko-appcompat-v7-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="9549427d620f8a3ca49b9d45c3df033c402ba8a6">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-appcompat-v7-0.8.1_c6c1fce99b9d06cac431342807828bb8c8bfdcd1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
         jumboMode="true"
         optimize="true"
@@ -450,15 +387,6 @@
         revision="24.0.3"
         sha1="7912610ed96381c25c36d986eba422731b9641b6">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.astuetz-pagerslidingtabstrip-1.0.1_617c11daddb0f01a3c6b902ec7ae9fe1c5705bb0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-cardview-v7\0.8.1\a656ea3daf8cdb3520f80ae18e936e37ac6c8de7\anko-cardview-v7-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="a656ea3daf8cdb3520f80ae18e936e37ac6c8de7">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-cardview-v7-0.8.1_d9e414b642c2e4b9fe4f60fa350fff11fc628ef5\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -543,30 +471,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-sdk15\0.8.1\a148ee95c883f777facc5328d29af19853c8ae21\anko-sdk15-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="a148ee95c883f777facc5328d29af19853c8ae21">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-sdk15-0.8.1_cead2c63d2c87dc682cbedc62e0159df24b8094b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\Programming\Android\module\app\build\intermediates\exploded-aar\com.roughike\bottom-bar\2.0.2\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
         sha1="32534a05122d0c535cc8b885e45b1e7ce3b0f03e">
         <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.roughike-bottom-bar-2.0.2_d9f09dd925cc871d06433c58a405e8f41d7b8e44\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Kurokumo\.gradle\caches\modules-2\files-2.1\org.jetbrains.anko\anko-design\0.8.1\e4bc5598c92a57731f855dbf501db72ec7db6bb0\anko-design-0.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="e4bc5598c92a57731f855dbf501db72ec7db6bb0">
-        <dex dex="D:\Programming\Android\module\app\build\intermediates\transforms\dex\debug\folders\1000\10\anko-design-0.8.1_75b33fb18b8e5d5b4a81dbb7db030f4f66eb14db\classes.dex" />
     </item>
     <item
         is-multidex="true"

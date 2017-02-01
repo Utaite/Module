@@ -109,7 +109,7 @@ public class AuthFragment extends RxFragment {
         if (requestCode == Constant.AUTH_REQUEST_CODE) {
             if (resultCode != RESULT_OK) {
                 ((MainActivity) context).getToast().setTextShow(getString(R.string.auth_err));
-                ((MainActivity) context).finish();
+//                ((MainActivity) context).finish();
             } else {
                 handleSignInResult(Auth.GoogleSignInApi.getSignInResultFromIntent(data));
             }
